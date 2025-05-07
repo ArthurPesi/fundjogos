@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw2ldmgbhypql"]
+
+[ext_resource type="Script" uid="uid://bpna1fgeuu3mq" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c1fwwn4ju8xd0" path="res://Assets 2D/Players/Mask Dude/Jump (32x32).png" id="2_i3pqv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hqtel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sweqy")
