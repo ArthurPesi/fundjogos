@@ -8,7 +8,6 @@ enum state {walking, attacking}
 var curr_movement = Vector2(0,0)
 var curr_state = state.walking
 var directionRadians
-var attackDirVec
 var attackCounter = 0
 signal player_dead
 
@@ -26,25 +25,29 @@ func walk(delta: float) -> Vector2:
 
 func collision_should_kill(collision) -> bool:
 	return collision.is_in_group("kill") or curr_state == state.walking
+	
+var atk_move = Vector2()
 
-func fire():
-	curr_state = state.attacking
-	attackDirVec = get_global_mouse_position() - position
-	curr_movement = attackDirVec.normalized()
+func fire_set():
+	var attackDirVec = get_global_mouse_position() - position
+	atk_move = attackDirVec.normalized()
 	rotation = atan2(attackDirVec.y, attackDirVec.x)
+	curr_state = state.attacking
+
 
 func _physics_process(delta: float) -> void:
 	match curr_state:
 		state.walking:
 			velocity = walk(delta)
 			move_and_slide()
+			if Input.is_action_just_pressed("fire"):
+				fire_set()
 		state.attacking:
 			attackCounter += 1
-			velocity = curr_movement * ATTACK_SPEED
+			velocity = atk_move * ATTACK_SPEED
 			move_and_slide()
-			if attackCounter == 6:
+			if attackCounter == 30:
 				curr_state = state.walking
-	
 	for index in get_slide_collision_count():
 		var collision = get_slide_collision(index).get_collider()
 		if collision_should_kill(collision):
@@ -53,7 +56,3 @@ func _physics_process(delta: float) -> void:
 		elif curr_state == state.attacking:
 			attackCounter -= 2
 			collision.queue_free()
-			
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("fire") and attackCounter == 0:
-		fire()
