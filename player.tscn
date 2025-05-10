@@ -24,3 +24,9 @@ sprite_frames = SubResource("SpriteFrames_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sweqy")
+
+[node name="Cooldown" type="Timer" parent="."]
+
+[node name="Attack" type="Timer" parent="."]
+
+[connection signal="player_dead" from="." to="." method="_on_player_dead"]

@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 		if position.distance_squared_to(player.position) < AGGRO_DISTANCE:
 			is_aggro = true
 	else:
+		look_at(player.position)
 		var direction = (player.position - position).normalized()
 		fireManager(direction)
 		
