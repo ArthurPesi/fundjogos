@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyc04ifxvo54u"]
+[gd_scene load_steps=6 format=3 uid="uid://dyc04ifxvo54u"]
 
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="1_c4isy"]
 [ext_resource type="Script" uid="uid://ctrkatorla3n4" path="res://level.gd" id="1_uv5y8"]
 [ext_resource type="PackedScene" uid="uid://c2fofffhfhi63" path="res://enemy.tscn" id="2_556m2"]
 [ext_resource type="Texture2D" uid="uid://ccopwmupjol38" path="res://about-to-die.jpg" id="4_uv5y8"]
+[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://pause_menu.tscn" id="5_1b6wp"]
 
-[node name="scene2d" type="Node2D"]
+[node name="scene_2d" type="Node2D"]
 script = ExtResource("1_uv5y8")
 
 [node name="About-to-die" type="Sprite2D" parent="."]
@@ -42,5 +43,12 @@ position = Vector2(328, 122)
 [node name="Camera2D" type="Camera2D" parent="player"]
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
+
+[node name="pause_menu" parent="player/Camera2D" instance=ExtResource("5_1b6wp")]
+visible = false
+offset_left = -571.0
+offset_top = -311.0
+offset_right = -571.0
+offset_bottom = -311.0
 
 [connection signal="player_dead" from="player" to="." method="_on_player_player_dead"]

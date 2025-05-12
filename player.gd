@@ -3,6 +3,7 @@ extends CharacterBody2D
 const MAX_SPEED = 300
 const ACCELERATION = 4
 const ATTACK_SPEED = 1000
+const ATTACK_DURATION = 0.1
 enum state {walking, attacking}
 
 var curr_movement = Vector2(0,0)
@@ -43,10 +44,10 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("fire"):
 				fire_set()
 		state.attacking:
-			attackCounter += 1
+			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
 			move_and_slide()
-			if attackCounter == 30:
+			if attackCounter >= ATTACK_DURATION:
 				curr_state = state.walking
 	for index in get_slide_collision_count():
 		var collision = get_slide_collision(index).get_collider()
@@ -54,5 +55,5 @@ func _physics_process(delta: float) -> void:
 			emit_signal("player_dead")
 			break
 		elif curr_state == state.attacking:
-			attackCounter -= 2
+			attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
 			collision.queue_free()
