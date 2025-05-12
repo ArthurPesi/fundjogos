@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxbf6l8wgfiw6"]
+
+[ext_resource type="Script" uid="uid://b78vbkcamaoft" path="res://enemyshotgun.gd" id="1_cah0j"]
+[ext_resource type="Texture2D" uid="uid://cy6nr6eqeo1d7" path="res://Assets 2D/Players/Ninja Frog/Fall (32x32).png" id="2_cah0j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qi2p4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cah0j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xaro"]
+
+[node name="EnemyShotgun" type="CharacterBody2D"]
+script = ExtResource("1_cah0j")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qi2p4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7xaro")

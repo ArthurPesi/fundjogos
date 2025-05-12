@@ -4,7 +4,7 @@ const MAX_SPEED = 200
 const ACCELERATION = 0.08
 const MIN_FIRE_TIMEOUT = 1
 const MAX_FIRE_TIMEOUT = 1.4
-const PRECISION = 0.15
+const PRECISION = 0.34
 var curr_movement = Vector2(0,0)
 const AGGRO_DISTANCE_SQUARED = 120000
 var is_aggro = false
@@ -18,12 +18,12 @@ func _ready() -> void:
 func fireManager(dir, delta):
 	timeoutFire -= delta
 	if timeoutFire <= 0:
-		var temp_bullet = bullet.instantiate()
-		add_sibling(temp_bullet)
-		dir += Vector2(randf_range(-PRECISION,PRECISION), randf_range(-PRECISION,PRECISION))
-		temp_bullet.start(position, dir.normalized(), 1000, 0.5)
-		timeoutFire = randf_range(MIN_FIRE_TIMEOUT, MAX_FIRE_TIMEOUT)
-		
+		for i in 10:
+			var temp_bullet = bullet.instantiate()
+			add_sibling(temp_bullet)
+			dir += Vector2(randf_range(-PRECISION,PRECISION), randf_range(-PRECISION,PRECISION))
+			temp_bullet.start(position, dir.normalized(), randf_range(700, 1100), 0.2)
+			timeoutFire = randf_range(MIN_FIRE_TIMEOUT, MAX_FIRE_TIMEOUT)
 
 func _physics_process(delta: float) -> void:
 	if !is_aggro:

@@ -1,12 +1,14 @@
 extends Area2D
 
-const SPEED = 800
+var speed
 var life = 1
 var direction = Vector2()
 
-func start(pos, dir):
+func start(pos, dir, spd, lf):
 	position = pos
 	direction = dir
+	speed = spd
+	life = lf
 	
 func _on_body_entered(body):
 	if body.is_in_group("player"):
@@ -14,7 +16,7 @@ func _on_body_entered(body):
 
 
 func _physics_process(delta: float) -> void:
-	position += direction * SPEED * delta
+	position += direction * speed * delta
 	life -= delta
 	if life <= 0:
 		queue_free()
