@@ -8,8 +8,6 @@ const ACCELERATION = 0.08
 const MIN_FIRE_TIMEOUT = 0.03
 const MAX_FIRE_TIMEOUT = 0.08
 const PRECISION = 0.32
-var curr_movement = Vector2(0,0)
-const AGGRO_DISTANCE_SQUARED = 120000
 const BULLET_DURATION = 0.5
 const MIN_BULLET_SPEED = 900
 const MAX_BULLET_SPEED = 1000
@@ -22,7 +20,7 @@ var timeoutFire
 var amount_of_bullets
 
 func _ready() -> void:
-	timeoutFire = randf_range(2, 3)
+	timeoutFire = randf_range(0.7, 1)
 			
 			
 func fireManager(dir, delta):

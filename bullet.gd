@@ -13,6 +13,8 @@ func start(pos, dir, spd, lf):
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		body.emit_signal("player_dead")
+	elif body.is_in_group("obstacle"):
+		queue_free()
 
 
 func _physics_process(delta: float) -> void:

@@ -17,7 +17,7 @@ var amount_of_bullets
 @onready var bullet = preload("res://bullet.tscn")
 
 func _ready() -> void:
-	timeoutFire = randf_range(MIN_FIRE_TIMEOUT, MAX_FIRE_TIMEOUT)
+	timeoutFire = randf_range(0.5, 0.7)
 	amount_of_bullets = randf_range(MIN_BULLETS, MAX_BULLETS)
 
 func fireManager(dir, delta):
