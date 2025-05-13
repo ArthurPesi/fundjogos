@@ -7,6 +7,8 @@ var max_fire_timeout = 1.4
 var precision = 0.15
 var curr_movement = Vector2(0,0)
 var aggro_distance_squared = 120000
+const BULLET_SPEED = 1000
+const BULLET_LIFE = 0.5
 
 var is_aggro = false
 @onready var player = $"../../player"
@@ -23,7 +25,7 @@ func fireManager(dir, delta):
 		add_sibling(temp_bullet)
 		var spread_rad = randf_range(-precision, precision)
 		dir = Vector2(dir.x * cos(spread_rad) - dir.y * sin(spread_rad), dir.x * sin(spread_rad) + dir.y * cos(spread_rad))
-		temp_bullet.start(position, dir.normalized(), 1000, 0.5)
+		temp_bullet.start(position, dir.normalized(), BULLET_SPEED, BULLET_LIFE)
 		timeoutFire = randf_range(min_fire_timeout, max_fire_timeout)
 		
 

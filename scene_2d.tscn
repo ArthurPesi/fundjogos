@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyc04ifxvo54u"]
+[gd_scene load_steps=8 format=3 uid="uid://dyc04ifxvo54u"]
 
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="1_c4isy"]
 [ext_resource type="Script" uid="uid://ctrkatorla3n4" path="res://level.gd" id="1_uv5y8"]
 [ext_resource type="PackedScene" uid="uid://c2fofffhfhi63" path="res://enemy.tscn" id="2_556m2"]
 [ext_resource type="Texture2D" uid="uid://ccopwmupjol38" path="res://about-to-die.jpg" id="4_uv5y8"]
+[ext_resource type="PackedScene" uid="uid://rgwoe4td2r5m" path="res://enemyuzi.tscn" id="5_0ha08"]
 [ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://pause_menu.tscn" id="5_1b6wp"]
 [ext_resource type="PackedScene" uid="uid://dxbf6l8wgfiw6" path="res://enemyshotgun.tscn" id="6_wei22"]
 
@@ -18,19 +19,13 @@ texture = ExtResource("4_uv5y8")
 [node name="Node" type="Node" parent="."]
 
 [node name="Enemy" parent="Node" instance=ExtResource("2_556m2")]
-position = Vector2(455, 308)
-
-[node name="Enemy7" parent="Node" instance=ExtResource("2_556m2")]
-position = Vector2(734, 464)
-
-[node name="Enemy8" parent="Node" instance=ExtResource("2_556m2")]
-position = Vector2(258, 249)
+position = Vector2(738, 512)
 
 [node name="EnemyShotgun" parent="Node" instance=ExtResource("6_wei22")]
-position = Vector2(524, 385)
+position = Vector2(915, 252)
 
-[node name="EnemyShotgun2" parent="Node" instance=ExtResource("6_wei22")]
-position = Vector2(775, 170)
+[node name="EnemyUzi" parent="Node" instance=ExtResource("5_0ha08")]
+position = Vector2(46, 143)
 
 [node name="player" parent="." instance=ExtResource("1_c4isy")]
 position = Vector2(328, 122)
