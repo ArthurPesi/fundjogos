@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://dyc04ifxvo54u"]
 
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="1_c4isy"]
-[ext_resource type="Script" uid="uid://ctrkatorla3n4" path="res://level.gd" id="1_uv5y8"]
+[ext_resource type="Script" uid="uid://ctrkatorla3n4" path="res://scenes/level.gd" id="1_uv5y8"]
 [ext_resource type="Texture2D" uid="uid://ccopwmupjol38" path="res://about-to-die.jpg" id="4_uv5y8"]
-[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://shotgun_enemy.tscn" id="4_wei22"]
-[ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://uzi_enemy.tscn" id="5_0ha08"]
-[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://pause_menu.tscn" id="5_1b6wp"]
-[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://revolver_enemy.tscn" id="6_qcrin"]
-[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://wall.tscn" id="7_0ha08"]
+[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="4_wei22"]
+[ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="5_0ha08"]
+[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://scenes/pause_menu.tscn" id="5_1b6wp"]
+[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="6_qcrin"]
+[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="7_0ha08"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
 vertices = PackedVector2Array(283.602, 456.203, 457.797, 528.797, -178.797, 528.797, 16.3984, 456.203, 457.797, 344.203, 283.602, 429.797, 343.203, 278.797, 199.602, 348.203, 199.602, 321.797, 316.797, 278.797, 16.3984, 429.797, -43.7969, 348.203, -43.7969, 434.797, 1265.56, -90.3906, 1235.42, 591.062, 484.203, 344.203, 343.203, 65.2031, -193.461, -146.617, 316.797, 65.2031, -70.2031, 434.797, -178.797, 170.203, -70.2031, 221.203, 18.7969, 170.203, -43.7969, 221.203, 18.7969, 280.797, -43.7969, 321.797, 45.2031, 280.797, 18.7969, 143.797, -206.688, 143.797, 18.7969, 67.2031, 69.3984, 278.203, 316.797, 278.203, -207.891, 170.203, -205.203, 170.203, -205.203, 528.797, -205.602, 528.797, -227.523, 600.922, -205.602, 555.203, 457.797, 557.797, 457.797, 555.203, 484.203, 557.797, 24.3984, 66.7969, 24.3984, 67.2031, 45.2031, 93.2031, 69.3984, 251.797, 291.602, 93.2031, 316.797, 251.797, 291.602, 66.7969)
