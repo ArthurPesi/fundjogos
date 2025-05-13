@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7vrt7ai8o8kh"]
+
+[ext_resource type="PackedScene" uid="uid://6h6ilkaxkee4" path="res://enemy_generic.tscn" id="1_nhvon"]
+[ext_resource type="Texture2D" uid="uid://dyl1e17fc7ycn" path="res://Assets 2D/Players/Pink Man/Fall (32x32).png" id="2_nhvon"]
+[ext_resource type="Script" uid="uid://doby3wbq122i4" path="res://uzi.gd" id="3_arj7d"]
+
+[node name="uzi_enemy" node_paths=PackedStringArray("weapon") instance=ExtResource("1_nhvon")]
+weapon = NodePath("uzi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+texture = ExtResource("2_nhvon")
+region_enabled = true
+region_rect = Rect2(1.19386, 4.90434, 27.5239, 25.6579)
+
+[node name="uzi" type="Node2D" parent="." index="4"]
+script = ExtResource("3_arj7d")

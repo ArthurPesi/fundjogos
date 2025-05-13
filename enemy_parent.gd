@@ -4,8 +4,8 @@ var max_speed = 200
 var acceleration = 0.08
 var curr_movement = Vector2(0,0)
 var aggro_distance_squared_los = 120000
-var aggro_distance_squared_hear = 60000
-const VISION_ANGLE = 0.6
+var aggro_distance_squared_hear = 12000
+const VISION_ANGLE = 0.8
 
 var is_aggro = false
 @onready var ray_cast: RayCast2D = $RayCast2D
@@ -27,7 +27,7 @@ func should_aggro():
 	var distance_to_player = position.distance_squared_to(player.position)
 	if distance_to_player < aggro_distance_squared_los:
 		var los = check_for_los()
-		if los and abs(ray_cast.target_position.angle() - rotation) < VISION_ANGLE:
+		if los and fmod(2 * PI, abs(ray_cast.target_position.angle() - rotation)) < VISION_ANGLE:
 			return true
 		if distance_to_player < aggro_distance_squared_hear:
 			if los:
@@ -35,6 +35,8 @@ func should_aggro():
 	return false
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("debug") and (position.distance_squared_to(get_global_mouse_position())) < 5000:
+		print(fmod(2 * PI, abs(ray_cast.target_position.angle() - rotation)))
 	if !is_aggro:
 		if should_aggro():
 			is_aggro = true
