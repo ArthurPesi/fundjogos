@@ -5,7 +5,7 @@ const ACCELERATION = 4
 const ATTACK_SPEED = 1000
 const ATTACK_DURATION = 0.1
 enum state {walking, attacking}
-
+@onready var world: Node2D = $".."
 var curr_movement = Vector2(0,0)
 var curr_state = state.walking
 var directionRadians
@@ -25,7 +25,7 @@ func walk(delta: float) -> Vector2:
 	return curr_movement * MAX_SPEED
 
 func collision_should_kill(collision) -> bool:
-	return collision.is_in_group("kill") or curr_state == state.walking
+	return collision.is_in_group("kill") or (curr_state == state.walking and collision.is_in_group("enemy"))
 	
 var atk_move = Vector2()
 
@@ -57,3 +57,4 @@ func _physics_process(delta: float) -> void:
 		elif curr_state == state.attacking:
 			attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
 			collision.queue_free()
+			world.freeze(0.4)

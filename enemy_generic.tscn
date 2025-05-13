@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://6h6ilkaxkee4"]
+
+[ext_resource type="Script" uid="uid://dgb7npnjfcyb6" path="res://enemy_parent.gd" id="1_8xuwg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2j8e"]
+
+[node name="EnemyGeneric" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_8xuwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a2j8e")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

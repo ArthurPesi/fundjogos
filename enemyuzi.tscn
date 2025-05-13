@@ -16,7 +16,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xaro"]
 
-[node name="EnemyUzi" type="CharacterBody2D"]
+[node name="EnemyUzi" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_sidwi")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

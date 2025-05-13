@@ -1,0 +1,25 @@
+extends Node2D
+
+@onready var parent: CharacterBody2D = $".."
+
+var min_fire_timeout = 1
+var max_fire_timeout = 1.4
+var precision = 0.15
+const BULLET_SPEED = 800
+const BULLET_LIFE = 10
+var timeoutFire
+@onready var bullet = preload("res://bullet.tscn")
+
+func _ready() -> void:
+	timeoutFire = randf_range(min_fire_timeout, max_fire_timeout)
+
+func fireManager(dir, delta):
+	timeoutFire -= delta
+	if timeoutFire <= 0 and parent.check_for_los():
+		var temp_bullet = bullet.instantiate()
+		parent.add_sibling(temp_bullet)
+		var spread_rad = randf_range(-precision, precision)
+		dir = Vector2(dir.x * cos(spread_rad) - dir.y * sin(spread_rad), dir.x * sin(spread_rad) + dir.y * cos(spread_rad))
+		temp_bullet.start(parent.position, dir.normalized(), BULLET_SPEED, BULLET_LIFE)
+		timeoutFire = randf_range(min_fire_timeout, max_fire_timeout)
+		

@@ -2,36 +2,17 @@ extends CharacterBody2D
 
 var max_speed = 200
 var acceleration = 0.08
-var min_fire_timeout = 1
-var max_fire_timeout = 1.4
-var precision = 0.15
 var curr_movement = Vector2(0,0)
 var aggro_distance_squared_los = 120000
 var aggro_distance_squared_hear = 60000
-const BULLET_SPEED = 1000
-const BULLET_LIFE = 0.5
 const VISION_ANGLE = 0.6
-
 
 var is_aggro = false
 @onready var ray_cast: RayCast2D = $RayCast2D
+@export var weapon: Node2D
 @onready var player = $"../../player"
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
-@onready var bullet = preload("res://bullet.tscn")
 var timeoutFire
-
-func _ready() -> void:
-	timeoutFire = randf_range(min_fire_timeout, max_fire_timeout)
-
-func fireManager(dir, delta):
-	timeoutFire -= delta
-	if timeoutFire <= 0 and check_for_los():
-		var temp_bullet = bullet.instantiate()
-		add_sibling(temp_bullet)
-		var spread_rad = randf_range(-precision, precision)
-		dir = Vector2(dir.x * cos(spread_rad) - dir.y * sin(spread_rad), dir.x * sin(spread_rad) + dir.y * cos(spread_rad))
-		temp_bullet.start(position, dir.normalized(), BULLET_SPEED, BULLET_LIFE)
-		timeoutFire = randf_range(min_fire_timeout, max_fire_timeout)
 		
 func check_for_los() -> bool:
 	ray_cast.target_position = player.position - position
@@ -61,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		nav.target_position = player.global_position
 		var direction = global_position.direction_to(nav.get_next_path_position())#(player.position - position).normalized()
 		look_at(nav.get_next_path_position())
-		fireManager(direction, delta)
+		weapon.fireManager(direction, delta)
 		
 		ray_cast.global_rotation_degrees = 0
 		

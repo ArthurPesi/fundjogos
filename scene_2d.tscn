@@ -2,33 +2,43 @@
 
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="1_c4isy"]
 [ext_resource type="Script" uid="uid://ctrkatorla3n4" path="res://level.gd" id="1_uv5y8"]
-[ext_resource type="PackedScene" uid="uid://c2fofffhfhi63" path="res://enemy.tscn" id="2_556m2"]
 [ext_resource type="Texture2D" uid="uid://ccopwmupjol38" path="res://about-to-die.jpg" id="4_uv5y8"]
-[ext_resource type="PackedScene" uid="uid://rgwoe4td2r5m" path="res://enemyuzi.tscn" id="5_0ha08"]
+[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://shotgun_enemy.tscn" id="4_wei22"]
 [ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://pause_menu.tscn" id="5_1b6wp"]
-[ext_resource type="PackedScene" uid="uid://dxbf6l8wgfiw6" path="res://enemyshotgun.tscn" id="6_wei22"]
+[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://wall.tscn" id="7_0ha08"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
+vertices = PackedVector2Array(828, 512.602, 1235.42, 591.062, -227.531, 600.922, 784, 512.602, 1265.56, -90.3906, 828, -74.6016, -193.461, -146.617, 784, -74.6016, 216.398, 462, 784, 462, 216.398, 506, 784, 506)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(2, 6, 7, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(2, 8, 10), PackedInt32Array(3, 2, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-203, -157, -238, 611, 1245, 601, 1276, -100)])
 
 [node name="scene_2d" type="Node2D"]
 script = ExtResource("1_uv5y8")
 
 [node name="About-to-die" type="Sprite2D" parent="."]
-position = Vector2(615, 322)
+position = Vector2(568, 269)
 scale = Vector2(0.764516, 0.764516)
 texture = ExtResource("4_uv5y8")
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0ha08")
+
+[node name="StaticBody2D" parent="NavigationRegion2D" instance=ExtResource("7_0ha08")]
+position = Vector2(806, 219)
+rotation = 1.5708
+scale = Vector2(28.36, 1.2)
+
+[node name="StaticBody2D2" parent="NavigationRegion2D" instance=ExtResource("7_0ha08")]
+position = Vector2(510, 484)
+scale = Vector2(28.36, 1.2)
+
 [node name="Node" type="Node" parent="."]
 
-[node name="Enemy" parent="Node" instance=ExtResource("2_556m2")]
-position = Vector2(738, 512)
-
-[node name="EnemyShotgun" parent="Node" instance=ExtResource("6_wei22")]
-position = Vector2(915, 252)
-
-[node name="EnemyUzi" parent="Node" instance=ExtResource("5_0ha08")]
-position = Vector2(46, 143)
+[node name="shotgun_enemy" parent="Node" instance=ExtResource("4_wei22")]
+position = Vector2(950, 274)
 
 [node name="player" parent="." instance=ExtResource("1_c4isy")]
-position = Vector2(328, 122)
+position = Vector2(470, 281)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position_smoothing_enabled = true
