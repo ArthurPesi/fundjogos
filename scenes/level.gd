@@ -14,7 +14,8 @@ func _ready() -> void:
 		pause_menu = get_node("player/Camera2D/pause_menu")
 
 func _on_player_player_dead() -> void:
-	get_tree().reload_current_scene.call_deferred()
+	if get_tree():
+		pass#get_tree().reload_current_scene()
 	
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/scene_2d.tscn")

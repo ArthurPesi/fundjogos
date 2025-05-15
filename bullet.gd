@@ -22,10 +22,8 @@ func _physics_process(delta: float) -> void:
 			result.collider.emit_signal("player_dead")
 		elif result.collider.is_in_group("obstacle"):
 			queue_free()
-	
-	
-	
-	position += direction * speed * delta
+
+	position = next_pos
 	life -= delta
 	if life <= 0:
 		queue_free()

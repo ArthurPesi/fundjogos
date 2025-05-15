@@ -11,6 +11,7 @@ var is_aggro = false
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D
 @onready var player = $"../../player"
+@onready var drop = load("res://enemies/" + weapon.name + "_dropped.tscn")
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 var timeoutFire
 		
@@ -36,7 +37,6 @@ func should_aggro():
 		if los and abs(ray_cast.target_position.angle() - to_unit_circle(rotation)) < VISION_ANGLE:
 			return true
 		if distance_to_player < aggro_distance_squared_hear:
-			print(abs(ray_cast.target_position.angle() - to_unit_circle(rotation)))
 			if los:
 				return true
 	return false
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 			is_aggro = true
 	else:
 		nav.target_position = player.global_position
-		var direction = global_position.direction_to(nav.get_next_path_position())#(player.position - position).normalized()
+		var direction = global_position.direction_to(nav.get_next_path_position())
 		look_at(nav.get_next_path_position())
 		weapon.fireManager(direction, delta)
 		
@@ -58,3 +58,9 @@ func _physics_process(delta: float) -> void:
 		curr_movement = curr_movement.move_toward(direction, acceleration)
 		velocity = curr_movement * max_speed
 		move_and_slide()
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		var temp_drop = drop.instantiate()
+		temp_drop.position = position
+		add_sibling(temp_drop)

@@ -10,6 +10,8 @@ var curr_movement = Vector2(0,0)
 var curr_state = state.walking
 var directionRadians
 var attackCounter = 0
+var curr_collect = null
+
 signal player_dead
 
 func walk(delta: float) -> Vector2:
@@ -34,7 +36,12 @@ func fire_set():
 	atk_move = attackDirVec.normalized()
 	rotation = atan2(attackDirVec.y, attackDirVec.x)
 	curr_state = state.attacking
+	
+func get_weapon():
+	print("foi")
 
+func can_collect(object):
+	curr_collect = object
 
 func _physics_process(delta: float) -> void:
 	match curr_state:
@@ -43,12 +50,15 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			if Input.is_action_just_pressed("fire"):
 				fire_set()
+			if Input.is_action_just_pressed("get_weapon") and curr_collect:
+				get_weapon()
 		state.attacking:
 			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
 			move_and_slide()
 			if attackCounter >= ATTACK_DURATION:
 				curr_state = state.walking
+
 	for index in get_slide_collision_count():
 		var collision = get_slide_collision(index).get_collider()
 		if collision_should_kill(collision):

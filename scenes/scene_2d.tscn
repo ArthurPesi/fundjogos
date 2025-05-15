@@ -22,6 +22,20 @@ position = Vector2(568, 269)
 scale = Vector2(0.764516, 0.764516)
 texture = ExtResource("4_uv5y8")
 
+[node name="player" parent="." instance=ExtResource("1_c4isy")]
+position = Vector2(470, 281)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="pause_menu" parent="player/Camera2D" instance=ExtResource("5_1b6wp")]
+visible = false
+offset_left = -571.0
+offset_top = -311.0
+offset_right = -571.0
+offset_bottom = -311.0
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0ha08")
 
@@ -104,19 +118,5 @@ position = Vector2(61, 380)
 
 [node name="revolver_enemy2" parent="Node" instance=ExtResource("6_qcrin")]
 position = Vector2(-133, 497)
-
-[node name="player" parent="." instance=ExtResource("1_c4isy")]
-position = Vector2(470, 281)
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-position_smoothing_enabled = true
-position_smoothing_speed = 3.0
-
-[node name="pause_menu" parent="player/Camera2D" instance=ExtResource("5_1b6wp")]
-visible = false
-offset_left = -571.0
-offset_top = -311.0
-offset_right = -571.0
-offset_bottom = -311.0
 
 [connection signal="player_dead" from="player" to="." method="_on_player_player_dead"]
