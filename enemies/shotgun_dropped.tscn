@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b47evhmrasq2b" path="res://enemies/weapon_dropped.tscn" id="1_vwtqf"]
 [ext_resource type="Texture2D" uid="uid://0e016tfw8y6p" path="res://Assets 2D/shotgun.png" id="2_cnk6n"]
 
-[node name="shotgun_dropped" instance=ExtResource("1_vwtqf")]
+[node name="shotgun_dropped" groups=["shotgun"] instance=ExtResource("1_vwtqf")]
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_cnk6n")

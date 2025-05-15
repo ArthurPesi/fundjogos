@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn2nwvg5i7skm"]
+
+[ext_resource type="Texture2D" uid="uid://bm4tnxf7ypa70" path="res://Assets 2D/revolver.png" id="1_1lfba"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4oxc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1lfba")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="uzi" type="AnimatedSprite2D"]
+scale = Vector2(-1.875, 1.594)
+sprite_frames = SubResource("SpriteFrames_c4oxc")

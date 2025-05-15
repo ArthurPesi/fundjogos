@@ -63,4 +63,5 @@ func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
 		var temp_drop = drop.instantiate()
 		temp_drop.position = position
+		temp_drop.z_index = 1
 		add_sibling(temp_drop)

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bm4tnxf7ypa70" path="res://Assets 2D/revolver.png" id="1_5f58b"]
 [ext_resource type="PackedScene" uid="uid://b47evhmrasq2b" path="res://enemies/weapon_dropped.tscn" id="1_gyla8"]
 
-[node name="revolver_dropped" instance=ExtResource("1_gyla8")]
+[node name="revolver_dropped" groups=["revolver"] instance=ExtResource("1_gyla8")]
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3, 3)

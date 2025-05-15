@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://0s6b1hmj0ncc"]
+
+[ext_resource type="Texture2D" uid="uid://0e016tfw8y6p" path="res://Assets 2D/shotgun.png" id="1_7v58l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dj187"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7v58l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="uzi" type="AnimatedSprite2D"]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_dj187")

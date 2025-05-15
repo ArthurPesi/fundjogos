@@ -1,16 +1,24 @@
 extends CharacterBody2D
 
+enum state {walking, attacking}
+enum weapon {revolver, uzi, shotgun, nothing}
+
+const possible_weapons = ["revolver", "uzi", "shotgun"]
+const weapon_holding_presets = [preload("res://revolver_sprite.tscn"), preload("res://uzi_sprite.tscn"), preload("res://shotgun_sprite.tscn")]
+const weapon_dropped_presets = [preload("res://enemies/revolver_dropped.tscn"), preload("res://enemies/uzi_dropped.tscn"), preload("res://enemies/shotgun_dropped.tscn")]
+var amount_weapons = possible_weapons.size()
 const MAX_SPEED = 300
 const ACCELERATION = 4
 const ATTACK_SPEED = 1000
 const ATTACK_DURATION = 0.1
-enum state {walking, attacking}
 @onready var world: Node2D = $".."
 var curr_movement = Vector2(0,0)
 var curr_state = state.walking
+var curr_weapon = weapon.nothing
 var directionRadians
 var attackCounter = 0
 var curr_collect = null
+var weapon_holding = null
 
 signal player_dead
 
@@ -38,7 +46,18 @@ func fire_set():
 	curr_state = state.attacking
 	
 func get_weapon():
-	print("foi")
+	for i in amount_weapons:
+		if curr_collect.is_in_group(possible_weapons[i]):
+			if weapon_holding:
+				weapon_holding.queue_free()
+				var just_dropped = weapon_dropped_presets[curr_weapon].instantiate()
+				just_dropped.position = position
+				just_dropped.z_index = 1
+				add_sibling(just_dropped)
+			curr_weapon = i
+			weapon_holding = weapon_holding_presets[i].instantiate()
+			add_child(weapon_holding)
+			curr_collect.queue_free()
 
 func can_collect(object):
 	curr_collect = object
