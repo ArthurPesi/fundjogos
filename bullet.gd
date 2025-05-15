@@ -9,15 +9,22 @@ func start(pos, dir, spd, lf):
 	direction = dir
 	speed = spd
 	life = lf
-	
-func _on_body_entered(body):
-	if body.is_in_group("player"):
-		body.emit_signal("player_dead")
-	elif body.is_in_group("obstacle"):
-		queue_free()
 
 
 func _physics_process(delta: float) -> void:
+	var next_pos: Vector2 = position + (direction * speed * delta)
+	
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(position, next_pos)
+	var result = space_state.intersect_ray(query)
+	if result:
+		if result.collider.is_in_group("player"):
+			result.collider.emit_signal("player_dead")
+		elif result.collider.is_in_group("obstacle"):
+			queue_free()
+	
+	
+	
 	position += direction * speed * delta
 	life -= delta
 	if life <= 0:

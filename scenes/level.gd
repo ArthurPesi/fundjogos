@@ -17,13 +17,13 @@ func _on_player_player_dead() -> void:
 	get_tree().reload_current_scene.call_deferred()
 	
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scene_2d.tscn")
+	get_tree().change_scene_to_file("res://scenes/scene_2d.tscn")
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _on_settings_pressed() -> void:
-	get_tree().change_scene_to_file("res://config.tscn")
+	get_tree().change_scene_to_file("res://scenes/config.tscn")
 
 func _input(event):
 	if event.is_action_pressed("quit"):
@@ -40,14 +40,14 @@ func _input(event):
 			"main_menu":
 				get_tree().quit()
 			"config":
-				get_tree().change_scene_to_file("res://main_menu.tscn")
+				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 				
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 
 func _on_play_pressed_config() -> void:
-	get_tree().change_scene_to_file("res://scene_2d.tscn")
+	get_tree().change_scene_to_file("res://scenes/scene_2d.tscn")
 
 
 func _on_resume_pressed() -> void:

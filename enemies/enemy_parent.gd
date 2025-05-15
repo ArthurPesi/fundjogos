@@ -34,7 +34,6 @@ func should_aggro():
 	if distance_to_player < aggro_distance_squared_los:
 		var los = check_for_los()
 		if los and abs(ray_cast.target_position.angle() - to_unit_circle(rotation)) < VISION_ANGLE:
-			print(rotation)
 			return true
 		if distance_to_player < aggro_distance_squared_hear:
 			print(abs(ray_cast.target_position.angle() - to_unit_circle(rotation)))
