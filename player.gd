@@ -14,7 +14,7 @@ const ATTACK_DURATION = 0.1
 @onready var world: Node2D = $".."
 var curr_movement = Vector2(0,0)
 var curr_state = state.walking
-var curr_weapon = weapon.nothing
+var curr_weapon_value = weapon.nothing
 var directionRadians
 var attackCounter = 0
 var curr_collect = null
@@ -39,7 +39,7 @@ func collision_should_kill(collision) -> bool:
 	
 var atk_move = Vector2()
 
-func fire_set():
+func melee():
 	var attackDirVec = get_global_mouse_position() - position
 	atk_move = attackDirVec.normalized()
 	rotation = atan2(attackDirVec.y, attackDirVec.x)
@@ -50,11 +50,11 @@ func get_weapon():
 		if curr_collect.is_in_group(possible_weapons[i]):
 			if weapon_holding:
 				weapon_holding.queue_free()
-				var just_dropped = weapon_dropped_presets[curr_weapon].instantiate()
+				var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
 				just_dropped.position = position
 				just_dropped.z_index = 1
 				add_sibling(just_dropped)
-			curr_weapon = i
+			curr_weapon_value = i
 			weapon_holding = weapon_holding_presets[i].instantiate()
 			add_child(weapon_holding)
 			curr_collect.queue_free()
@@ -67,8 +67,10 @@ func _physics_process(delta: float) -> void:
 		state.walking:
 			velocity = walk(delta)
 			move_and_slide()
-			if Input.is_action_just_pressed("fire"):
-				fire_set()
+			if Input.is_action_just_pressed("knife") or (Input.is_action_just_pressed("fire") and !weapon_holding):
+				melee()
+			if Input.is_action_pressed("fire") and weapon_holding:
+				weapon_holding.shoot()
 			if Input.is_action_just_pressed("get_weapon") and curr_collect:
 				get_weapon()
 		state.attacking:

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://drt0xr82badh3"]
+
+[ext_resource type="PackedScene" uid="uid://bjxwc66u1e1kb" path="res://bullet_generic.tscn" id="1_vfjst"]
+[ext_resource type="Script" uid="uid://cwjxa4mgtc6f" path="res://bullet_good.gd" id="2_a4ril"]
+
+[node name="bullet_good" groups=["good"] instance=ExtResource("1_vfjst")]
+script = ExtResource("2_a4ril")
+
+[node name="CollisionShape2D" parent="." index="1" groups=["good"]]

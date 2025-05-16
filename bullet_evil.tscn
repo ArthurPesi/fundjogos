@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5cj0d8n8c06s"]
+
+[ext_resource type="PackedScene" uid="uid://bjxwc66u1e1kb" path="res://bullet_generic.tscn" id="1_xi0jv"]
+[ext_resource type="Script" uid="uid://lm6lvhyj4yl3" path="res://bullet_evil.gd" id="2_y8fyv"]
+
+[node name="bullet_evil" groups=["evil"] instance=ExtResource("1_xi0jv")]
+script = ExtResource("2_y8fyv")

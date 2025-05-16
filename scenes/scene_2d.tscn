@@ -18,6 +18,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-203, -157, -238, 611, 
 script = ExtResource("1_uv5y8")
 
 [node name="About-to-die" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(568, 269)
 scale = Vector2(0.764516, 0.764516)
 texture = ExtResource("4_uv5y8")
@@ -110,6 +111,7 @@ z_index = 2
 position = Vector2(470, 281)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(1.35, 1.35)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 

@@ -14,7 +14,7 @@ const MIN_BULLET_SPEED = 800
 const MAX_BULLET_SPEED = 1200
 var amount_of_bullets
 
-@onready var bullet = preload("res://bullet.tscn")
+@onready var bullet = preload("res://bullet_evil.tscn")
 
 func _ready() -> void:
 	timeoutFire = randf_range(0.5, 0.7)
