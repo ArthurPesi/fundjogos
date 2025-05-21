@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var parent: CharacterBody2D = $".."
 
+var ammo = 6
+
 var min_fire_timeout = 1
 var max_fire_timeout = 1.4
 var precision = 0.15
@@ -15,7 +17,8 @@ func _ready() -> void:
 
 func fireManager(dir, delta):
 	timeoutFire -= delta
-	if timeoutFire <= 0 and parent.check_for_los():
+	if timeoutFire <= 0 and parent.check_for_los() and ammo > 0:
+		ammo -= 1
 		var temp_bullet = bullet.instantiate()
 		parent.add_sibling(temp_bullet)
 		var spread_rad = randf_range(-precision, precision)

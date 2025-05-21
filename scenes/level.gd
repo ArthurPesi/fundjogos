@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _on_player_player_dead() -> void:
 	if get_tree():
-		pass#get_tree().reload_current_scene()
+		get_tree().reload_current_scene()
 	
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/scene_2d.tscn")

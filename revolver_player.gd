@@ -2,6 +2,8 @@ extends AnimatedSprite2D
 
 @onready var parent: CharacterBody2D = $".."
 
+var ammo = 6
+
 var min_fire_timeout = 1
 var max_fire_timeout = 1.4
 var precision = 0.1
@@ -16,9 +18,10 @@ func _physics_process(delta: float) -> void:
 		timer -= delta
 
 func shoot():
-	if timer > 0:
+	if timer > 0 or ammo <= 0:
 		return
 	
+	ammo -= 1
 	var temp_bullet = bullet.instantiate()
 	parent.add_sibling(temp_bullet)
 	var spread_rad = randf_range(-precision, precision)

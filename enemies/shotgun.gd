@@ -4,6 +4,8 @@ extends Node2D
 
 var timeoutFire
 
+var ammo = 4
+
 const MIN_FIRE_TIMEOUT = 2
 const MAX_FIRE_TIMEOUT = 2.5
 const PRECISION = 0.27
@@ -22,7 +24,8 @@ func _ready() -> void:
 
 func fireManager(dir, delta):
 	timeoutFire -= delta
-	if timeoutFire <= 0 and parent.check_for_los():
+	if timeoutFire <= 0 and parent.check_for_los() and ammo > 0:
+		ammo -= 1
 		for i in amount_of_bullets:
 			var temp_bullet = bullet.instantiate()
 			parent.add_sibling(temp_bullet)

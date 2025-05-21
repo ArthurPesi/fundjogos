@@ -49,13 +49,16 @@ func get_weapon():
 	for i in amount_weapons:
 		if curr_collect.is_in_group(possible_weapons[i]):
 			if weapon_holding:
+				if weapon_holding.ammo > 0:
+					var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
+					just_dropped.position = position
+					just_dropped.z_index = 1
+					just_dropped.ammo = weapon_holding.ammo
+					add_sibling(just_dropped)
 				weapon_holding.queue_free()
-				var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
-				just_dropped.position = position
-				just_dropped.z_index = 1
-				add_sibling(just_dropped)
 			curr_weapon_value = i
 			weapon_holding = weapon_holding_presets[i].instantiate()
+			weapon_holding.ammo = curr_collect.ammo
 			add_child(weapon_holding)
 			curr_collect.queue_free()
 

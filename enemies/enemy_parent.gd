@@ -64,4 +64,5 @@ func _notification(what):
 		var temp_drop = drop.instantiate()
 		temp_drop.position = position
 		temp_drop.z_index = 1
+		temp_drop.ammo = weapon.ammo
 		add_sibling(temp_drop)
