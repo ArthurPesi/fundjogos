@@ -90,4 +90,3 @@ func _physics_process(delta: float) -> void:
 		elif curr_state == state.attacking and collision.is_in_group("enemy"):
 			attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
 			collision.queue_free()
-			world.freeze(0.4)

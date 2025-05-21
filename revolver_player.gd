@@ -11,6 +11,7 @@ const BULLET_SPEED = 800
 const BULLET_LIFE = 10
 var timer = 0
 const COOLDOWN = 0.4
+const SHAKE_STRENGTH = 40.0
 @onready var bullet = preload("res://bullet_good.tscn")
 
 func _physics_process(delta: float) -> void:
@@ -20,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func shoot():
 	if timer > 0 or ammo <= 0:
 		return
-	
+	parent.world.apply_shake(SHAKE_STRENGTH)
 	ammo -= 1
 	var temp_bullet = bullet.instantiate()
 	parent.add_sibling(temp_bullet)

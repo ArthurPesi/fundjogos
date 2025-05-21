@@ -5,7 +5,7 @@ var paused = false
 var NOISE_SHAKE_SPEED: float = 10.0
 var NOISE_SHAKE_STRENGTH: float = 60.0
 var RANDOM_SHAKE_STRENGTH: float = 30.0
-var SHAKE_DECAY_RATE: float = 2.0
+var SHAKE_DECAY_RATE: float = 3.0
 
 
 var noise_i: float = 0.0
@@ -22,8 +22,8 @@ func _ready() -> void:
 	noise.seed = rand.randi()
 	noise.frequency = 0.08
 	
-func apply_shake() -> void:
-	shake_strength = NOISE_SHAKE_STRENGTH
+func apply_shake(strength) -> void:
+	shake_strength += strength
 	
 func _process(delta: float) -> void:
 	shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
@@ -52,8 +52,6 @@ func _on_player_player_dead() -> void:
 	
 
 func _input(event):
-	if event.is_action_pressed("fire"):
-		apply_shake()
 
 	if event.is_action_pressed("quit"):
 		if !paused:

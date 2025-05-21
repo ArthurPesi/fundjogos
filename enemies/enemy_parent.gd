@@ -8,6 +8,8 @@ var aggro_distance_squared_hear = 12000
 const VISION_ANGLE = 1.5
 
 var is_aggro = false
+@onready var world: Node2D = $"../.."
+
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D
 @onready var player = $"../../player"
@@ -65,4 +67,5 @@ func _notification(what):
 		temp_drop.position = position
 		temp_drop.z_index = 1
 		temp_drop.ammo = weapon.ammo
+		world.freeze(0.5)
 		add_sibling(temp_drop)
