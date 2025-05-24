@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		if result.collider.is_in_group("enemy"):
-			result.collider.queue_free()
+			result.collider.die()
 		elif result.collider.is_in_group("obstacle"):
 			queue_free()
 

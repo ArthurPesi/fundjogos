@@ -8,6 +8,7 @@
 weapon = NodePath("revolver")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+z_index = 1
 texture = ExtResource("3_pvlkk")
 region_enabled = true
 region_rect = Rect2(1.19386, 4.90434, 27.5239, 25.6579)

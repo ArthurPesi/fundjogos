@@ -56,7 +56,7 @@ func get_weapon():
 					just_dropped.ammo = weapon_holding.ammo
 					add_sibling(just_dropped)
 				weapon_holding.queue_free()
-			curr_weapon_value = i
+			curr_weapon_value = i as weapon
 			weapon_holding = weapon_holding_presets[i].instantiate()
 			weapon_holding.ammo = curr_collect.ammo
 			add_child(weapon_holding)
@@ -89,4 +89,4 @@ func _physics_process(delta: float) -> void:
 			emit_signal("player_dead")
 		elif curr_state == state.attacking and collision.is_in_group("enemy"):
 			attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
-			collision.queue_free()
+			collision.die()
