@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum state {walking, attacking}
+enum state {walking, attacking, dead}
 enum weapon {revolver, uzi, shotgun, nothing}
 
 const possible_weapons = ["revolver", "uzi", "shotgun"]
@@ -21,6 +21,15 @@ var curr_collect = null
 var weapon_holding = null
 
 signal player_dead
+
+func die_player():
+	if curr_state != state.dead:
+		curr_state = state.dead
+		emit_signal("player_dead")
+		$CollisionShape2D.queue_free()
+		var tween = get_tree().create_tween()
+		tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.5)
+	
 
 func walk(delta: float) -> Vector2:
 	attackCounter = clamp(attackCounter -1, 0, 1000)
@@ -86,7 +95,7 @@ func _physics_process(delta: float) -> void:
 	for index in get_slide_collision_count():
 		var collision = get_slide_collision(index).get_collider()
 		if collision_should_kill(collision):
-			emit_signal("player_dead")
+			die_player()
 		elif curr_state == state.attacking and collision.is_in_group("enemy"):
 			attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
 			collision.die()

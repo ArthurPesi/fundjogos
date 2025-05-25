@@ -67,12 +67,13 @@ func _physics_process(delta: float) -> void:
 func die():
 	if curr_state != states.dead:
 		curr_state = states.dead
+		$CollisionShape2D.queue_free()
 		var tween = get_tree().create_tween()
-		tween.tween_property($Sprite2D, "scale", Vector2(0,0),1)
+		tween.tween_property($Sprite2D, "scale", Vector2(0,0),0.8)
 		tween.tween_callback(queue_free)
+		world.freeze(0.5)
 		var temp_drop = drop.instantiate()
 		temp_drop.position = position
 		temp_drop.z_index = 0
 		temp_drop.ammo = weapon.ammo
-		world.freeze(0.5)
 		add_sibling(temp_drop)
