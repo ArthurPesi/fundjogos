@@ -129,6 +129,3 @@ func _physics_process(delta: float) -> void:
 	if weapon_obj:
 		if timer_weapon > 0:
 			timer_weapon -= delta
-
-func _on_player_dead():
-	pass
