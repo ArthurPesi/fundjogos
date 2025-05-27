@@ -9,9 +9,9 @@ func start(pos, dir, spd, lf):
 	direction = dir
 	speed = spd
 	life = lf
+@onready var tween = get_tree().create_tween()
 
 func _ready() -> void:
-	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:v", 1, 0.15).from(15)
 
 func _physics_process(delta: float) -> void:
@@ -21,9 +21,10 @@ func _physics_process(delta: float) -> void:
 	var query = PhysicsRayQueryParameters2D.create(position, next_pos)
 	var result = space_state.intersect_ray(query)
 	if result:
-		if result.collider.is_in_group("enemy"):
-			result.collider.die()
-		elif result.collider.is_in_group("obstacle"):
+		var object_hit = result.collider
+		if object_hit.is_in_group("enemy"):
+			object_hit.die()
+		elif object_hit.is_in_group("obstacle"):
 			queue_free()
 
 	position = next_pos
