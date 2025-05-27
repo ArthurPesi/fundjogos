@@ -22,7 +22,7 @@ var weapon_obj = null
 @onready var bullet = preload("res://bullet_good.tscn")
 var timer_weapon = 0
 
-const MORTAL = false
+const MORTAL = true
 
 signal player_dead
 
