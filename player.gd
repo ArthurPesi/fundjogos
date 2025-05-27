@@ -18,12 +18,16 @@ var curr_weapon_value = weapon.nothing
 var directionRadians
 var attackCounter = 0
 var curr_collect = null
-var weapon_holding = null
+var weapon_obj = null
+@onready var bullet = preload("res://bullet_good.tscn")
+var timer_weapon = 0
+
+const MORTAL = false
 
 signal player_dead
 
 func die_player():
-	if curr_state != state.dead:
+	if curr_state != state.dead and MORTAL:
 		curr_state = state.dead
 		emit_signal("player_dead")
 		$CollisionShape2D.queue_free()
@@ -54,21 +58,43 @@ func melee():
 	rotation = atan2(attackDirVec.y, attackDirVec.x)
 	curr_state = state.attacking
 	
+func animate():
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(weapon_obj, "scale", Vector2.ONE * -1, weapon_obj.ANIMATION_DURATION).from(Vector2.ONE * -weapon_obj.ANIMATION_INCREASE)
+	tween.tween_property(weapon_obj, "modulate:v", 1, weapon_obj.ANIMATION_DURATION/2).from(10)
+
+func shoot():
+	if timer_weapon > 0 or weapon_obj.ammo <= 0:
+		return
+	weapon_obj.ammo -= 1
+	animate()
+	world.apply_shake(weapon_obj.SHAKE_STRENGTH)
+	var amount_of_bullets = randf_range(weapon_obj.MIN_BULLETS, weapon_obj.MAX_BULLETS)
+	for i in amount_of_bullets:
+		var temp_bullet = bullet.instantiate()
+		add_sibling(temp_bullet)
+		var spread_rad = randf_range(-weapon_obj.PRECISION, weapon_obj.PRECISION)
+		var dir = Vector2(cos(rotation), sin(rotation))
+		dir = Vector2(dir.x * cos(spread_rad) - dir.y * sin(spread_rad), dir.x * sin(spread_rad) + dir.y * cos(spread_rad))
+		temp_bullet.start(position, dir.normalized(), randf_range(weapon_obj.MIN_BULLET_SPEED, weapon_obj.MAX_BULLET_SPEED), weapon_obj.BULLET_DURATION)
+	
+	timer_weapon = weapon_obj.COOLDOWN
+	
 func get_weapon():
 	for i in amount_weapons:
 		if curr_collect.is_in_group(possible_weapons[i]):
-			if weapon_holding:
-				if weapon_holding.ammo > 0:
+			if weapon_obj:
+				if weapon_obj.ammo > 0:
 					var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
 					just_dropped.position = position
 					just_dropped.z_index = 1
-					just_dropped.ammo = weapon_holding.ammo
+					just_dropped.ammo = weapon_obj.ammo
 					add_sibling(just_dropped)
-				weapon_holding.queue_free()
+				weapon_obj.queue_free()
 			curr_weapon_value = i as weapon
-			weapon_holding = weapon_holding_presets[i].instantiate()
-			weapon_holding.ammo = curr_collect.ammo
-			add_child(weapon_holding)
+			weapon_obj = weapon_holding_presets[i].instantiate()
+			weapon_obj.ammo = curr_collect.ammo
+			add_child(weapon_obj)
 			curr_collect.queue_free()
 
 func can_collect(object):
@@ -79,10 +105,10 @@ func _physics_process(delta: float) -> void:
 		state.walking:
 			velocity = walk(delta)
 			move_and_slide()
-			if Input.is_action_just_pressed("knife") or (Input.is_action_just_pressed("fire") and !weapon_holding):
+			if Input.is_action_just_pressed("knife") or (Input.is_action_just_pressed("fire") and !weapon_obj):
 				melee()
-			if Input.is_action_pressed("fire") and weapon_holding:
-				weapon_holding.shoot()
+			if Input.is_action_pressed("fire") and weapon_obj:
+				shoot()
 			if Input.is_action_just_pressed("get_weapon") and curr_collect:
 				get_weapon()
 		state.attacking:
@@ -99,3 +125,7 @@ func _physics_process(delta: float) -> void:
 		elif curr_state == state.attacking and collision.is_in_group("enemy"):
 			attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
 			collision.die()
+	
+	if weapon_obj:
+		if timer_weapon > 0:
+			timer_weapon -= delta
