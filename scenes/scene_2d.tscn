@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dyc04ifxvo54u"]
+[gd_scene load_steps=12 format=3 uid="uid://dyc04ifxvo54u"]
 
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="1_c4isy"]
 [ext_resource type="Script" uid="uid://ctrkatorla3n4" path="res://scenes/level.gd" id="1_uv5y8"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="5_0ha08"]
 [ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://scenes/pause_menu.tscn" id="5_1b6wp"]
 [ext_resource type="Script" uid="uid://cjo0x1xf2v07o" path="res://scenes/camera.gd" id="5_3grkl"]
-[ext_resource type="Texture2D" uid="uid://birpd5jaasuom" path="res://Assets 2D/wallpaper.png" id="6_3gq2v"]
 [ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemy_holder.tscn" id="6_hmmf6"]
 [ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="6_qcrin"]
 [ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="7_0ha08"]
@@ -102,13 +101,6 @@ offset_left = -571.0
 offset_top = -311.0
 offset_right = -571.0
 offset_bottom = -311.0
-
-[node name="background" type="Sprite2D" parent="player/Camera2D"]
-visible = false
-z_index = -1
-z_as_relative = false
-scale = Vector2(32, 22)
-texture = ExtResource("6_3gq2v")
 
 [node name="EnemyHolder" parent="." instance=ExtResource("6_hmmf6")]
 
