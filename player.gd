@@ -32,7 +32,7 @@ func die_player():
 		emit_signal("player_dead")
 		$CollisionShape2D.queue_free()
 		var tween = get_tree().create_tween()
-		tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.5)
+		tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.2)
 	
 
 func walk(delta: float) -> Vector2:
@@ -48,7 +48,9 @@ func walk(delta: float) -> Vector2:
 	return curr_movement * MAX_SPEED
 
 func collision_should_kill(collision) -> bool:
-	return collision.is_in_group("kill") or (curr_state == state.walking and collision.is_in_group("enemy"))
+	if collision:
+		return collision.is_in_group("kill") or (curr_state == state.walking and collision.is_in_group("enemy"))
+	return false
 	
 var atk_move = Vector2()
 
@@ -118,14 +120,15 @@ func _physics_process(delta: float) -> void:
 			if attackCounter >= ATTACK_DURATION:
 				curr_state = state.walking
 
-	for index in get_slide_collision_count():
-		var collision = get_slide_collision(index).get_collider()
-		if collision_should_kill(collision):
-			die_player()
-		elif curr_state == state.attacking and collision.is_in_group("enemy"):
-			attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
-			collision.die()
-	
+	if curr_state != state.dead:
+		for index in get_slide_collision_count():
+			var collision = get_slide_collision(index).get_collider()
+			if collision_should_kill(collision):
+				die_player()
+			elif curr_state == state.attacking and collision.is_in_group("enemy"):
+				attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
+				collision.die()
+
 	if weapon_obj:
 		if timer_weapon > 0:
 			timer_weapon -= delta

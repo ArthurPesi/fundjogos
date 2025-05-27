@@ -13,3 +13,5 @@ shape = SubResource("CircleShape2D_a2j8e")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]

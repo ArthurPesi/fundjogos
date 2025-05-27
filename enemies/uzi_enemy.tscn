@@ -7,11 +7,9 @@
 [node name="uzi_enemy" node_paths=PackedStringArray("weapon") instance=ExtResource("1_nhvon")]
 weapon = NodePath("uzi")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+[node name="uzi" type="Node2D" parent="." index="3"]
+script = ExtResource("3_arj7d")
+
+[node name="Sprite" parent="." index="4"]
 z_index = 1
 texture = ExtResource("2_nhvon")
-region_enabled = true
-region_rect = Rect2(1.19386, 4.90434, 27.5239, 25.6579)
-
-[node name="uzi" type="Node2D" parent="." index="4"]
-script = ExtResource("3_arj7d")

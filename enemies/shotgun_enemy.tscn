@@ -7,11 +7,8 @@
 [node name="shotgun_enemy" node_paths=PackedStringArray("weapon") instance=ExtResource("1_g7vba")]
 weapon = NodePath("shotgun")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
-z_index = 1
-texture = ExtResource("2_g7vba")
-region_enabled = true
-region_rect = Rect2(1.19386, 4.90434, 27.5239, 25.6579)
-
-[node name="shotgun" type="Node2D" parent="." index="4"]
+[node name="shotgun" type="Node2D" parent="." index="3"]
 script = ExtResource("3_dql8d")
+
+[node name="Sprite" parent="." index="4"]
+texture = ExtResource("2_g7vba")

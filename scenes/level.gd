@@ -15,6 +15,8 @@ var shake_strength: float = 0.0
 @onready var camera: Camera2D = $player/Camera2D
 @onready var noise = FastNoiseLite.new()
 @onready var pause_menu = get_node("player/Camera2D/pause_menu")
+@onready var enemy_holder: Node2D = $EnemyHolder
+@onready var navigation_region: NavigationRegion2D = $NavigationRegion2D
 
 func _ready() -> void:
 	Engine.time_scale = 1
@@ -48,7 +50,9 @@ func freeze(time):
 
 func _on_player_player_dead() -> void:
 	if get_tree():
-		await get_tree().create_timer(0.8).timeout
+		enemy_holder.reset_screen()
+		navigation_region.reset_screen()
+		await get_tree().create_timer(0.5).timeout
 		get_tree().reload_current_scene()
 	
 

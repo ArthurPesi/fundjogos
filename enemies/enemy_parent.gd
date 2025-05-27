@@ -19,7 +19,7 @@ var curr_state = states.regular
 @onready var drop = load("res://enemies/" + weapon.name + "_dropped.tscn")
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 var timeoutFire
-		
+
 func check_for_los() -> bool:
 	ray_cast.target_position = player.position - position
 	ray_cast.global_rotation = 0
@@ -69,7 +69,7 @@ func die():
 		curr_state = states.dead
 		$CollisionShape2D.queue_free()
 		var tween = get_tree().create_tween()
-		tween.tween_property($Sprite2D, "scale", Vector2(0,0),0.8)
+		tween.tween_property($Sprite, "scale", Vector2(0,0),0.8)
 		tween.tween_callback(queue_free)
 		world.freeze(0.5)
 		var temp_drop = drop.instantiate()
