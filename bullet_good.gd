@@ -10,6 +10,9 @@ func start(pos, dir, spd, lf):
 	speed = spd
 	life = lf
 
+func _ready() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:v", 1, 0.15).from(15)
 
 func _physics_process(delta: float) -> void:
 	var next_pos: Vector2 = position + (direction * speed * delta)
