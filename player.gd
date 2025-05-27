@@ -85,7 +85,9 @@ func shoot():
 	timer_weapon = weapon_obj.COOLDOWN
 	
 	for N in enemies_inside_fire_range:
-		N.curr_state = N.states.aggro
+		enemies_inside_fire_range.erase(N)
+		if N.curr_state == N.states.regular:
+			N.enter_aggro()
 	
 func get_weapon():
 	for i in amount_weapons:
@@ -140,7 +142,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
-		enemies_inside_fire_range.append(body)
+		if body.curr_state == body.states.regular:
+			enemies_inside_fire_range.append(body)
 
 func _on_fire_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

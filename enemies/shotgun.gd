@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func fireManager(dir, delta):
 	timeoutFire -= delta
-	if timeoutFire <= 0 and parent.check_for_los() and ammo > 0:
+	if timeoutFire <= 0 and parent.check_for_los(parent.player) and ammo > 0:
 		ammo -= 1
 		for i in amount_of_bullets:
 			var temp_bullet = bullet.instantiate()

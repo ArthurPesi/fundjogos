@@ -19,7 +19,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 240.102
 
-[node name="player" type="CharacterBody2D" groups=["player"]]
+[node name="player" type="CharacterBody2D" groups=["player", "trigger_aggro"]]
 script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

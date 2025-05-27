@@ -24,7 +24,7 @@ func _ready() -> void:
 			
 func fireManager(dir, delta):
 	timeoutFire -= delta
-	if timeoutFire <= 0 and ammo > 0 and parent.check_for_los():
+	if timeoutFire <= 0 and ammo > 0 and parent.check_for_los(parent.player):
 		var temp_bullet = bullet.instantiate()
 		parent.add_sibling(temp_bullet)
 		var spread_rad = randf_range(-PRECISION, PRECISION)

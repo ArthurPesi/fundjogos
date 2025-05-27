@@ -115,7 +115,7 @@ position = Vector2(139, 179)
 rotation = 2.98277
 
 [node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("6_qcrin")]
-position = Vector2(61, 380)
+position = Vector2(79, 385)
 
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("6_qcrin")]
 position = Vector2(-133, 497)
