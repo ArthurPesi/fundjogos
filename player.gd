@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 enum state {walking, attacking, dead}
 enum weapon {revolver, uzi, shotgun, nothing}
+var enemies_inside_fire_range: Array[CharacterBody2D]
 
 const possible_weapons = ["revolver", "uzi", "shotgun"]
 const weapon_holding_presets = [preload("res://revolver_sprite.tscn"), preload("res://uzi_sprite.tscn"), preload("res://shotgun_sprite.tscn")]
@@ -22,7 +23,7 @@ var weapon_obj = null
 @onready var bullet = preload("res://bullet_good.tscn")
 var timer_weapon = 0
 
-const MORTAL = true
+const MORTAL = false
 
 signal player_dead
 
@@ -59,13 +60,12 @@ func melee():
 	atk_move = attackDirVec.normalized()
 	rotation = atan2(attackDirVec.y, attackDirVec.x)
 	curr_state = state.attacking
-	
+
 func animate():
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(weapon_obj, "scale", Vector2.ONE * -1, weapon_obj.ANIMATION_DURATION).from(Vector2.ONE * -weapon_obj.ANIMATION_INCREASE)
 	tween.tween_property(weapon_obj, "modulate:v", 1, weapon_obj.ANIMATION_DURATION/2).from(10)
-	tween.tween_property($AnimatedSprite2D, "scale:y", $AnimatedSprite2D.get_scale().y, weapon_obj.ANIMATION_DURATION * 2).from(2)
-
+	tween.tween_property($AnimatedSprite2D, "scale:y", $AnimatedSprite2D.get_scale().y, weapon_obj.ANIMATION_SQUASH).from(2)
 
 func shoot():
 	if timer_weapon > 0 or weapon_obj.ammo <= 0:
@@ -83,6 +83,9 @@ func shoot():
 		temp_bullet.start(position, dir.normalized(), randf_range(weapon_obj.MIN_BULLET_SPEED, weapon_obj.MAX_BULLET_SPEED), weapon_obj.BULLET_DURATION)
 	
 	timer_weapon = weapon_obj.COOLDOWN
+	
+	for N in enemies_inside_fire_range:
+		N.curr_state = N.states.aggro
 	
 func get_weapon():
 	for i in amount_weapons:
@@ -134,3 +137,11 @@ func _physics_process(delta: float) -> void:
 	if weapon_obj:
 		if timer_weapon > 0:
 			timer_weapon -= delta
+
+func _on_fire_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		enemies_inside_fire_range.append(body)
+
+func _on_fire_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		enemies_inside_fire_range.erase(body)

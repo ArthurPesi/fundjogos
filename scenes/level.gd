@@ -22,7 +22,6 @@ var shake_strength: float = 0.0
 @onready var pause_menu = get_node("player/Camera2D/pause_menu")
 @onready var enemy_holder: Node2D = $EnemyHolder
 @onready var navigation_region: NavigationRegion2D = $NavigationRegion2D
-@onready var background: Sprite2D = $player/Camera2D/background
 
 func get_level_color():
 	return Color.from_rgba8(colors[curr_level][0],colors[curr_level][1],colors[curr_level][2],colors[curr_level][3])
