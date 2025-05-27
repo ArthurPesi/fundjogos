@@ -64,6 +64,8 @@ func animate():
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(weapon_obj, "scale", Vector2.ONE * -1, weapon_obj.ANIMATION_DURATION).from(Vector2.ONE * -weapon_obj.ANIMATION_INCREASE)
 	tween.tween_property(weapon_obj, "modulate:v", 1, weapon_obj.ANIMATION_DURATION/2).from(10)
+	tween.tween_property($AnimatedSprite2D, "scale:y", $AnimatedSprite2D.get_scale().y, weapon_obj.ANIMATION_DURATION * 2).from(2)
+
 
 func shoot():
 	if timer_weapon > 0 or weapon_obj.ammo <= 0:
