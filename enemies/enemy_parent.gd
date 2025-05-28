@@ -71,6 +71,7 @@ func _physics_process(delta: float) -> void:
 func die():
 	if curr_state != states.dead:
 		curr_state = states.dead
+		world.check_enemy_amount()
 		$CollisionShape2D.queue_free()
 		var tween = get_tree().create_tween()
 		tween.tween_property($Sprite, "scale", Vector2(0,0),0.8)

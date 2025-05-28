@@ -19,6 +19,7 @@ shape = SubResource("CircleShape2D_a2j8e")
 [node name="VisionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="VisionArea"]
+visible = false
 polygon = PackedVector2Array(-50, 50, 389, 250, 389, -250, -50, -50)
 
 [connection signal="area_entered" from="VisionArea" to="." method="_on_vision_area_area_entered"]

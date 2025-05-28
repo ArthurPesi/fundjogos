@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4pmaeg6lo6n3"]
+
+[ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemy_holder.gd" id="1_pgfar"]
+[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="2_bbyvh"]
+[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="3_731rg"]
+[ext_resource type="Script" uid="uid://cjo0x1xf2v07o" path="res://scenes/camera.gd" id="4_0p2my"]
+[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://scenes/pause_menu.tscn" id="5_vi765"]
+[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemy_holder.tscn" id="6_wqkme"]
+[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="7_na2w8"]
+[ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="8_4puyt"]
+[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="9_d2yny"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
+vertices = PackedVector2Array(639.602, 30.2031, 680.398, 29.2031, 730.797, 29.2031, 694.602, 107.797, 427.398, 107.797, 1265.53, -89.7266, 1235.43, 590.867, 1211.6, 323.203, 1211.6, 296.797, 571.203, 396.797, 944.398, 323.203, 596.602, 441.797, 355.203, 441.797, 1201.2, 216.797, 1201.2, 3.20312, 177.273, 577.133, 596.602, 468.203, 883.602, 321.203, 616.398, 321.203, 329.398, 468.203, 730.797, 225.797, 694.602, 134.203, 571.203, 183.203, 616.398, 294.797, 194.742, -63.2266, 328.797, 459.797, 1193.6, 2.79688, 372.398, 30.2031, 355.203, 55.2031, 544.797, 396.797, 451.203, 390.797, 424.797, 390.797, 424.797, 177.203, 944.398, 296.797, 1174.8, 216.797, 835.398, 216.203, 1102.6, 216.203, 883.602, 294.797, 544.797, 183.203, 451.203, 177.203, 757.203, 225.797, 639.602, 3.79688, 680.398, 2.79688, 1174.8, 29.2031, 1102.6, 189.797, 757.203, 29.2031, 835.398, 189.797, 427.398, 134.203, 329.398, 459.797, 328.797, 55.2031, 1193.6, 3.20312, 372.398, 3.79688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 7, 11, 12), PackedInt32Array(5, 8, 13, 14), PackedInt32Array(6, 15, 16, 7), PackedInt32Array(17, 10, 9, 18), PackedInt32Array(19, 16, 15), PackedInt32Array(2, 20, 21, 3), PackedInt32Array(18, 9, 22, 23), PackedInt32Array(19, 15, 24, 25), PackedInt32Array(24, 5, 14, 26), PackedInt32Array(27, 0, 4, 28), PackedInt32Array(7, 16, 11), PackedInt32Array(29, 9, 12), PackedInt32Array(30, 29, 12, 31), PackedInt32Array(31, 12, 28, 32), PackedInt32Array(13, 8, 33, 34), PackedInt32Array(35, 36, 34, 33, 37), PackedInt32Array(38, 29, 30, 39), PackedInt32Array(33, 10, 17, 37), PackedInt32Array(35, 37, 23, 40), PackedInt32Array(1, 0, 41, 42), PackedInt32Array(43, 34, 36, 44), PackedInt32Array(45, 43, 44, 46), PackedInt32Array(40, 45, 46, 35), PackedInt32Array(20, 40, 23), PackedInt32Array(20, 23, 22, 21), PackedInt32Array(47, 21, 22, 38, 39), PackedInt32Array(47, 39, 32, 28), PackedInt32Array(4, 47, 28), PackedInt32Array(25, 48, 19), PackedInt32Array(49, 25, 24), PackedInt32Array(14, 50, 26), PackedInt32Array(24, 26, 42), PackedInt32Array(24, 42, 41, 51), PackedInt32Array(49, 24, 51, 27, 28)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(185, -73, 167, 587, 1245, 601, 1276, -100)])
+
+[node name="scene_2d" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0ha08")
+script = ExtResource("1_pgfar")
+
+[node name="vert1" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(438, 284)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(558, 290)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert3" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(342, 353)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert4" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(744, 119)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert5" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(1188, 110)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert2" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(342, 162)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="hor" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(506, 17)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor7" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(750, 308)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor4" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(969, 203)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor5" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(1060, 16)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor6" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(463, 455)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor3" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(814, 16)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor2" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(561, 121)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor1" parent="NavigationRegion2D" instance=ExtResource("2_bbyvh")]
+position = Vector2(1078, 310)
+scale = Vector2(12.36, 0.319995)
+
+[node name="player" parent="." instance=ExtResource("3_731rg")]
+z_index = 2
+position = Vector2(1015, 483)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(1.35, 1.35)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("4_0p2my")
+
+[node name="pause_menu" parent="player/Camera2D" instance=ExtResource("5_vi765")]
+visible = false
+offset_left = -571.0
+offset_top = -311.0
+offset_right = -571.0
+offset_bottom = -311.0
+
+[node name="EnemyHolder" parent="." instance=ExtResource("6_wqkme")]
+
+[node name="shotgun_enemy" parent="EnemyHolder" instance=ExtResource("7_na2w8")]
+position = Vector2(428, 78)
+
+[node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("7_na2w8")]
+position = Vector2(498, 285)
+
+[node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("8_4puyt")]
+position = Vector2(877, 129)
+rotation = 2.98277
+
+[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("9_d2yny")]
+position = Vector2(1063, 263)
+
+[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("9_d2yny")]
+position = Vector2(1013, 124)
+
+[connection signal="player_dead" from="player" to="." method="_on_player_player_dead"]

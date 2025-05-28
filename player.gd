@@ -23,14 +23,14 @@ var weapon_obj = null
 @onready var bullet = preload("res://bullet_good.tscn")
 var timer_weapon = 0
 
-const MORTAL = true
+const MORTAL = false
 
 signal player_dead
 
 func die_player():
 	if curr_state != state.dead and MORTAL:
 		curr_state = state.dead
-		world.reload_level()
+		world.load_curr_level()
 		$CollisionShape2D.queue_free()
 		var tween = get_tree().create_tween()
 		tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.2)
