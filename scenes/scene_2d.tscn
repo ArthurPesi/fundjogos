@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dyc04ifxvo54u"]
+[gd_scene load_steps=11 format=3 uid="uid://dyc04ifxvo54u"]
 
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="1_c4isy"]
-[ext_resource type="Script" uid="uid://ctrkatorla3n4" path="res://scenes/level.gd" id="1_uv5y8"]
 [ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemy_holder.gd" id="3_3gq2v"]
 [ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="4_wei22"]
 [ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="5_0ha08"]
@@ -17,7 +16,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-203, -157, -238, 611, 1245, 601, 1276, -100)])
 
 [node name="scene_2d" type="Node2D"]
-script = ExtResource("1_uv5y8")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0ha08")

@@ -14,7 +14,7 @@ var debug = false
 
 var curr_state = states.regular
 
-@onready var world: Node2D = $"../.."
+@onready var world: Node2D = $"../../.."
 
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D

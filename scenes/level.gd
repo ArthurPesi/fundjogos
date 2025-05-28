@@ -1,17 +1,12 @@
 extends Node2D
 
-var paused = false
 
 var NOISE_SHAKE_SPEED: float = 10.0
 var NOISE_SHAKE_STRENGTH: float = 60.0
 var RANDOM_SHAKE_STRENGTH: float = 30.0
 var SHAKE_DECAY_RATE: float = 3.0
 
-const colors = [
-	[200, 69, 69, 255]
-]
 
-var curr_level = 0
 
 var noise_i: float = 0.0
 @onready var rand = RandomNumberGenerator.new()
@@ -23,15 +18,9 @@ var shake_strength: float = 0.0
 @onready var enemy_holder: Node2D = $EnemyHolder
 @onready var navigation_region: NavigationRegion2D = $NavigationRegion2D
 
-func get_level_color():
-	return Color.from_rgba8(colors[curr_level][0],colors[curr_level][1],colors[curr_level][2],colors[curr_level][3])
 
 func _ready() -> void:
-	RenderingServer.set_default_clear_color(get_level_color())
 	Engine.time_scale = 1
-	rand.randomize()
-	noise.seed = rand.randi()
-	noise.frequency = 0.08
 	
 func apply_shake(strength) -> void:
 	shake_strength += strength
@@ -64,14 +53,3 @@ func _on_player_player_dead() -> void:
 		await get_tree().create_timer(0.5).timeout
 		get_tree().reload_current_scene()
 	
-
-func _input(event):
-
-	if event.is_action_pressed("quit"):
-		if !paused:
-			Engine.time_scale = 0
-			pause_menu.show()
-		if paused:
-			Engine.time_scale = 1
-			pause_menu.hide()
-		paused = !paused

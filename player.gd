@@ -12,7 +12,7 @@ const MAX_SPEED = 300
 const ACCELERATION = 4
 const ATTACK_SPEED = 1000
 const ATTACK_DURATION = 0.1
-@onready var world: Node2D = $".."
+@onready var world: Node2D = $"../.."
 var curr_movement = Vector2(0,0)
 var curr_state = state.walking
 var curr_weapon_value = weapon.nothing
@@ -23,14 +23,14 @@ var weapon_obj = null
 @onready var bullet = preload("res://bullet_good.tscn")
 var timer_weapon = 0
 
-const MORTAL = false
+const MORTAL = true
 
 signal player_dead
 
 func die_player():
 	if curr_state != state.dead and MORTAL:
 		curr_state = state.dead
-		emit_signal("player_dead")
+		world.reload_level()
 		$CollisionShape2D.queue_free()
 		var tween = get_tree().create_tween()
 		tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.2)
