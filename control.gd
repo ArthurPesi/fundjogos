@@ -2,9 +2,14 @@ extends Node2D
 
 var paused = false
 
-const colors = [
+const bg_colors = [
 	[100, 34, 34, 255],
 	[200, 69, 69, 255]
+]
+
+const wall_colors = [
+	[69, 12, 12, 255],
+	[169, 34, 34, 255]
 ]
 
 var curr_level = 0
@@ -21,23 +26,27 @@ var level_instance
 var noise = FastNoiseLite.new()
 var rand = RandomNumberGenerator.new()
 var camera: Camera2D
+var player: CharacterBody2D
 var pause_menu
 var enemy_holder: Node2D
 var navigation_region: NavigationRegion2D
 var amount_of_enemies: int
 
-func get_level_color():
-	return Color.from_rgba8(colors[curr_level][0],colors[curr_level][1],colors[curr_level][2],colors[curr_level][3])
+func get_level_bg_color():
+	return Color.from_rgba8(bg_colors[curr_level][0],bg_colors[curr_level][1],bg_colors[curr_level][2],bg_colors[curr_level][3])
 
+func get_level_wall_color():
+	return Color.from_rgba8(wall_colors[curr_level][0],wall_colors[curr_level][1],wall_colors[curr_level][2],wall_colors[curr_level][3])
+	
 func _ready() -> void:
-	RenderingServer.set_default_clear_color(get_level_color())
+	RenderingServer.set_default_clear_color(get_level_bg_color())
 	rand.randomize()
 	noise.seed = rand.randi()
 	noise.frequency = 0.08
 	level_instance = level_resources[curr_level].instantiate()
 	add_child(level_instance)
 	
-	get_node_references()
+	start_level()
 
 	
 func check_enemy_amount():
@@ -46,12 +55,24 @@ func check_enemy_amount():
 		await get_tree().create_timer(1).timeout
 		load_next_level()
 	
-func get_node_references():
+func start_level():
 	camera = level_instance.get_node("player/Camera2D")
+	player = level_instance.get_node("player")
 	pause_menu = level_instance.get_node("player/Camera2D/pause_menu")
 	enemy_holder = level_instance.get_node("EnemyHolder")
 	navigation_region = level_instance.get_node("NavigationRegion2D")
 	amount_of_enemies = enemy_holder.get_child_count()
+	
+	var tween = get_tree().create_tween().set_parallel(true)
+	for N in enemy_holder.get_children():
+		var sprite = N.get_node("Sprite")
+		tween.tween_property(sprite, "scale", sprite.get_scale(), 0.2).from(Vector2.ZERO)
+		
+	var wall_color = get_level_wall_color()
+	for N in navigation_region.get_children():
+		var sprite = N.get_node("Sprite")
+		tween.tween_property(sprite, "scale:y", sprite.get_scale().y, 0.2).from(0)
+		sprite.modulate = wall_color
 	
 func apply_shake(strength) -> void:
 	shake_strength += strength
@@ -77,9 +98,20 @@ func freeze(time):
 	await get_tree().create_timer(time * 0.05).timeout
 	Engine.time_scale = 1
 
+func reset_screen():
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(player.get_node("AnimatedSprite2D"), "scale", Vector2.ZERO, 0.2)
+	if player.weapon_obj:
+			player.weapon_obj.queue_free()
+	for N in navigation_region.get_children():
+		tween.tween_property(N, "scale:y", 0, 0.3)
+	for N in enemy_holder.get_children():
+		if N.is_in_group("enemy"):
+			N.curr_state = N.states.dead
+		tween.tween_property(N, "scale", Vector2.ZERO, 0.3)
+
 func load_curr_level():
-	enemy_holder.reset_screen()
-	navigation_region.reset_screen()
+	reset_screen()
 	await get_tree().create_timer(0.5).timeout
 	shake_strength = 0
 	Engine.time_scale = 1
@@ -89,12 +121,12 @@ func load_curr_level():
 	await get_tree().create_timer(0.1).timeout
 	level_instance = level_resources[curr_level].instantiate()
 	add_child(level_instance)
-	get_node_references()
+	start_level()
 	
 func load_next_level():
 	if curr_level + 1 < level_resources.size():
 		curr_level += 1
-		RenderingServer.set_default_clear_color(get_level_color())
+		RenderingServer.set_default_clear_color(get_level_bg_color())
 	load_curr_level()
 
 func _input(event):

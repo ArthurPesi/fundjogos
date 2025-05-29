@@ -1,13 +1,7 @@
 extends Node2D
 
-const colors = [
-	[169, 34, 34, 255]
-]
+var wall_color: Color
 var curr_level = 0
-
-func get_level_color():
-	return Color.from_rgba8(colors[curr_level][0],colors[curr_level][1],colors[curr_level][2],colors[curr_level][3])
-
 	
 func _ready():
 	var tween = get_tree().create_tween().set_parallel(true)
@@ -15,12 +9,10 @@ func _ready():
 		var sprite = N.get_node("Sprite")
 		if N.is_in_group("obstacle"):
 			tween.tween_property(sprite, "scale:y", sprite.get_scale().y, 0.2).from(0)
-			sprite.modulate = get_level_color()
+			sprite.modulate = wall_color
 		else:
 			tween.tween_property(sprite, "scale", sprite.get_scale(), 0.2).from(Vector2.ZERO)
 
-
-			
 func reset_screen():
 	var tween = get_tree().create_tween().set_parallel(true)
 	for N in get_children():

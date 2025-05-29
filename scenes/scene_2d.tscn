@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyc04ifxvo54u"]
+[gd_scene load_steps=10 format=3 uid="uid://dyc04ifxvo54u"]
 
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="1_c4isy"]
-[ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemy_holder.gd" id="3_3gq2v"]
 [ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="4_wei22"]
 [ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="5_0ha08"]
 [ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://scenes/pause_menu.tscn" id="5_1b6wp"]
@@ -19,7 +18,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-203, -157, -238, 611, 
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0ha08")
-script = ExtResource("3_3gq2v")
 
 [node name="vert1" parent="NavigationRegion2D" instance=ExtResource("7_0ha08")]
 position = Vector2(32, 174)
@@ -101,6 +99,7 @@ offset_right = -571.0
 offset_bottom = -311.0
 
 [node name="EnemyHolder" parent="." instance=ExtResource("6_hmmf6")]
+script = null
 
 [node name="shotgun_enemy" parent="EnemyHolder" instance=ExtResource("4_wei22")]
 position = Vector2(-132, 204)
@@ -117,5 +116,3 @@ position = Vector2(79, 385)
 
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("6_qcrin")]
 position = Vector2(-133, 497)
-
-[connection signal="player_dead" from="player" to="." method="_on_player_player_dead"]

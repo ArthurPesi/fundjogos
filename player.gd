@@ -13,6 +13,7 @@ const ACCELERATION = 4
 const ATTACK_SPEED = 1000
 const ATTACK_DURATION = 0.1
 @onready var world: Node2D = $"../.."
+@onready var enemy_holder: Node2D = $"../EnemyHolder"
 var curr_movement = Vector2(0,0)
 var curr_state = state.walking
 var curr_weapon_value = weapon.nothing
@@ -25,15 +26,11 @@ var timer_weapon = 0
 
 const MORTAL = false
 
-signal player_dead
-
 func die_player():
 	if curr_state != state.dead and MORTAL:
 		curr_state = state.dead
 		world.load_curr_level()
 		$CollisionShape2D.queue_free()
-		var tween = get_tree().create_tween()
-		tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.2)
 	
 
 func walk(delta: float) -> Vector2:
@@ -98,7 +95,7 @@ func get_weapon():
 					just_dropped.position = position
 					just_dropped.z_index = 1
 					just_dropped.ammo = weapon_obj.ammo
-					add_sibling(just_dropped)
+					enemy_holder.add_child(just_dropped)
 				weapon_obj.queue_free()
 			curr_weapon_value = i as weapon
 			weapon_obj = weapon_holding_presets[i].instantiate()
@@ -118,8 +115,6 @@ func _physics_process(delta: float) -> void:
 				melee()
 			if Input.is_action_pressed("fire") and weapon_obj:
 				shoot()
-			if Input.is_action_just_pressed("get_weapon") and curr_collect:
-				get_weapon()
 		state.attacking:
 			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
@@ -128,6 +123,8 @@ func _physics_process(delta: float) -> void:
 				curr_state = state.walking
 
 	if curr_state != state.dead:
+		if Input.is_action_just_pressed("get_weapon") and curr_collect:
+			get_weapon()
 		for index in get_slide_collision_count():
 			var collision = get_slide_collision(index).get_collider()
 			if collision_should_kill(collision):

@@ -117,5 +117,3 @@ position = Vector2(1063, 263)
 
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("9_d2yny")]
 position = Vector2(1013, 124)
-
-[connection signal="player_dead" from="player" to="." method="_on_player_player_dead"]
