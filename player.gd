@@ -12,13 +12,14 @@ const MAX_SPEED = 300
 const ACCELERATION = 4
 const ATTACK_SPEED = 1000
 const ATTACK_DURATION = 0.1
+const ATTACK_COOLDOWN_SPEED: float = 0.1
 @onready var world: Node2D = $"../.."
 @onready var enemy_holder: Node2D = $"../EnemyHolder"
 var curr_movement = Vector2(0,0)
 var curr_state = state.walking
 var curr_weapon_value = weapon.nothing
 var directionRadians
-var attackCounter = 0
+var attackCounter: float = 0
 var curr_collect = null
 var weapon_obj = null
 @onready var bullet = preload("res://bullet_good.tscn")
@@ -34,7 +35,6 @@ func die_player():
 	
 
 func walk(delta: float) -> Vector2:
-	attackCounter = clamp(attackCounter -1, 0, 1000)
 	look_at(get_global_mouse_position())
 	var input = Vector2(Input.get_axis("left","right"), Input.get_axis("up","down")).normalized()
 	if input.x == 0 or sign(input.x) != sign(curr_movement.x):
@@ -53,19 +53,29 @@ func collision_should_kill(collision) -> bool:
 var atk_move = Vector2()
 
 func melee():
-	var attackDirVec = get_global_mouse_position() - position
-	atk_move = attackDirVec.normalized()
-	rotation = atan2(attackDirVec.y, attackDirVec.x)
-	curr_state = state.attacking
+	if attackCounter <= 0:
+		var attackDirVec = get_global_mouse_position() - position
+		atk_move = attackDirVec.normalized()
+		rotation = atan2(attackDirVec.y, attackDirVec.x)
+		curr_state = state.attacking
+	else:
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "modulate", modulate, 0.35).from(Color.RED)
 
 func animate():
 	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(weapon_obj, "scale", Vector2.ONE * -1, weapon_obj.ANIMATION_DURATION).from(Vector2.ONE * -weapon_obj.ANIMATION_INCREASE)
+	tween.tween_property(weapon_obj, "scale", weapon_obj.scale, weapon_obj.ANIMATION_DURATION).from(weapon_obj.scale * weapon_obj.ANIMATION_INCREASE)
 	tween.tween_property(weapon_obj, "modulate:v", 1, weapon_obj.ANIMATION_DURATION/2).from(10)
+	tween.tween_property(weapon_obj, "position", weapon_obj.position, weapon_obj.ANIMATION_DURATION).from(Vector2.ZERO)
+	tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, weapon_obj.ANIMATION_DURATION).from(weapon_obj.rotation - weapon_obj.ANIMATION_FALLBACK)
 	tween.tween_property($AnimatedSprite2D, "scale:y", $AnimatedSprite2D.get_scale().y, weapon_obj.ANIMATION_SQUASH).from(2)
+
 
 func shoot():
 	if timer_weapon > 0 or weapon_obj.ammo <= 0:
+		var tween = get_tree().create_tween().set_parallel(true)
+		tween.tween_property(weapon_obj, "modulate", weapon_obj.modulate, 0.2).from(Color.RED)
+		tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, 0.3).from(weapon_obj.rotation - 1)
 		return
 	weapon_obj.ammo -= 1
 	animate()
@@ -100,6 +110,7 @@ func get_weapon():
 			curr_weapon_value = i as weapon
 			weapon_obj = weapon_holding_presets[i].instantiate()
 			weapon_obj.ammo = curr_collect.ammo
+			weapon_obj.position = Vector2(18, 0)
 			add_child(weapon_obj)
 			curr_collect.queue_free()
 
@@ -109,11 +120,13 @@ func can_collect(object):
 func _physics_process(delta: float) -> void:
 	match curr_state:
 		state.walking:
+			if attackCounter > 0:
+				attackCounter -= ATTACK_COOLDOWN_SPEED * delta
 			velocity = walk(delta)
 			move_and_slide()
 			if Input.is_action_just_pressed("knife") or (Input.is_action_just_pressed("fire") and !weapon_obj):
 				melee()
-			if Input.is_action_pressed("fire") and weapon_obj:
+			if Input.is_action_just_pressed("fire") and weapon_obj:
 				shoot()
 		state.attacking:
 			attackCounter += delta
