@@ -1,33 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjxwc66u1e1kb"]
-
-[ext_resource type="Texture2D" uid="uid://fukle14omk63" path="res://Assets 2D/NPCs/Slime/slime_run.png" id="1_v7oki"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v8qja"]
-atlas = ExtResource("1_v7oki")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_t4vbm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v8qja")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2b2rl"]
-radius = 3.0
+[gd_scene format=3 uid="uid://bjxwc66u1e1kb"]
 
 [node name="bullet_generic" type="Area2D" groups=["trigger_aggro"]]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.19209e-07, 0)
 scale = Vector2(0.5625, 0.46875)
-sprite_frames = SubResource("SpriteFrames_t4vbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2b2rl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

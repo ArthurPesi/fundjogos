@@ -1,29 +1,78 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw2ldmgbhypql"]
+[gd_scene load_steps=13 format=3 uid="uid://dw2ldmgbhypql"]
 
 [ext_resource type="Script" uid="uid://bpna1fgeuu3mq" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://c1fwwn4ju8xd0" path="res://Assets 2D/Players/Mask Dude/Jump (32x32).png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://c2owpbrh5ylt4" path="res://sprites/rogue.png" id="2_onrkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 1, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(10, 1, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(20, 1, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(30, 1, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(40, 1, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(50, 1, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 12, 10, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_i3pqv")
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
+radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
-radius = 240.102
+radius = 160.05
 
 [node name="player" type="CharacterBody2D" groups=["player", "trigger_aggro"]]
 script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hqtel")
+frame = 6
+frame_progress = 0.514944
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sweqy")
@@ -37,6 +86,5 @@ shape = SubResource("CircleShape2D_sweqy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireArea"]
 shape = SubResource("CircleShape2D_onrkg")
 
-[connection signal="player_dead" from="." to="." method="_on_player_dead"]
 [connection signal="body_entered" from="FireArea" to="." method="_on_fire_area_body_entered"]
 [connection signal="body_exited" from="FireArea" to="." method="_on_fire_area_body_exited"]

@@ -12,8 +12,8 @@ const PRECISION = 0.27
 const MIN_BULLETS = 10
 const MAX_BULLETS = 17
 const BULLET_DURATION = 3
-const MIN_BULLET_SPEED = 200
-const MAX_BULLET_SPEED = 250
+const MIN_BULLET_SPEED = 300
+const MAX_BULLET_SPEED = 350
 var amount_of_bullets
 
 @onready var bullet = preload("res://bullet_evil.tscn")

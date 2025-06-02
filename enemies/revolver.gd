@@ -8,7 +8,7 @@ var min_fire_timeout = 1
 var max_fire_timeout = 1.4
 var precision = 0.15
 const BULLET_SPEED = 300
-const BULLET_LIFE = 10
+const BULLET_LIFE = 4
 var timeoutFire
 @onready var bullet = preload("res://bullet_evil.tscn")
 

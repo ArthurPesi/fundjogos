@@ -15,6 +15,6 @@ animations = [{
 }]
 
 [node name="revolver" type="AnimatedSprite2D"]
-scale = Vector2(-1.875, 1.594)
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_c4oxc")
 script = ExtResource("2_c4oxc")

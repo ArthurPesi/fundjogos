@@ -1,9 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://drt0xr82badh3"]
+[gd_scene load_steps=6 format=3 uid="uid://drt0xr82badh3"]
 
 [ext_resource type="PackedScene" uid="uid://bjxwc66u1e1kb" path="res://bullet_generic.tscn" id="1_vfjst"]
 [ext_resource type="Script" uid="uid://cwjxa4mgtc6f" path="res://bullet_good.gd" id="2_a4ril"]
+[ext_resource type="Texture2D" uid="uid://dmigaambfwl4d" path="res://sprites/ally_bullet_B.png" id="3_2fnm5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vn0d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2fnm5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2fnm5"]
+radius = 13.0384
 
 [node name="bullet_good" groups=["good"] instance=ExtResource("1_vfjst")]
 script = ExtResource("2_a4ril")
 
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_8vn0d")
+
 [node name="CollisionShape2D" parent="." index="1" groups=["good"]]
+shape = SubResource("CircleShape2D_2fnm5")

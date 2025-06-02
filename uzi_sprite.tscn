@@ -15,6 +15,6 @@ animations = [{
 }]
 
 [node name="uzi" type="AnimatedSprite2D"]
-scale = Vector2(-1, 1)
+scale = Vector2(-0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_exv08")
 script = ExtResource("2_exv08")

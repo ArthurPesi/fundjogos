@@ -53,16 +53,12 @@ scale = Vector2(9.68, 0.319995)
 position = Vector2(203, 265)
 scale = Vector2(12.36, 0.319995)
 
-[node name="hor7" parent="NavigationRegion2D" instance=ExtResource("7_0ha08")]
-position = Vector2(345, 542)
-scale = Vector2(12.36, 0.319995)
-
 [node name="hor4" parent="NavigationRegion2D" instance=ExtResource("7_0ha08")]
 position = Vector2(-72, 542)
 scale = Vector2(12.36, 0.319995)
 
 [node name="hor5" parent="NavigationRegion2D" instance=ExtResource("7_0ha08")]
-position = Vector2(174, 542)
+position = Vector2(177, 512)
 scale = Vector2(12.36, 0.319995)
 
 [node name="hor6" parent="NavigationRegion2D" instance=ExtResource("7_0ha08")]
@@ -86,9 +82,8 @@ z_index = 2
 position = Vector2(470, 281)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(1.35, 1.35)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0
 script = ExtResource("5_3grkl")
 
 [node name="pause_menu" parent="player/Camera2D" instance=ExtResource("5_1b6wp")]

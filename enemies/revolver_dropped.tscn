@@ -1,10 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://p5x2akxujudr"]
 
-[ext_resource type="Texture2D" uid="uid://bm4tnxf7ypa70" path="res://Assets 2D/revolver.png" id="1_5f58b"]
 [ext_resource type="PackedScene" uid="uid://b47evhmrasq2b" path="res://enemies/weapon_dropped.tscn" id="1_gyla8"]
+[ext_resource type="PackedScene" uid="uid://cn2nwvg5i7skm" path="res://revolver_sprite.tscn" id="2_gyla8"]
 
 [node name="revolver_dropped" groups=["revolver"] instance=ExtResource("1_gyla8")]
 
-[node name="Sprite2D" parent="." index="1"]
-scale = Vector2(3, 3)
-texture = ExtResource("1_5f58b")
+[node name="revolver" parent="." index="1" instance=ExtResource("2_gyla8")]

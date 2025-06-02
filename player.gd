@@ -110,7 +110,7 @@ func get_weapon():
 			curr_weapon_value = i as weapon
 			weapon_obj = weapon_holding_presets[i].instantiate()
 			weapon_obj.ammo = curr_collect.ammo
-			weapon_obj.position = Vector2(18, 0)
+			weapon_obj.position = Vector2(8, 0)
 			add_child(weapon_obj)
 			curr_collect.queue_free()
 
