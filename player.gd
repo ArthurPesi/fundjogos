@@ -35,6 +35,7 @@ var right_action: String
 var up_action: String
 var down_action: String
 var walk_dir: Vector2 = Vector2(0,0)
+var look_dir: Vector2 = Vector2(0,0)
 
 const MORTAL = false
 
@@ -56,7 +57,7 @@ func die_player():
 		$CollisionShape2D.queue_free()
 
 func walk(delta: float) -> Vector2:
-	look_at(get_global_mouse_position())
+	rotation = atan2(look_dir.y, look_dir.x)
 	#if player_settings.device_type == constants.device_types.KEYBOARD:
 		#input = Vector2(Input.get_axis("left" + action_suffix,"right" + action_suffix), Input.get_axis("up" + action_suffix,"down" + action_suffix)).normalized()
 	#else:
@@ -78,9 +79,8 @@ var atk_move = Vector2()
 
 func melee():
 	if attackCounter <= 0:
-		var attackDirVec = get_global_mouse_position() - position
-		atk_move = attackDirVec.normalized()
-		rotation = atan2(attackDirVec.y, attackDirVec.x)
+		atk_move = look_dir.normalized()
+		rotation = atan2(look_dir.y, look_dir.x)
 		curr_state = state.attacking
 	else:
 		var tween = get_tree().create_tween()
@@ -148,10 +148,6 @@ func _physics_process(delta: float) -> void:
 				attackCounter -= ATTACK_COOLDOWN_SPEED * delta
 			velocity = walk(delta)
 			move_and_slide()
-			#if Input.is_action_just_pressed("knife") or (Input.is_action_just_pressed("fire") and !weapon_obj):
-			#	melee()
-			#if Input.is_action_just_pressed("fire") and weapon_obj:
-			#	shoot()
 		state.attacking:
 			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
@@ -160,8 +156,6 @@ func _physics_process(delta: float) -> void:
 				curr_state = state.walking
 
 	if curr_state != state.dead:
-		#if Input.is_action_just_pressed("get_weapon") and curr_collect:
-		#	get_weapon()
 		for index in get_slide_collision_count():
 			var collision = get_slide_collision(index).get_collider()
 			if collision_should_kill(collision):
@@ -183,7 +177,11 @@ func _input(event: InputEvent) -> void:
 		if Input.is_action_just_pressed(get_weapon_action) and curr_collect and curr_state != state.dead:
 			get_weapon()
 		walk_dir = Vector2(Input.get_axis(left_action,right_action), Input.get_axis(up_action,down_action)).normalized()
-		
+		if player_settings.device_type == constants.device_types.GAMEPAD:
+			if event.is_action_pressed("look_down_gamepad") or event.is_action_pressed("look_up_gamepad") or event.is_action_pressed("look_left_gamepad") or event.is_action_pressed("look_right_gamepad"):
+				look_dir = Vector2(Input.get_axis("look_left_gamepad","look_right_gamepad"), Input.get_axis("look_up_gamepad","look_down_gamepad"))
+		elif player_settings.device_type == constants.device_types.KEYBOARD:
+			look_dir = get_global_mouse_position() - position
 
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
