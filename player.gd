@@ -4,6 +4,8 @@ enum state {walking, attacking, dead}
 enum weapon {revolver, uzi, shotgun, nothing}
 var enemies_inside_fire_range: Array[CharacterBody2D]
 
+var player_settings
+
 const possible_weapons = ["revolver", "uzi", "shotgun"]
 const weapon_holding_presets = [preload("res://revolver_sprite.tscn"), preload("res://uzi_sprite.tscn"), preload("res://shotgun_sprite.tscn")]
 const weapon_dropped_presets = [preload("res://enemies/revolver_dropped.tscn"), preload("res://enemies/uzi_dropped.tscn"), preload("res://enemies/shotgun_dropped.tscn")]
@@ -24,25 +26,47 @@ var curr_collect = null
 var weapon_obj = null
 @onready var bullet = preload("res://bullet_good.tscn")
 var timer_weapon = 0
+var action_suffix: String
+var fire_action: String
+var get_weapon_action: String
+var knife_action: String
+var left_action: String
+var right_action: String
+var up_action: String
+var down_action: String
+var walk_dir: Vector2 = Vector2(0,0)
 
 const MORTAL = false
+
+func init(world_settings) -> void:
+	player_settings = world_settings
+	action_suffix = "_keyboard" if player_settings.device_type == constants.device_types.KEYBOARD else "_gamepad"
+	fire_action = "fire" + action_suffix
+	get_weapon_action = "get_weapon" + action_suffix
+	knife_action = "knife" + action_suffix
+	left_action = "left" + action_suffix
+	right_action = "right" + action_suffix
+	up_action = "up" + action_suffix
+	down_action = "down" + action_suffix
 
 func die_player():
 	if curr_state != state.dead and MORTAL:
 		curr_state = state.dead
-		world.load_curr_level()
+		world.reload_level()
 		$CollisionShape2D.queue_free()
-	
 
 func walk(delta: float) -> Vector2:
 	look_at(get_global_mouse_position())
-	var input = Vector2(Input.get_axis("left","right"), Input.get_axis("up","down")).normalized()
-	if input.x == 0 or sign(input.x) != sign(curr_movement.x):
+	#if player_settings.device_type == constants.device_types.KEYBOARD:
+		#input = Vector2(Input.get_axis("left" + action_suffix,"right" + action_suffix), Input.get_axis("up" + action_suffix,"down" + action_suffix)).normalized()
+	#else:
+		#input = Vector2(0,0)
+	if walk_dir.x == 0 or sign(walk_dir.x) != sign(curr_movement.x):
 		curr_movement.x = 0
-	if input.y == 0 or sign(input.y) != sign(curr_movement.y):
+	if walk_dir.y == 0 or sign(walk_dir.y) != sign(curr_movement.y):
 		curr_movement.y = 0
 
-	curr_movement = curr_movement.move_toward(input, ACCELERATION * delta)
+	curr_movement = curr_movement.move_toward(walk_dir, ACCELERATION * delta)
 	return curr_movement * MAX_SPEED
 
 func collision_should_kill(collision) -> bool:
@@ -124,10 +148,10 @@ func _physics_process(delta: float) -> void:
 				attackCounter -= ATTACK_COOLDOWN_SPEED * delta
 			velocity = walk(delta)
 			move_and_slide()
-			if Input.is_action_just_pressed("knife") or (Input.is_action_just_pressed("fire") and !weapon_obj):
-				melee()
-			if Input.is_action_just_pressed("fire") and weapon_obj:
-				shoot()
+			#if Input.is_action_just_pressed("knife") or (Input.is_action_just_pressed("fire") and !weapon_obj):
+			#	melee()
+			#if Input.is_action_just_pressed("fire") and weapon_obj:
+			#	shoot()
 		state.attacking:
 			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
@@ -136,8 +160,8 @@ func _physics_process(delta: float) -> void:
 				curr_state = state.walking
 
 	if curr_state != state.dead:
-		if Input.is_action_just_pressed("get_weapon") and curr_collect:
-			get_weapon()
+		#if Input.is_action_just_pressed("get_weapon") and curr_collect:
+		#	get_weapon()
 		for index in get_slide_collision_count():
 			var collision = get_slide_collision(index).get_collider()
 			if collision_should_kill(collision):
@@ -149,6 +173,18 @@ func _physics_process(delta: float) -> void:
 	if weapon_obj:
 		if timer_weapon > 0:
 			timer_weapon -= delta
+			
+func _input(event: InputEvent) -> void:
+	if event.device == player_settings.device:
+		if Input.is_action_just_pressed(fire_action) and weapon_obj and curr_state == state.walking:
+			shoot()
+		elif Input.is_action_just_pressed(knife_action) or (Input.is_action_just_pressed(fire_action) and !weapon_obj) and curr_state == state.walking:
+			melee()
+		if Input.is_action_just_pressed(get_weapon_action) and curr_collect and curr_state != state.dead:
+			get_weapon()
+		walk_dir = Vector2(Input.get_axis(left_action,right_action), Input.get_axis(up_action,down_action)).normalized()
+		
+
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

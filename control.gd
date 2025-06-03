@@ -14,15 +14,25 @@ const wall_colors = [
 
 var curr_level = 0
 
+class player_class:
+	var device
+	var device_type
+	
+var player_one = player_class.new()
+
+enum menu {MAIN_MENU, SETTINGS, CHAR_SELECTION}
+enum scene {MENU, LEVEL}
+
 var NOISE_SHAKE_SPEED: float = 10.0
 var NOISE_SHAKE_STRENGTH: float = 60.0
 var RANDOM_SHAKE_STRENGTH: float = 30.0
 var SHAKE_DECAY_RATE: float = 3.0
 var shake_strength: float = 0.0
 var noise_i: float = 0.0
-
+@onready var menu_resources = [preload("res://scenes/main_menu.tscn"), preload("res://scenes/config.tscn"), preload("res://scenes/char_selection.tscn")]
 @onready var level_resources = [preload("res://scenes/scene_2d.tscn"), preload("res://scenes/scene_2d2.tscn")]
 var level_instance
+var scene_type = scene.MENU
 var noise = FastNoiseLite.new()
 var rand = RandomNumberGenerator.new()
 var camera: Camera2D
@@ -43,10 +53,8 @@ func _ready() -> void:
 	rand.randomize()
 	noise.seed = rand.randi()
 	noise.frequency = 0.08
-	level_instance = level_resources[curr_level].instantiate()
+	level_instance = menu_resources[menu.MAIN_MENU].instantiate()
 	add_child(level_instance)
-	
-	start_level()
 
 	
 func check_enemy_amount():
@@ -56,34 +64,37 @@ func check_enemy_amount():
 		load_next_level()
 	
 func start_level():
-	camera = level_instance.get_node("player/Camera2D")
-	player = level_instance.get_node("player")
-	pause_menu = level_instance.get_node("player/Camera2D/pause_menu")
-	enemy_holder = level_instance.get_node("EnemyHolder")
-	navigation_region = level_instance.get_node("NavigationRegion2D")
-	amount_of_enemies = enemy_holder.get_child_count()
-	
-	var tween = get_tree().create_tween().set_parallel(true)
-	for N in enemy_holder.get_children():
-		var sprite = N.get_node("Sprite")
-		tween.tween_property(sprite, "scale", sprite.get_scale(), 0.2).from(Vector2.ZERO)
+	if scene_type == scene.LEVEL:
+		camera = level_instance.get_node("player/Camera2D")
+		player = level_instance.get_node("player")
+		player.init(player_one)
+		pause_menu = level_instance.get_node("player/Camera2D/pause_menu")
+		enemy_holder = level_instance.get_node("EnemyHolder")
+		navigation_region = level_instance.get_node("NavigationRegion2D")
+		amount_of_enemies = enemy_holder.get_child_count()
 		
-	var wall_color = get_level_wall_color()
-	for N in navigation_region.get_children():
-		var sprite = N.get_node("Sprite")
-		tween.tween_property(sprite, "scale:y", sprite.get_scale().y, 0.2).from(0)
-		sprite.modulate = wall_color
+		var tween = get_tree().create_tween().set_parallel(true)
+		for N in enemy_holder.get_children():
+			var sprite = N.get_node("Sprite")
+			tween.tween_property(sprite, "scale", sprite.get_scale(), 0.2).from(Vector2.ZERO)
+			
+		var wall_color = get_level_wall_color()
+		for N in navigation_region.get_children():
+			var sprite = N.get_node("Sprite")
+			tween.tween_property(sprite, "scale:y", sprite.get_scale().y, 0.2).from(0)
+			sprite.modulate = wall_color
 	
 func apply_shake(strength) -> void:
 	shake_strength += strength
 	
 func _process(delta: float) -> void:
-	if shake_strength > 0:
-		shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
-		
-		var shake_offset: Vector2
-		shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
-		camera.offset = shake_offset
+	if scene_type == scene.LEVEL:
+		if shake_strength > 0:
+			shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
+			
+			var shake_offset: Vector2
+			shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
+			camera.offset = shake_offset
 
 func get_noise_offset(delta: float, speed: float, strength: float) -> Vector2:
 	noise_i += delta * speed
@@ -110,27 +121,39 @@ func reset_screen():
 			N.curr_state = N.states.dead
 		tween.tween_property(N, "scale", Vector2.ZERO, 0.3)
 
-func load_curr_level():
-	reset_screen()
-	await get_tree().create_timer(0.5).timeout
-	shake_strength = 0
-	Engine.time_scale = 1
+	
+func reload_level():
+	load_scene(scene.LEVEL, curr_level)
+	
+func load_scene(new_type, new_scene):
+	if scene_type == scene.LEVEL:
+		reset_screen()
+		await get_tree().create_timer(0.5).timeout
+		shake_strength = 0
+		Engine.time_scale = 1
+	elif scene_type == scene.MENU:
+		RenderingServer.set_default_clear_color(get_level_bg_color())
 	if(level_instance):
 		level_instance.queue_free()
 	
 	await get_tree().create_timer(0.1).timeout
-	level_instance = level_resources[curr_level].instantiate()
-	add_child(level_instance)
-	start_level()
+	scene_type = new_type
+	if new_type == scene.LEVEL:
+		level_instance = level_resources[new_scene].instantiate()
+		add_child(level_instance)
+		start_level()
+	elif new_type == scene.MENU:
+		level_instance = menu_resources[new_scene].instantiate()
+		add_child(level_instance)
 	
 func load_next_level():
-	if curr_level + 1 < level_resources.size():
+	if curr_level + 1 < level_resources.size() and scene_type == scene.LEVEL:
 		curr_level += 1
 		RenderingServer.set_default_clear_color(get_level_bg_color())
-	load_curr_level()
+	load_scene(scene.LEVEL, curr_level)
 
 func _input(event):
-	if event.is_action_pressed("quit"):
+	if event.is_action_pressed("quit_keyboard") and scene_type == scene.LEVEL:
 		if !paused:
 			Engine.time_scale = 0
 			pause_menu.show()
@@ -138,3 +161,7 @@ func _input(event):
 			Engine.time_scale = 1
 			pause_menu.hide()
 		paused = !paused
+		
+func add_player(device_id, device_type):
+	player_one.device = device_id
+	player_one.device_type = device_type
