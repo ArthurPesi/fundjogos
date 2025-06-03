@@ -100,14 +100,14 @@ func shoot():
 		var spread_rad = randf_range(-weapon_obj.PRECISION, weapon_obj.PRECISION)
 		var dir = Vector2(cos(rotation), sin(rotation))
 		dir = Vector2(dir.x * cos(spread_rad) - dir.y * sin(spread_rad), dir.x * sin(spread_rad) + dir.y * cos(spread_rad))
-		temp_bullet.start(position, dir.normalized(), randf_range(weapon_obj.MIN_BULLET_SPEED, weapon_obj.MAX_BULLET_SPEED), weapon_obj.BULLET_DURATION)
+		temp_bullet.start(position, dir.normalized(), randf_range(weapon_obj.MIN_BULLET_SPEED, weapon_obj.MAX_BULLET_SPEED), weapon_obj.BULLET_DURATION, self)
 	
 	timer_weapon = weapon_obj.COOLDOWN
 	
 	for N in enemies_inside_fire_range:
 		enemies_inside_fire_range.erase(N)
 		if N.curr_state == N.states.regular:
-			N.enter_aggro()
+			N.enter_aggro(self)
 	
 func get_weapon():
 	for i in amount_weapons:

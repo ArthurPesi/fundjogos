@@ -27,7 +27,7 @@ class player_class:
 	var down_action
 	var character_sprite
 	
-var player_one = player_class.new()
+var players_settings: Array[player_class] = [player_class.new(), player_class.new()]
 
 enum menu {MAIN_MENU, SETTINGS, CHAR_SELECTION}
 enum scene {MENU, LEVEL}
@@ -45,7 +45,7 @@ var scene_type = scene.MENU
 var noise = FastNoiseLite.new()
 var rand = RandomNumberGenerator.new()
 var camera: Camera2D
-var player: CharacterBody2D
+var players: Array[CharacterBody2D]
 var pause_menu
 var enemy_holder: Node2D
 var navigation_region: NavigationRegion2D
@@ -58,6 +58,7 @@ func get_level_wall_color():
 	return Color.from_rgba8(wall_colors[curr_level][0],wall_colors[curr_level][1],wall_colors[curr_level][2],wall_colors[curr_level][3])
 	
 func _ready() -> void:
+	players.resize(2)
 	RenderingServer.set_default_clear_color(get_level_bg_color())
 	rand.randomize()
 	noise.seed = rand.randi()
@@ -74,10 +75,10 @@ func check_enemy_amount():
 	
 func start_level():
 	if scene_type == scene.LEVEL:
-		camera = level_instance.get_node("player/Camera2D")
-		player = level_instance.get_node("player")
-		player.init(player_one)
-		pause_menu = level_instance.get_node("player/Camera2D/pause_menu")
+		camera = level_instance.get_node("Camera2D")
+		players[0] = level_instance.get_node("PlayerOne")
+		players[0].init(players_settings[0])
+		pause_menu = level_instance.get_node("Camera2D/pause_menu")
 		enemy_holder = level_instance.get_node("EnemyHolder")
 		navigation_region = level_instance.get_node("NavigationRegion2D")
 		amount_of_enemies = enemy_holder.get_child_count()
@@ -120,9 +121,11 @@ func freeze(time):
 
 func reset_screen():
 	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(player.get_node("AnimatedSprite2D"), "scale", Vector2.ZERO, 0.2)
-	if player.weapon_obj:
-			player.weapon_obj.queue_free()
+	for player in players:
+		if player:
+			tween.tween_property(player.get_node("AnimatedSprite2D"), "scale", Vector2.ZERO, 0.2)
+			if player.weapon_obj:
+				player.weapon_obj.queue_free()
 	for N in navigation_region.get_children():
 		tween.tween_property(N, "scale:y", 0, 0.3)
 	for N in enemy_holder.get_children():
@@ -174,18 +177,18 @@ func _input(event):
 func is_device_active(device_id) -> bool:
 	return active_devices.has(device_id)
 	
-func add_player(device_id, device_type):
+func add_player(player_id, device_id, device_type):
 	if device_type == constants.device_types.KEYBOARD:
 		active_devices.append(-1)
 	else:
 		active_devices.append(device_id)
-	player_one.device = device_id
-	player_one.device_type = device_type
+	players_settings[player_id].device = device_id
+	players_settings[player_id].device_type = device_type
 	var action_suffix = "_keyboard" if device_type == constants.device_types.KEYBOARD else "_gamepad"
-	player_one.fire_action = "fire" + action_suffix
-	player_one.get_weapon_action = "get_weapon" + action_suffix
-	player_one.knife_action = "knife" + action_suffix
-	player_one.left_action = "left" + action_suffix
-	player_one.right_action = "right" + action_suffix
-	player_one.up_action = "up" + action_suffix
-	player_one.down_action = "down" + action_suffix
+	players_settings[player_id].fire_action = "fire" + action_suffix
+	players_settings[player_id].get_weapon_action = "get_weapon" + action_suffix
+	players_settings[player_id].knife_action = "knife" + action_suffix
+	players_settings[player_id].left_action = "left" + action_suffix
+	players_settings[player_id].right_action = "right" + action_suffix
+	players_settings[player_id].up_action = "up" + action_suffix
+	players_settings[player_id].down_action = "down" + action_suffix

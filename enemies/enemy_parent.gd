@@ -13,12 +13,13 @@ enum states {regular, aggro, dead}
 var debug = false
 
 var curr_state = states.regular
+var target: CharacterBody2D
+var player
 
 @onready var world: Node2D = $"../../.."
 
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D
-@onready var player = $"../../player"
 @onready var drop = load("res://enemies/" + weapon.name + "_dropped.tscn")
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var vision_area: Area2D = $VisionArea
@@ -43,10 +44,11 @@ func to_unit_circle(angle) -> float:
 func check_aggro():
 	for N in objects_inside_vision_area:
 		if check_for_los(N):
-			enter_aggro()
+			enter_aggro(player)
 			
-func enter_aggro():
+func enter_aggro(aggro_target):
 	curr_state = states.aggro
+	target = aggro_target
 	vision_area.queue_free()
 	add_to_group("trigger_aggro")
 
@@ -87,6 +89,8 @@ func die():
 func _on_vision_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("trigger_aggro"):
 		objects_inside_vision_area.append(body)
+	if body.is_in_group("player"):
+		player = body
 
 func _on_vision_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("trigger_aggro"):
@@ -96,7 +100,8 @@ func _on_vision_area_body_exited(body: Node2D) -> void:
 func _on_vision_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("trigger_aggro"):
 		objects_inside_vision_area.append(area)
-
+		if area.bullet_owner.is_in_group("player"):
+			player = area.bullet_owner
 
 func _on_vision_area_area_exited(area: Area2D) -> void:
 	if area.is_in_group("trigger_aggro"):

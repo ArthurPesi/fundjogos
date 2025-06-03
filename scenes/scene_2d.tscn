@@ -16,6 +16,20 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-203, -157, -238, 611, 
 
 [node name="scene_2d" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(470, 281)
+enabled = false
+zoom = Vector2(3.5, 3.5)
+position_smoothing_enabled = true
+script = ExtResource("5_3grkl")
+
+[node name="pause_menu" parent="Camera2D" instance=ExtResource("5_1b6wp")]
+visible = false
+offset_left = -571.0
+offset_top = -311.0
+offset_right = -571.0
+offset_bottom = -311.0
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0ha08")
 
@@ -77,21 +91,9 @@ scale = Vector2(12.36, 0.319995)
 position = Vector2(66, 335)
 scale = Vector2(12.36, 0.319995)
 
-[node name="player" parent="." instance=ExtResource("1_c4isy")]
+[node name="PlayerOne" parent="." instance=ExtResource("1_c4isy")]
 z_index = 2
 position = Vector2(470, 281)
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(3.5, 3.5)
-position_smoothing_enabled = true
-script = ExtResource("5_3grkl")
-
-[node name="pause_menu" parent="player/Camera2D" instance=ExtResource("5_1b6wp")]
-visible = false
-offset_left = -571.0
-offset_top = -311.0
-offset_right = -571.0
-offset_bottom = -311.0
 
 [node name="EnemyHolder" parent="." instance=ExtResource("6_hmmf6")]
 script = null
