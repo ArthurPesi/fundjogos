@@ -17,6 +17,14 @@ var curr_level = 0
 class player_class:
 	var device
 	var device_type
+	var fire_action
+	var get_weapon_action
+	var knife_action
+	var left_action
+	var right_action
+	var up_action
+	var down_action
+	var character_sprite
 	
 var player_one = player_class.new()
 
@@ -165,3 +173,11 @@ func _input(event):
 func add_player(device_id, device_type):
 	player_one.device = device_id
 	player_one.device_type = device_type
+	var action_suffix = "_keyboard" if device_type == constants.device_types.KEYBOARD else "_gamepad"
+	player_one.fire_action = "fire" + action_suffix
+	player_one.get_weapon_action = "get_weapon" + action_suffix
+	player_one.knife_action = "knife" + action_suffix
+	player_one.left_action = "left" + action_suffix
+	player_one.right_action = "right" + action_suffix
+	player_one.up_action = "up" + action_suffix
+	player_one.down_action = "down" + action_suffix

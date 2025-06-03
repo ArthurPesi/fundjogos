@@ -26,14 +26,6 @@ var curr_collect = null
 var weapon_obj = null
 @onready var bullet = preload("res://bullet_good.tscn")
 var timer_weapon = 0
-var action_suffix: String
-var fire_action: String
-var get_weapon_action: String
-var knife_action: String
-var left_action: String
-var right_action: String
-var up_action: String
-var down_action: String
 var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
 
@@ -41,14 +33,9 @@ const MORTAL = false
 
 func init(world_settings) -> void:
 	player_settings = world_settings
-	action_suffix = "_keyboard" if player_settings.device_type == constants.device_types.KEYBOARD else "_gamepad"
-	fire_action = "fire" + action_suffix
-	get_weapon_action = "get_weapon" + action_suffix
-	knife_action = "knife" + action_suffix
-	left_action = "left" + action_suffix
-	right_action = "right" + action_suffix
-	up_action = "up" + action_suffix
-	down_action = "down" + action_suffix
+	var sprite_instance = player_settings.character_sprite.instantiate()
+	add_child(sprite_instance)
+	sprite_instance.play("walk")
 
 func die_player():
 	if curr_state != state.dead and MORTAL:
@@ -170,13 +157,13 @@ func _physics_process(delta: float) -> void:
 			
 func _input(event: InputEvent) -> void:
 	if event.device == player_settings.device:
-		if Input.is_action_just_pressed(fire_action) and weapon_obj and curr_state == state.walking:
+		if Input.is_action_just_pressed(player_settings.fire_action) and weapon_obj and curr_state == state.walking:
 			shoot()
-		elif Input.is_action_just_pressed(knife_action) or (Input.is_action_just_pressed(fire_action) and !weapon_obj) and curr_state == state.walking:
+		elif Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == state.walking:
 			melee()
-		if Input.is_action_just_pressed(get_weapon_action) and curr_collect and curr_state != state.dead:
+		if Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != state.dead:
 			get_weapon()
-		walk_dir = Vector2(Input.get_axis(left_action,right_action), Input.get_axis(up_action,down_action)).normalized()
+		walk_dir = Vector2(Input.get_axis(player_settings.left_action,player_settings.right_action), Input.get_axis(player_settings.up_action,player_settings.down_action)).normalized()
 		if player_settings.device_type == constants.device_types.GAMEPAD:
 			if event.is_action_pressed("look_down_gamepad") or event.is_action_pressed("look_up_gamepad") or event.is_action_pressed("look_left_gamepad") or event.is_action_pressed("look_right_gamepad"):
 				look_dir = Vector2(Input.get_axis("look_left_gamepad","look_right_gamepad"), Input.get_axis("look_up_gamepad","look_down_gamepad"))
