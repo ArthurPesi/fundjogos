@@ -82,7 +82,7 @@ z_index = 2
 position = Vector2(470, 281)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(3, 3)
+zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
 script = ExtResource("5_3grkl")
 
@@ -102,12 +102,12 @@ position = Vector2(-132, 204)
 [node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("4_wei22")]
 position = Vector2(273, 487)
 
+[node name="shotgun_enemy3" parent="EnemyHolder" instance=ExtResource("4_wei22")]
+position = Vector2(218, 387)
+
 [node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("5_0ha08")]
-position = Vector2(139, 179)
+position = Vector2(348, 350)
 rotation = 2.98277
 
-[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("6_qcrin")]
-position = Vector2(79, 385)
-
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("6_qcrin")]
-position = Vector2(-133, 497)
+position = Vector2(-136, 95)

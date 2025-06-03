@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		nav.target_position = player.global_position
 		var direction = global_position.direction_to(nav.get_next_path_position())
 		look_at(nav.get_next_path_position())
-		weapon.fireManager(direction, delta)
+		#weapon.fireManager(direction, delta)
 		
 		ray_cast.global_rotation_degrees = 0
 		

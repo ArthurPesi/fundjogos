@@ -28,14 +28,15 @@ var weapon_obj = null
 var timer_weapon = 0
 var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
+var sprite_instance
 
 const MORTAL = false
 
 func init(world_settings) -> void:
 	player_settings = world_settings
-	var sprite_instance = player_settings.character_sprite.instantiate()
+	sprite_instance = player_settings.character_sprite.instantiate()
 	add_child(sprite_instance)
-	sprite_instance.play("walk")
+	#sprite_instance.play("walk")
 
 func die_player():
 	if curr_state != state.dead and MORTAL:
@@ -45,16 +46,17 @@ func die_player():
 
 func walk(delta: float) -> Vector2:
 	rotation = atan2(look_dir.y, look_dir.x)
-	#if player_settings.device_type == constants.device_types.KEYBOARD:
-		#input = Vector2(Input.get_axis("left" + action_suffix,"right" + action_suffix), Input.get_axis("up" + action_suffix,"down" + action_suffix)).normalized()
-	#else:
-		#input = Vector2(0,0)
 	if walk_dir.x == 0 or sign(walk_dir.x) != sign(curr_movement.x):
 		curr_movement.x = 0
 	if walk_dir.y == 0 or sign(walk_dir.y) != sign(curr_movement.y):
 		curr_movement.y = 0
 
 	curr_movement = curr_movement.move_toward(walk_dir, ACCELERATION * delta)
+	if curr_movement == Vector2.ZERO:
+		sprite_instance.play("idle")
+	else:
+		sprite_instance.play("walk")
+	
 	return curr_movement * MAX_SPEED
 
 func collision_should_kill(collision) -> bool:
@@ -110,6 +112,8 @@ func shoot():
 func get_weapon():
 	for i in amount_weapons:
 		if curr_collect.is_in_group(possible_weapons[i]):
+			print(weapon_obj)
+			
 			if weapon_obj:
 				if weapon_obj.ammo > 0:
 					var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
@@ -122,8 +126,9 @@ func get_weapon():
 			weapon_obj = weapon_holding_presets[i].instantiate()
 			weapon_obj.ammo = curr_collect.ammo
 			weapon_obj.position = Vector2(8, 0)
-			add_child(weapon_obj)
 			curr_collect.queue_free()
+			add_child(weapon_obj)
+			break
 
 func can_collect(object):
 	curr_collect = object
@@ -163,6 +168,7 @@ func _input(event: InputEvent) -> void:
 			melee()
 		if Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != state.dead:
 			get_weapon()
+		
 		walk_dir = Vector2(Input.get_axis(player_settings.left_action,player_settings.right_action), Input.get_axis(player_settings.up_action,player_settings.down_action)).normalized()
 		if player_settings.device_type == constants.device_types.GAMEPAD:
 			if event.is_action_pressed("look_down_gamepad") or event.is_action_pressed("look_up_gamepad") or event.is_action_pressed("look_left_gamepad") or event.is_action_pressed("look_right_gamepad"):
