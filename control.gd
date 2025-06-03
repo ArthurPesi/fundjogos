@@ -14,6 +14,7 @@ const wall_colors = [
 
 var curr_level = 0
 
+var active_devices: Array[int]
 class player_class:
 	var device
 	var device_type
@@ -170,7 +171,14 @@ func _input(event):
 			pause_menu.hide()
 		paused = !paused
 		
+func is_device_active(device_id) -> bool:
+	return active_devices.has(device_id)
+	
 func add_player(device_id, device_type):
+	if device_type == constants.device_types.KEYBOARD:
+		active_devices.append(-1)
+	else:
+		active_devices.append(device_id)
 	player_one.device = device_id
 	player_one.device_type = device_type
 	var action_suffix = "_keyboard" if device_type == constants.device_types.KEYBOARD else "_gamepad"
