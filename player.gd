@@ -166,7 +166,7 @@ func _input(event: InputEvent) -> void:
 			shoot()
 		elif Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == state.walking:
 			melee()
-		if Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != state.dead:
+		if event.is_action(player_settings.get_weapon_action) and Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != state.dead:
 			get_weapon()
 		
 		walk_dir = Vector2(Input.get_axis(player_settings.left_action,player_settings.right_action), Input.get_axis(player_settings.up_action,player_settings.down_action)).normalized()

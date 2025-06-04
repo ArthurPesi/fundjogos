@@ -14,7 +14,7 @@ var debug = false
 
 var curr_state = states.regular
 var target: CharacterBody2D
-var player
+@onready var player: CharacterBody2D = $"../../Player1"
 
 @onready var world: Node2D = $"../../.."
 

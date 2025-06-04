@@ -1,5 +1,6 @@
 extends Node2D
 
+const LEVEL_AMOUNT = 2
 var paused = false
 
 const bg_colors = [
@@ -32,6 +33,8 @@ var players_settings: Array[player_class] = [player_class.new(), player_class.ne
 enum menu {MAIN_MENU, SETTINGS, CHAR_SELECTION}
 enum scene {MENU, LEVEL}
 
+var game_mode = constants.game_modes.SINGLE
+
 var NOISE_SHAKE_SPEED: float = 10.0
 var NOISE_SHAKE_STRENGTH: float = 60.0
 var RANDOM_SHAKE_STRENGTH: float = 30.0
@@ -39,7 +42,7 @@ var SHAKE_DECAY_RATE: float = 3.0
 var shake_strength: float = 0.0
 var noise_i: float = 0.0
 @onready var menu_resources = [preload("res://scenes/main_menu.tscn"), preload("res://scenes/config.tscn"), preload("res://scenes/char_selection.tscn")]
-@onready var level_resources = [preload("res://scenes/scene_2d.tscn"), preload("res://scenes/scene_2d2.tscn")]
+@onready var level_resources: Array[Array]
 var level_instance
 var scene_type = scene.MENU
 var noise = FastNoiseLite.new()
@@ -58,6 +61,11 @@ func get_level_wall_color():
 	return Color.from_rgba8(wall_colors[curr_level][0],wall_colors[curr_level][1],wall_colors[curr_level][2],wall_colors[curr_level][3])
 	
 func _ready() -> void:
+	level_resources.resize(2)
+	for i in LEVEL_AMOUNT:
+		level_resources[constants.game_modes.SINGLE].append(load("res://scenes/lvl_s_" + str(i) + ".tscn"))
+		level_resources[constants.game_modes.MULTI].append(load("res://scenes/lvl_m_" + str(i) + ".tscn"))
+
 	players.resize(2)
 	RenderingServer.set_default_clear_color(get_level_bg_color())
 	rand.randomize()
@@ -76,8 +84,11 @@ func check_enemy_amount():
 func start_level():
 	if scene_type == scene.LEVEL:
 		camera = level_instance.get_node("Camera2D")
-		players[0] = level_instance.get_node("PlayerOne")
+		players[0] = level_instance.get_node("Player1")
 		players[0].init(players_settings[0])
+		if game_mode == constants.game_modes.MULTI:
+			players[1] = level_instance.get_node("Player2")
+			players[1].init(players_settings[1])
 		pause_menu = level_instance.get_node("Camera2D/pause_menu")
 		enemy_holder = level_instance.get_node("EnemyHolder")
 		navigation_region = level_instance.get_node("NavigationRegion2D")
@@ -151,7 +162,7 @@ func load_scene(new_type, new_scene):
 	await get_tree().create_timer(0.1).timeout
 	scene_type = new_type
 	if new_type == scene.LEVEL:
-		level_instance = level_resources[new_scene].instantiate()
+		level_instance = level_resources[game_mode][new_scene].instantiate()
 		add_child(level_instance)
 		start_level()
 	elif new_type == scene.MENU:
@@ -182,6 +193,8 @@ func add_player(player_id, device_id, device_type):
 		active_devices.append(-1)
 	else:
 		active_devices.append(device_id)
+	if player_id == 1:
+		game_mode = constants.game_modes.MULTI
 	players_settings[player_id].device = device_id
 	players_settings[player_id].device_type = device_type
 	var action_suffix = "_keyboard" if device_type == constants.device_types.KEYBOARD else "_gamepad"
