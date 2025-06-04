@@ -6,8 +6,7 @@ func _on_play_pressed() -> void:
 	world.load_scene(constants.scene_types.MENU, constants.menus.CHAR_SELECTION)
 
 func _on_settings_pressed() -> void:
-	get_tree().change_scene_to_file("res://menus/settings.tscn")
-
+	world.load_scene(constants.scene_types.MENU, constants.menus.SETTINGS)
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
