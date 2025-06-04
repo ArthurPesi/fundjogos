@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-enum state {walking, attacking, dead}
-enum weapon {revolver, uzi, shotgun, nothing}
+
 var enemies_inside_fire_range: Array[CharacterBody2D]
 
 var player_settings
@@ -18,8 +17,8 @@ const ATTACK_COOLDOWN_SPEED: float = 0.1
 @onready var world: Node2D = $"../.."
 @onready var enemy_holder: Node2D = $"../EnemyHolder"
 var curr_movement = Vector2(0,0)
-var curr_state = state.walking
-var curr_weapon_value = weapon.nothing
+var curr_state = constants.player_states.WALKING
+var curr_weapon_value = constants.weapons.NOTHING
 var directionRadians
 var attackCounter: float = 0
 var curr_collect = null
@@ -39,8 +38,8 @@ func init(world_settings) -> void:
 	#sprite_instance.play("walk")
 
 func die_player():
-	if curr_state != state.dead and MORTAL:
-		curr_state = state.dead
+	if curr_state != constants.player_states.DEAD and MORTAL:
+		curr_state = constants.player_states.DEAD
 		world.reload_level()
 		$CollisionShape2D.queue_free()
 
@@ -61,7 +60,7 @@ func walk(delta: float) -> Vector2:
 
 func collision_should_kill(collision) -> bool:
 	if collision:
-		return collision.is_in_group("kill") or (curr_state == state.walking and collision.is_in_group("enemy"))
+		return collision.is_in_group("kill") or (curr_state == constants.player_states.WALKING and collision.is_in_group("enemy"))
 	return false
 	
 var atk_move = Vector2()
@@ -70,7 +69,7 @@ func melee():
 	if attackCounter <= 0:
 		atk_move = look_dir.normalized()
 		rotation = atan2(look_dir.y, look_dir.x)
-		curr_state = state.attacking
+		curr_state = constants.player_states.ATTACKING
 	else:
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "modulate", modulate, 0.35).from(Color.RED)
@@ -106,7 +105,7 @@ func shoot():
 	
 	for N in enemies_inside_fire_range:
 		enemies_inside_fire_range.erase(N)
-		if N.curr_state == N.states.regular:
+		if N.curr_state == constants.enemy_states.REGULAR:
 			N.enter_aggro(self)
 	
 func get_weapon():
@@ -122,7 +121,7 @@ func get_weapon():
 					just_dropped.ammo = weapon_obj.ammo
 					enemy_holder.add_child(just_dropped)
 				weapon_obj.queue_free()
-			curr_weapon_value = i as weapon
+			curr_weapon_value = i as constants.weapons
 			weapon_obj = weapon_holding_presets[i].instantiate()
 			weapon_obj.ammo = curr_collect.ammo
 			weapon_obj.position = Vector2(8, 0)
@@ -135,24 +134,24 @@ func can_collect(object):
 
 func _physics_process(delta: float) -> void:
 	match curr_state:
-		state.walking:
+		constants.player_states.WALKING:
 			if attackCounter > 0:
 				attackCounter -= ATTACK_COOLDOWN_SPEED * delta
 			velocity = walk(delta)
 			move_and_slide()
-		state.attacking:
+		constants.player_states.ATTACKING:
 			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
 			move_and_slide()
 			if attackCounter >= ATTACK_DURATION:
-				curr_state = state.walking
+				curr_state = constants.player_states.WALKING
 
-	if curr_state != state.dead:
+	if curr_state != constants.player_states.DEAD:
 		for index in get_slide_collision_count():
 			var collision = get_slide_collision(index).get_collider()
 			if collision_should_kill(collision):
 				die_player()
-			elif curr_state == state.attacking and collision.is_in_group("enemy"):
+			elif curr_state == constants.player_states.ATTACKING and collision.is_in_group("enemy"):
 				attackCounter = clamp(attackCounter - 0.03,0, attackCounter)
 				collision.die()
 
@@ -162,11 +161,11 @@ func _physics_process(delta: float) -> void:
 			
 func _input(event: InputEvent) -> void:
 	if event.device == player_settings.device:
-		if Input.is_action_just_pressed(player_settings.fire_action) and weapon_obj and curr_state == state.walking:
+		if Input.is_action_just_pressed(player_settings.fire_action) and weapon_obj and curr_state == constants.player_states.WALKING:
 			shoot()
-		elif Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == state.walking:
+		elif Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == constants.player_states.WALKING:
 			melee()
-		if event.is_action(player_settings.get_weapon_action) and Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != state.dead:
+		if event.is_action(player_settings.get_weapon_action) and Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != constants.player_states.DEAD:
 			get_weapon()
 		
 		walk_dir = Vector2(Input.get_axis(player_settings.left_action,player_settings.right_action), Input.get_axis(player_settings.up_action,player_settings.down_action)).normalized()
@@ -179,7 +178,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
-		if body.curr_state == body.states.regular:
+		if body.curr_state == constants.enemy_states.REGULAR:
 			enemies_inside_fire_range.append(body)
 
 func _on_fire_area_body_exited(body: Node2D) -> void:

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://ws8nvieh5pdq"]
+
+[ext_resource type="Script" uid="uid://dfggvtxwohls7" path="res://scenes/char_container.gd" id="1_pi0qd"]
+[ext_resource type="Texture2D" uid="uid://bcpsjooxx8fsk" path="res://sprites/arrow.png" id="2_5thor"]
+[ext_resource type="Texture2D" uid="uid://cfgqo0froxmyc" path="res://sprites/arrow2.png" id="3_rhfay"]
+
+[node name="CharacterMenu" type="VBoxContainer"]
+offset_right = 72.0
+offset_bottom = 78.0
+alignment = 1
+script = ExtResource("1_pi0qd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="prev" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_5thor")
+
+[node name="char" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="next" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_rhfay")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="ready" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "ready"
+
+[connection signal="button_down" from="HBoxContainer/prev" to="." method="_on_prev_button_down"]
+[connection signal="button_down" from="HBoxContainer/next" to="." method="_on_next_button_down"]
+[connection signal="button_down" from="HBoxContainer2/ready" to="." method="_on_ready_button_down"]

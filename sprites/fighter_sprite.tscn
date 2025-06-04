@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://dy6mtmlpmsuv5"]
+
+[ext_resource type="Texture2D" uid="uid://cbrmiudpre7uy" path="res://sprites/fighter.png" id="1_mi8cg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt2s0"]
+atlas = ExtResource("1_mi8cg")
+region = Rect2(0, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx8cd"]
+atlas = ExtResource("1_mi8cg")
+region = Rect2(18, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dku2h"]
+atlas = ExtResource("1_mi8cg")
+region = Rect2(9, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldm0m"]
+atlas = ExtResource("1_mi8cg")
+region = Rect2(27, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yx2b"]
+atlas = ExtResource("1_mi8cg")
+region = Rect2(45, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd5tr"]
+atlas = ExtResource("1_mi8cg")
+region = Rect2(36, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75c03"]
+atlas = ExtResource("1_mi8cg")
+region = Rect2(54, 1, 9, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dq8sv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt2s0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt2s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx8cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dku2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldm0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt2s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yx2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yd5tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75c03")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_dq8sv")
+animation = &"walk"

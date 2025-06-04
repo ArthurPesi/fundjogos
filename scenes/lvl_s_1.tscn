@@ -1,0 +1,115 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyc04ifxvo54u"]
+
+[ext_resource type="Script" uid="uid://cjo0x1xf2v07o" path="res://scenes/camera.gd" id="1_1p3a5"]
+[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://scenes/pause_menu.tscn" id="2_nffab"]
+[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="3_s0k0q"]
+[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player.tscn" id="4_r8igt"]
+[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemy_holder.tscn" id="5_rgawy"]
+[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="6_4erdx"]
+[ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="7_aq150"]
+[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="8_xcrxi"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
+vertices = PackedVector2Array(283.602, 456.203, 457.797, 528.797, -178.797, 528.797, 16.3984, 456.203, 457.797, 344.203, 283.602, 429.797, 343.203, 278.797, 199.602, 348.203, 199.602, 321.797, 316.797, 278.797, 16.3984, 429.797, -43.7969, 348.203, -43.7969, 434.797, 1265.56, -90.3906, 1235.42, 591.062, 484.203, 344.203, 343.203, 65.2031, -193.461, -146.617, 316.797, 65.2031, -70.2031, 434.797, -178.797, 170.203, -70.2031, 221.203, 18.7969, 170.203, -43.7969, 221.203, 18.7969, 280.797, -43.7969, 321.797, 45.2031, 280.797, 18.7969, 143.797, -206.688, 143.797, 18.7969, 67.2031, 69.3984, 278.203, 316.797, 278.203, -207.891, 170.203, -205.203, 170.203, -205.203, 528.797, -205.602, 528.797, -227.523, 600.922, -205.602, 555.203, 457.797, 557.797, 457.797, 555.203, 484.203, 557.797, 24.3984, 66.7969, 24.3984, 67.2031, 45.2031, 93.2031, 69.3984, 251.797, 291.602, 93.2031, 316.797, 251.797, 291.602, 66.7969)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7, 8, 9), PackedInt32Array(7, 5, 10, 11), PackedInt32Array(12, 11, 10, 3), PackedInt32Array(13, 14, 15, 6, 16), PackedInt32Array(17, 13, 16, 18), PackedInt32Array(12, 3, 2, 19), PackedInt32Array(19, 2, 20, 21), PackedInt32Array(21, 20, 22, 23), PackedInt32Array(23, 22, 24, 25), PackedInt32Array(8, 25, 24, 26), PackedInt32Array(27, 28, 17, 29), PackedInt32Array(30, 31, 9, 8, 26), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(36, 32, 35, 37), PackedInt32Array(14, 36, 37, 38), PackedInt32Array(37, 39, 38), PackedInt32Array(14, 38, 40), PackedInt32Array(41, 42, 29, 17), PackedInt32Array(14, 40, 15), PackedInt32Array(6, 15, 4), PackedInt32Array(30, 26, 43, 44), PackedInt32Array(44, 43, 45, 46), PackedInt32Array(18, 46, 45, 47), PackedInt32Array(17, 18, 47, 41)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-203, -157, -238, 611, 1245, 601, 1276, -100)])
+
+[node name="lvl_s_1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(470, 281)
+enabled = false
+zoom = Vector2(3.5, 3.5)
+position_smoothing_enabled = true
+script = ExtResource("1_1p3a5")
+
+[node name="pause_menu" parent="Camera2D" instance=ExtResource("2_nffab")]
+visible = false
+offset_left = -571.0
+offset_top = -311.0
+offset_right = -571.0
+offset_bottom = -311.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0ha08")
+
+[node name="vert1" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(32, 174)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(330, 172)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert3" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(-192, 257)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert4" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(-192, 446)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert5" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(471, 451)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert2" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(-57, 328)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="hor" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(203, 265)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor4" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(-72, 542)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor5" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(177, 512)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor6" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(150, 443)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor3" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(-96, 157)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor2" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(158, 80)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor1" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
+position = Vector2(66, 335)
+scale = Vector2(12.36, 0.319995)
+
+[node name="Player1" parent="." instance=ExtResource("4_r8igt")]
+z_index = 2
+position = Vector2(470, 281)
+
+[node name="EnemyHolder" parent="." instance=ExtResource("5_rgawy")]
+script = null
+
+[node name="shotgun_enemy" parent="EnemyHolder" instance=ExtResource("6_4erdx")]
+position = Vector2(-132, 204)
+
+[node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("6_4erdx")]
+position = Vector2(273, 487)
+
+[node name="shotgun_enemy3" parent="EnemyHolder" instance=ExtResource("6_4erdx")]
+position = Vector2(218, 387)
+
+[node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("7_aq150")]
+position = Vector2(348, 350)
+rotation = 2.98277
+
+[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("8_xcrxi")]
+position = Vector2(-136, 95)

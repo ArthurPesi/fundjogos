@@ -30,9 +30,6 @@ class player_class:
 	
 var players_settings: Array[player_class] = [player_class.new(), player_class.new()]
 
-enum menu {MAIN_MENU, SETTINGS, CHAR_SELECTION}
-enum scene {MENU, LEVEL}
-
 var game_mode = constants.game_modes.SINGLE
 
 var NOISE_SHAKE_SPEED: float = 10.0
@@ -44,7 +41,7 @@ var noise_i: float = 0.0
 @onready var menu_resources = [preload("res://scenes/main_menu.tscn"), preload("res://scenes/config.tscn"), preload("res://scenes/char_selection.tscn")]
 @onready var level_resources: Array[Array]
 var level_instance
-var scene_type = scene.MENU
+var scene_type = constants.scene_types.MENU
 var noise = FastNoiseLite.new()
 var rand = RandomNumberGenerator.new()
 var camera: Camera2D
@@ -71,7 +68,7 @@ func _ready() -> void:
 	rand.randomize()
 	noise.seed = rand.randi()
 	noise.frequency = 0.08
-	level_instance = menu_resources[menu.MAIN_MENU].instantiate()
+	level_instance = menu_resources[constants.menus.MAIN_MENU].instantiate()
 	add_child(level_instance)
 
 	
@@ -82,7 +79,7 @@ func check_enemy_amount():
 		load_next_level()
 	
 func start_level():
-	if scene_type == scene.LEVEL:
+	if scene_type == constants.scene_types.LEVEL:
 		camera = level_instance.get_node("Camera2D")
 		players[0] = level_instance.get_node("Player1")
 		players[0].init(players_settings[0])
@@ -109,7 +106,7 @@ func apply_shake(strength) -> void:
 	shake_strength += strength
 	
 func _process(delta: float) -> void:
-	if scene_type == scene.LEVEL:
+	if scene_type == constants.scene_types.LEVEL:
 		if shake_strength > 0:
 			shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
 			
@@ -141,42 +138,42 @@ func reset_screen():
 		tween.tween_property(N, "scale:y", 0, 0.3)
 	for N in enemy_holder.get_children():
 		if N.is_in_group("enemy"):
-			N.curr_state = N.states.dead
+			N.curr_state = constants.enemy_states.DEAD
 		tween.tween_property(N, "scale", Vector2.ZERO, 0.3)
 
 	
 func reload_level():
-	load_scene(scene.LEVEL, curr_level)
+	load_scene(constants.scene_types.LEVEL, curr_level)
 	
 func load_scene(new_type, new_scene):
-	if scene_type == scene.LEVEL:
+	if scene_type == constants.scene_types.LEVEL:
 		reset_screen()
 		await get_tree().create_timer(0.5).timeout
 		shake_strength = 0
 		Engine.time_scale = 1
-	elif scene_type == scene.MENU:
+	elif scene_type == constants.scene_types.MENU:
 		RenderingServer.set_default_clear_color(get_level_bg_color())
 	if(level_instance):
 		level_instance.queue_free()
 	
 	await get_tree().create_timer(0.1).timeout
 	scene_type = new_type
-	if new_type == scene.LEVEL:
+	if new_type == constants.scene_types.LEVEL:
 		level_instance = level_resources[game_mode][new_scene].instantiate()
 		add_child(level_instance)
 		start_level()
-	elif new_type == scene.MENU:
+	elif new_type == constants.scene_types.MENU:
 		level_instance = menu_resources[new_scene].instantiate()
 		add_child(level_instance)
 	
 func load_next_level():
-	if curr_level + 1 < level_resources.size() and scene_type == scene.LEVEL:
+	if curr_level + 1 < level_resources.size() and scene_type == constants.scene_types.LEVEL:
 		curr_level += 1
 		RenderingServer.set_default_clear_color(get_level_bg_color())
-	load_scene(scene.LEVEL, curr_level)
+	load_scene(constants.scene_types.LEVEL, curr_level)
 
 func _input(event):
-	if event.is_action_pressed("quit_keyboard") and scene_type == scene.LEVEL:
+	if event.is_action_pressed("quit_keyboard") and scene_type == constants.scene_types.LEVEL:
 		if !paused:
 			Engine.time_scale = 0
 			pause_menu.show()

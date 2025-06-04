@@ -9,10 +9,9 @@ const VISION_ANGLE = 1
 
 var objects_inside_vision_area: Array[Object]
 
-enum states {regular, aggro, dead}
 var debug = false
 
-var curr_state = states.regular
+var curr_state = constants.enemy_states.REGULAR
 var target: CharacterBody2D
 @onready var player: CharacterBody2D = $"../../Player1"
 
@@ -47,7 +46,7 @@ func check_aggro():
 			enter_aggro(player)
 			
 func enter_aggro(aggro_target):
-	curr_state = states.aggro
+	curr_state = constants.enemy_states.AGGRO
 	target = aggro_target
 	vision_area.queue_free()
 	add_to_group("trigger_aggro")
@@ -56,13 +55,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("debug") and (position.distance_squared_to(get_global_mouse_position())) < 5000:
 		debug = true
 		print("debugging")
-	if curr_state == states.regular:
+	if curr_state == constants.enemy_states.REGULAR:
 		check_aggro()
-	elif curr_state == states.aggro:
+	elif curr_state == constants.enemy_states.AGGRO:
 		nav.target_position = player.global_position
 		var direction = global_position.direction_to(nav.get_next_path_position())
 		look_at(nav.get_next_path_position())
-		#weapon.fireManager(direction, delta)
+		weapon.fireManager(direction, delta)
 		
 		ray_cast.global_rotation_degrees = 0
 		
@@ -71,8 +70,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func die():
-	if curr_state != states.dead:
-		curr_state = states.dead
+	if curr_state != constants.enemy_states.DEAD:
+		curr_state = constants.enemy_states.DEAD
 		world.check_enemy_amount()
 		$CollisionShape2D.queue_free()
 		var temp_drop = drop.instantiate()
@@ -84,8 +83,6 @@ func die():
 		tween.tween_callback(queue_free)
 		world.freeze(0.5)
 		call_deferred("add_sibling", temp_drop)
-
-
 
 func _on_vision_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("trigger_aggro"):
@@ -101,6 +98,7 @@ func _on_vision_area_body_exited(body: Node2D) -> void:
 func _on_vision_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("trigger_aggro"):
 		objects_inside_vision_area.append(area)
+	if area.is_in_group("good"):
 		if area.bullet_owner.is_in_group("player"):
 			player = area.bullet_owner
 
@@ -111,5 +109,5 @@ func _on_vision_area_area_exited(area: Area2D) -> void:
 
 func _on_die_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		if body.curr_state == body.state.attacking:
+		if body.curr_state == constants.player_states.ATTACKING:
 			die()

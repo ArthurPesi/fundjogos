@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://nsc66rhx51lh"]
+
+[ext_resource type="Texture2D" uid="uid://bwj2t62g8lus0" path="res://sprites/mage.png" id="1_4tebj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi7wo"]
+atlas = ExtResource("1_4tebj")
+region = Rect2(0, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ywlg"]
+atlas = ExtResource("1_4tebj")
+region = Rect2(9, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaib7"]
+atlas = ExtResource("1_4tebj")
+region = Rect2(18, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khrye"]
+atlas = ExtResource("1_4tebj")
+region = Rect2(27, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ibb7"]
+atlas = ExtResource("1_4tebj")
+region = Rect2(36, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n01ji"]
+atlas = ExtResource("1_4tebj")
+region = Rect2(45, 1, 9, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcwmk"]
+atlas = ExtResource("1_4tebj")
+region = Rect2(54, 1, 9, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dq8sv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi7wo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi7wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ywlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaib7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khrye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi7wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ibb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n01ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcwmk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_dq8sv")
+animation = &"walk"
+frame = 2
+frame_progress = 0.660969

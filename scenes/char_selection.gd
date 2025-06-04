@@ -29,4 +29,4 @@ func _input(event: InputEvent) -> void:
 func add_ready() -> void:
 	player_ready_amt += 1
 	if player_ready_amt == player_amt:
-		world.load_scene(world.scene.LEVEL, world.curr_level)
+		world.load_scene(constants.scene_types.LEVEL, world.curr_level)
