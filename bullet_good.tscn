@@ -16,7 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fnm5"]
-radius = 13.0384
+radius = 8.0
 
 [node name="bullet_good" groups=["good"] instance=ExtResource("1_vfjst")]
 script = ExtResource("2_a4ril")
@@ -25,5 +25,7 @@ script = ExtResource("2_a4ril")
 scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_8vn0d")
 
-[node name="CollisionShape2D" parent="." index="1" groups=["good"]]
+[node name="CollisionShape2D" parent="." index="1" groups=["good", "trigger_aggro"]]
 shape = SubResource("CircleShape2D_2fnm5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

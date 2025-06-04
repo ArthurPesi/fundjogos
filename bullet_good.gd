@@ -23,12 +23,17 @@ func _physics_process(delta: float) -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		var object_hit = result.collider
-		if object_hit.is_in_group("enemy"):
-			object_hit.die()
-		elif object_hit.is_in_group("obstacle"):
+		#if object_hit.is_in_group("enemy"):
+			#object_hit.die()
+		if object_hit.is_in_group("obstacle"):
 			queue_free()
 
 	position = next_pos
 	life -= delta
 	if life <= 0:
 		queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		area.get_parent().die()

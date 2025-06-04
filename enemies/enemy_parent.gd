@@ -75,15 +75,16 @@ func die():
 		curr_state = states.dead
 		world.check_enemy_amount()
 		$CollisionShape2D.queue_free()
-		var tween = get_tree().create_tween()
-		tween.tween_property($Sprite, "scale", Vector2(0,0),0.8)
-		tween.tween_callback(queue_free)
-		world.freeze(0.5)
 		var temp_drop = drop.instantiate()
 		temp_drop.position = position
 		temp_drop.z_index = 0
 		temp_drop.ammo = weapon.ammo
-		add_sibling(temp_drop)
+		var tween = get_tree().create_tween()
+		tween.tween_property($Sprite, "scale", Vector2(0,0),0.8)
+		tween.tween_callback(queue_free)
+		world.freeze(0.5)
+		call_deferred("add_sibling", temp_drop)
+
 
 
 func _on_vision_area_body_entered(body: Node2D) -> void:
@@ -106,3 +107,9 @@ func _on_vision_area_area_entered(area: Area2D) -> void:
 func _on_vision_area_area_exited(area: Area2D) -> void:
 	if area.is_in_group("trigger_aggro"):
 		objects_inside_vision_area.erase(area)
+
+
+func _on_die_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		if body.curr_state == body.state.attacking:
+			die()
