@@ -6,7 +6,7 @@ const MAX_PLAYERS = 2
 
 @onready var world = get_parent()
 
-const CHARACTER_MENU = preload("res://character_menu.tscn")
+const CHARACTER_MENU = preload("res://menus/character_menu.tscn")
 @onready var h_box_container: HBoxContainer = $HBoxContainer
 
 func _input(event: InputEvent) -> void:

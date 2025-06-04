@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dw2ldmgbhypql"]
 
-[ext_resource type="Script" uid="uid://bpna1fgeuu3mq" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://bpna1fgeuu3mq" path="res://player/player.gd" id="1_onrkg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
 radius = 3.0

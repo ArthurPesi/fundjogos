@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b47evhmrasq2b"]
 
-[ext_resource type="Script" uid="uid://bfbyov7abfl1s" path="res://enemies/weapon_dropped.gd" id="1_camtk"]
+[ext_resource type="Script" uid="uid://bfbyov7abfl1s" path="res://weapons/weapon_dropped.gd" id="1_camtk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s2j4j"]
 radius = 15.0333

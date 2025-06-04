@@ -13,7 +13,6 @@ config_version=5
 config/name="fundjogos"
 run/main_scene="uid://c5lqp17488uo1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [input]
 

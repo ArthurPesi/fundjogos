@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://do07r24jplfwv"]
-
-[ext_resource type="PackedScene" uid="uid://b47evhmrasq2b" path="res://enemies/weapon_dropped.tscn" id="1_qfu7b"]
-[ext_resource type="PackedScene" uid="uid://jgvyanwa7amd" path="res://uzi_sprite.tscn" id="2_qfu7b"]
-
-[node name="uzi_dropped" groups=["uzi"] instance=ExtResource("1_qfu7b")]
-
-[node name="uzi" parent="." index="0" instance=ExtResource("2_qfu7b")]

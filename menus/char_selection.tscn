@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0x0mdsnyp3bf"]
 
 [ext_resource type="Texture2D" uid="uid://ccopwmupjol38" path="res://about-to-die.jpg" id="1_1egb0"]
-[ext_resource type="Script" uid="uid://btxnsmlpwmd42" path="res://scenes/char_selection.gd" id="1_hyobs"]
+[ext_resource type="Script" uid="uid://btxnsmlpwmd42" path="res://menus/char_selection.gd" id="1_hyobs"]
 
 [node name="CharSelection" type="Node2D"]
 script = ExtResource("1_hyobs")

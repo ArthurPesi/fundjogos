@@ -10,7 +10,7 @@ var precision = 0.15
 const BULLET_SPEED = 300
 const BULLET_LIFE = 4
 var timeoutFire
-@onready var bullet = preload("res://bullet_evil.tscn")
+@onready var bullet = preload("res://enemies/bullet_evil.tscn")
 
 func _ready() -> void:
 	timeoutFire = randf_range(0.2, 0.4)

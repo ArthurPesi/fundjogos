@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://drt0xr82badh3"]
 
-[ext_resource type="PackedScene" uid="uid://bjxwc66u1e1kb" path="res://bullet_generic.tscn" id="1_vfjst"]
-[ext_resource type="Script" uid="uid://cwjxa4mgtc6f" path="res://bullet_good.gd" id="2_a4ril"]
+[ext_resource type="PackedScene" uid="uid://bjxwc66u1e1kb" path="res://weapons/bullet_generic.tscn" id="1_vfjst"]
+[ext_resource type="Script" uid="uid://cwjxa4mgtc6f" path="res://player/bullet_good.gd" id="2_a4ril"]
 [ext_resource type="Texture2D" uid="uid://dmigaambfwl4d" path="res://sprites/ally_bullet_B.png" id="3_2fnm5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8vn0d"]

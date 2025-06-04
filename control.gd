@@ -38,7 +38,7 @@ var RANDOM_SHAKE_STRENGTH: float = 30.0
 var SHAKE_DECAY_RATE: float = 3.0
 var shake_strength: float = 0.0
 var noise_i: float = 0.0
-@onready var menu_resources = [preload("res://scenes/main_menu.tscn"), preload("res://scenes/config.tscn"), preload("res://scenes/char_selection.tscn")]
+var menu_resources: Array[Resource]
 @onready var level_resources: Array[Array]
 var level_instance
 var scene_type = constants.scene_types.MENU
@@ -60,10 +60,13 @@ func get_level_wall_color():
 func _ready() -> void:
 	level_resources.resize(2)
 	for i in LEVEL_AMOUNT:
-		level_resources[constants.game_modes.SINGLE].append(load("res://scenes/lvl_s_" + str(i) + ".tscn"))
-		level_resources[constants.game_modes.MULTI].append(load("res://scenes/lvl_m_" + str(i) + ".tscn"))
+		level_resources[constants.game_modes.SINGLE].append(load("res://levels/lvl_s_" + str(i) + ".tscn"))
+		level_resources[constants.game_modes.MULTI].append(load("res://levels/lvl_m_" + str(i) + ".tscn"))
 
 	players.resize(2)
+	
+	for i in constants.menus:
+		menu_resources.append(load("res://menus/" + i.to_lower() + ".tscn"))
 	RenderingServer.set_default_clear_color(get_level_bg_color())
 	rand.randomize()
 	noise.seed = rand.randi()

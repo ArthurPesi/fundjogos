@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2g1xr5uh37g7"]
+
+[ext_resource type="PackedScene" uid="uid://b47evhmrasq2b" path="res://weapons/weapon_dropped.tscn" id="1_vwtqf"]
+[ext_resource type="PackedScene" uid="uid://0s6b1hmj0ncc" path="res://weapons/shotgun_sprite.tscn" id="2_vwtqf"]
+
+[node name="shotgun_dropped" groups=["shotgun"] instance=ExtResource("1_vwtqf")]
+
+[node name="shotgun" parent="." index="1" instance=ExtResource("2_vwtqf")]

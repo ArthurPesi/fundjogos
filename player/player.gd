@@ -5,10 +5,8 @@ var enemies_inside_fire_range: Array[CharacterBody2D]
 
 var player_settings
 
-const possible_weapons = ["revolver", "uzi", "shotgun"]
-const weapon_holding_presets = [preload("res://revolver_sprite.tscn"), preload("res://uzi_sprite.tscn"), preload("res://shotgun_sprite.tscn")]
-const weapon_dropped_presets = [preload("res://enemies/revolver_dropped.tscn"), preload("res://enemies/uzi_dropped.tscn"), preload("res://enemies/shotgun_dropped.tscn")]
-var amount_weapons = possible_weapons.size()
+var weapon_holding_presets: Array[Resource]
+var weapon_dropped_presets: Array[Resource]
 const MAX_SPEED = 300
 const ACCELERATION = 4
 const ATTACK_SPEED = 1000
@@ -18,18 +16,23 @@ const ATTACK_COOLDOWN_SPEED: float = 0.1
 @onready var enemy_holder: Node2D = $"../EnemyHolder"
 var curr_movement = Vector2(0,0)
 var curr_state = constants.player_states.WALKING
-var curr_weapon_value = constants.weapons.NOTHING
+var curr_weapon_value = null
 var directionRadians
 var attackCounter: float = 0
 var curr_collect = null
 var weapon_obj = null
-@onready var bullet = preload("res://bullet_good.tscn")
+@onready var bullet = preload("res://player/bullet_good.tscn")
 var timer_weapon = 0
 var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 
 const MORTAL = true
+
+func _ready() -> void:
+	for i in constants.weapons:
+		weapon_holding_presets.append(load("res://weapons/" + i.to_lower() + "_sprite.tscn"))
+		weapon_dropped_presets.append(load("res://weapons/" + i.to_lower() + "_dropped.tscn"))
 
 func init(world_settings) -> void:
 	player_settings = world_settings
@@ -109,8 +112,8 @@ func shoot():
 			N.enter_aggro(self)
 	
 func get_weapon():
-	for i in amount_weapons:
-		if curr_collect.is_in_group(possible_weapons[i]):
+	for i in constants.weapons.values():
+		if curr_collect.is_in_group(constants.weapons.keys()[i].to_lower()):
 			print(weapon_obj)
 			
 			if weapon_obj:

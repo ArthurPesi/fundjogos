@@ -19,7 +19,7 @@ var target: CharacterBody2D
 
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D
-@onready var drop = load("res://enemies/" + weapon.name + "_dropped.tscn")
+@onready var drop = load("res://weapons/" + weapon.name + "_dropped.tscn")
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var vision_area: Area2D = $VisionArea
 

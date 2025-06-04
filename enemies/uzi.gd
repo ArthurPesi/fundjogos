@@ -14,7 +14,7 @@ const CLIP_SIZE = 30
 const RELOAD_TIME = 1
 var curr_reload = 0
 var ammo = CLIP_SIZE
-@onready var bullet = preload("res://bullet_evil.tscn")
+@onready var bullet = preload("res://enemies/bullet_evil.tscn")
 var timeoutFire
 var amount_of_bullets
 
