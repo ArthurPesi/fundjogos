@@ -30,7 +30,7 @@ var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 
-const MORTAL = false
+const MORTAL = true
 
 func init(world_settings) -> void:
 	player_settings = world_settings
