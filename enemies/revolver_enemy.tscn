@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2bytskoefweb"]
+[gd_scene load_steps=4 format=3 uid="uid://c2bytskoefweb"]
 
 [ext_resource type="PackedScene" uid="uid://6h6ilkaxkee4" path="res://enemies/enemy_generic.tscn" id="1_egnp4"]
 [ext_resource type="Script" uid="uid://cw74wlsnt00tn" path="res://enemies/revolver.gd" id="2_0r4yr"]
+[ext_resource type="PackedScene" uid="uid://cn2nwvg5i7skm" path="res://weapons/revolver_sprite.tscn" id="3_4yxgo"]
 
 [node name="revolver_enemy" node_paths=PackedStringArray("weapon") instance=ExtResource("1_egnp4")]
 weapon = NodePath("revolver")
 
 [node name="revolver" type="Node2D" parent="." index="3"]
 script = ExtResource("2_0r4yr")
+
+[node name="WeaponSprite" parent="." index="7" instance=ExtResource("3_4yxgo")]
+position = Vector2(6, 1)
+scale = Vector2(-0.824493, 0.801211)

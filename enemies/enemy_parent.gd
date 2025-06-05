@@ -99,6 +99,7 @@ func die():
 		curr_state = constants.enemy_states.DEAD
 		world.check_enemy_amount()
 		$CollisionShape2D.queue_free()
+		$WeaponSprite.queue_free()
 		var temp_drop = drop.instantiate()
 		temp_drop.position = position
 		temp_drop.rotation = randf() * PI * 2
