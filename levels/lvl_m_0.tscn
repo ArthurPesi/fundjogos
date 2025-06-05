@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cw140j8cfp6sw"]
 
-[ext_resource type="Script" uid="uid://cjo0x1xf2v07o" path="res://levels/camera.gd" id="1_3i50p"]
+[ext_resource type="Script" uid="uid://cjo0x1xf2v07o" path="res://levels/camera_single.gd" id="1_3i50p"]
 [ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://levels/pause_menu.tscn" id="2_xnavf"]
 [ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="3_y204c"]
 [ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="4_scnne"]

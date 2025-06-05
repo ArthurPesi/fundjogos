@@ -1,5 +1,7 @@
 extends Node2D
 
+const ID = constants.weapons.SHOTGUN
+
 var ammo = 4
 var bullets_per_ammo
 const MIN_FIRE_INITIAL_TIMEOUT = 0.8

@@ -1,5 +1,6 @@
 extends Node2D
 
+const ID = constants.weapons.REVOLVER
 var ammo = 6
 var bullets_per_ammo = 1
 var timeout_fire = 0

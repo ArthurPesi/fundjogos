@@ -6,6 +6,7 @@ var curr_movement = Vector2(0,0)
 var aggro_distance_squared_los = 120000
 var aggro_distance_squared_hear = 6000
 const VISION_ANGLE = 1
+const AUDIO_PLAYER = preload("res://audio_player.tscn")
 
 var objects_inside_vision_area: Array[Object]
 
@@ -29,6 +30,17 @@ func _ready() -> void:
 
 func shoot(dir):
 	if weapon.timeout_fire <= 0 and check_for_los(player) and weapon.ammo > 0:
+		
+		var sound_player = AUDIO_PLAYER.instantiate()
+		var shot_sound = world.get_random_shot_sound_effect(weapon.ID)
+		add_child(sound_player)
+		sound_player.play_sound(shot_sound)
+		#if weapon.ID == constants.weapons.SHOTGUN:
+			#var reload_player = AUDIO_PLAYER.instantiate()
+			#var reload_sound = world.get_random_shotgun_cock_sound_effect()
+			#add_child(reload_player)
+			#sound_player.connect("finished",reload_player.play_sound.bind(reload_sound))
+		
 		weapon.ammo -= 1
 		weapon.curr_clip -= 1
 		weapon.bullets_per_ammo = randf_range(weapon.MIN_BULLETS, weapon.MAX_BULLETS)
