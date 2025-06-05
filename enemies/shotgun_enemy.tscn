@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy8f7mgxlxt4j"]
+[gd_scene load_steps=3 format=3 uid="uid://cy8f7mgxlxt4j"]
 
 [ext_resource type="PackedScene" uid="uid://6h6ilkaxkee4" path="res://enemies/enemy_generic.tscn" id="1_g7vba"]
-[ext_resource type="Texture2D" uid="uid://cy6nr6eqeo1d7" path="res://Assets 2D/Players/Ninja Frog/Fall (32x32).png" id="2_g7vba"]
 [ext_resource type="Script" uid="uid://cy7vhucjv1y0d" path="res://enemies/shotgun.gd" id="3_dql8d"]
 
 [node name="shotgun_enemy" node_paths=PackedStringArray("weapon") instance=ExtResource("1_g7vba")]
@@ -9,8 +8,3 @@ weapon = NodePath("shotgun")
 
 [node name="shotgun" type="Node2D" parent="." index="3"]
 script = ExtResource("3_dql8d")
-
-[node name="Sprite" parent="." index="4"]
-position = Vector2(0, -1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_g7vba")

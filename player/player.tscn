@@ -1,9 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw2ldmgbhypql"]
+[gd_scene load_steps=6 format=3 uid="uid://dw2ldmgbhypql"]
 
 [ext_resource type="Script" uid="uid://bpna1fgeuu3mq" path="res://player/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c1l14l66fj6eq" path="res://sprites/mage_ui.png" id="2_rkbax"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
-radius = 3.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
+size = Vector2(2, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yw30f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rkbax")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 160.05
@@ -12,11 +24,14 @@ radius = 160.05
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_sweqy")
+shape = SubResource("RectangleShape2D_g1dw6")
 
 [node name="Cooldown" type="Timer" parent="."]
 
 [node name="Attack" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yw30f")
 
 [node name="FireArea" type="Area2D" parent="."]
 
