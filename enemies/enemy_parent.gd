@@ -74,13 +74,13 @@ func enter_aggro(aggro_target):
 	add_to_group("trigger_aggro")
 
 func _physics_process(delta: float) -> void:
-	weapon.timeout_fire -= delta
 	if Input.is_action_pressed("debug") and (position.distance_squared_to(get_global_mouse_position())) < 5000:
 		debug = true
 		print("debugging")
 	if curr_state == constants.enemy_states.REGULAR:
 		check_aggro()
 	elif curr_state == constants.enemy_states.AGGRO:
+		weapon.timeout_fire -= delta
 		nav.target_position = target.global_position
 		var direction = global_position.direction_to(nav.get_next_path_position())
 		look_at(nav.get_next_path_position())

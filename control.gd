@@ -159,7 +159,7 @@ func load_scene(new_type, new_scene):
 	if(level_instance):
 		level_instance.queue_free()
 	
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.2).timeout
 	scene_type = new_type
 	if new_type == constants.scene_types.LEVEL:
 		level_instance = level_resources[game_mode][new_scene].instantiate()

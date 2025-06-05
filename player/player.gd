@@ -27,7 +27,7 @@ var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 var unique_device
-const MORTAL = true
+const MORTAL = false
 
 func _ready() -> void:
 	for i in constants.weapons:
@@ -87,7 +87,7 @@ func animate():
 
 
 func shoot():
-	if timer_weapon > 0:
+	if timer_weapon > 0 or !weapon_obj:
 		return
 	if weapon_obj.ammo <= 0:
 		var tween = get_tree().create_tween().set_parallel(true)
@@ -116,8 +116,6 @@ func shoot():
 func get_weapon():
 	for i in constants.weapons.values():
 		if curr_collect.is_in_group(constants.weapons.keys()[i].to_lower()):
-			print(weapon_obj)
-			
 			if weapon_obj:
 				if weapon_obj.ammo > 0:
 					var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
@@ -139,12 +137,17 @@ func can_collect(object):
 	curr_collect = object
 
 func _physics_process(delta: float) -> void:
+	if player_settings.device_type == constants.device_types.KEYBOARD:
+		look_dir = get_global_mouse_position() - position
 	match curr_state:
 		constants.player_states.WALKING:
 			if attackCounter > 0:
 				attackCounter -= ATTACK_COOLDOWN_SPEED * delta
 			velocity = walk(delta)
 			move_and_slide()
+			if check_fire() and weapon_obj:
+				shoot()
+
 		constants.player_states.ATTACKING:
 			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
@@ -166,12 +169,18 @@ func _physics_process(delta: float) -> void:
 			timer_weapon -= delta
 			
 			
+func check_fire() -> bool:
+	if player_settings.device_type == constants.device_types.KEYBOARD:
+		if Input.is_action_pressed(player_settings.fire_action):
+			return true
+	else:
+		if Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_RIGHT_SHOULDER):
+			return true
+	return false
 
 func _input(event: InputEvent) -> void:
 	if event.device == unique_device:
-		if event.is_action(player_settings.fire_action) and event.is_pressed() and weapon_obj and curr_state == constants.player_states.WALKING:
-			shoot()
-		elif Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == constants.player_states.WALKING:
+		if Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == constants.player_states.WALKING:
 			melee()
 		if event.is_action(player_settings.get_weapon_action) and Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != constants.player_states.DEAD:
 			get_weapon()
@@ -180,9 +189,6 @@ func _input(event: InputEvent) -> void:
 		if player_settings.device_type == constants.device_types.GAMEPAD:
 			if event.is_action_pressed("look_down_gamepad") or event.is_action_pressed("look_up_gamepad") or event.is_action_pressed("look_left_gamepad") or event.is_action_pressed("look_right_gamepad"):
 				look_dir = Vector2(Input.get_axis("look_left_gamepad","look_right_gamepad"), Input.get_axis("look_up_gamepad","look_down_gamepad"))
-		elif player_settings.device_type == constants.device_types.KEYBOARD:
-			look_dir = get_global_mouse_position() - position
-
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

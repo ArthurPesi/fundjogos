@@ -78,18 +78,18 @@ scale = Vector2(12.36, 0.319995)
 
 [node name="Player1" parent="." instance=ExtResource("5_1cgpy")]
 z_index = 2
-position = Vector2(1015, 483)
+position = Vector2(1011, 471)
 
 [node name="EnemyHolder" parent="." instance=ExtResource("6_mnxwr")]
 
 [node name="shotgun_enemy" parent="EnemyHolder" instance=ExtResource("7_uqhkt")]
-position = Vector2(816, 319)
+position = Vector2(1082, 468)
 
 [node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("7_uqhkt")]
 position = Vector2(748, 420)
 
 [node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("8_bu8f7")]
-position = Vector2(929, 467)
+position = Vector2(815, 359)
 rotation = 2.98277
 
 [node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("9_o1ftd")]
