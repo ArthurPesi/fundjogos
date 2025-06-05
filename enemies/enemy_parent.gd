@@ -81,10 +81,10 @@ func _physics_process(delta: float) -> void:
 	if curr_state == constants.enemy_states.REGULAR:
 		check_aggro()
 	elif curr_state == constants.enemy_states.AGGRO:
-		nav.target_position = player.global_position
+		nav.target_position = target.global_position
 		var direction = global_position.direction_to(nav.get_next_path_position())
 		look_at(nav.get_next_path_position())
-		if weapon.timeout_fire <= 0 and check_for_los(player) and weapon.ammo > 0:
+		if weapon.timeout_fire <= 0 and check_for_los(target) and weapon.ammo > 0:
 			shoot(direction)
 		#weapon.fireManager(direction, delta)
 		

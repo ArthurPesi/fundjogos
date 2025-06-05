@@ -84,10 +84,9 @@ func check_enemy_amount():
 func start_level():
 	if scene_type == constants.scene_types.LEVEL:
 		camera = level_instance.get_node("Camera2D")
-			
+		players[0] = level_instance.get_node("Player1")
+		players[0].init(players_settings[0])
 		if game_mode == constants.game_modes.MULTI:
-			players[0] = level_instance.get_node("Player1")
-			players[0].init(players_settings[0])
 			players[1] = level_instance.get_node("Player2")
 			players[1].init(players_settings[1])
 		pause_menu = level_instance.get_node("Camera2D/pause_menu")
