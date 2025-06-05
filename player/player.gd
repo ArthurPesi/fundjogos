@@ -27,7 +27,6 @@ var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 var unique_device
-
 const MORTAL = true
 
 func _ready() -> void:
@@ -88,7 +87,9 @@ func animate():
 
 
 func shoot():
-	if timer_weapon > 0 or weapon_obj.ammo <= 0:
+	if timer_weapon > 0:
+		return
+	if weapon_obj.ammo <= 0:
 		var tween = get_tree().create_tween().set_parallel(true)
 		tween.tween_property(weapon_obj, "modulate", weapon_obj.modulate, 0.2).from(Color.RED)
 		tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, 0.3).from(weapon_obj.rotation - 1)
@@ -122,6 +123,7 @@ func get_weapon():
 					var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
 					just_dropped.position = position
 					just_dropped.z_index = 1
+					just_dropped.rotation = randf() * PI * 2
 					just_dropped.ammo = weapon_obj.ammo
 					enemy_holder.add_child(just_dropped)
 				weapon_obj.queue_free()
@@ -163,9 +165,11 @@ func _physics_process(delta: float) -> void:
 		if timer_weapon > 0:
 			timer_weapon -= delta
 			
+			
+
 func _input(event: InputEvent) -> void:
 	if event.device == unique_device:
-		if Input.is_action_just_pressed(player_settings.fire_action) and weapon_obj and curr_state == constants.player_states.WALKING:
+		if event.is_action(player_settings.fire_action) and event.is_pressed() and weapon_obj and curr_state == constants.player_states.WALKING:
 			shoot()
 		elif Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == constants.player_states.WALKING:
 			melee()

@@ -101,6 +101,7 @@ func die():
 		$CollisionShape2D.queue_free()
 		var temp_drop = drop.instantiate()
 		temp_drop.position = position
+		temp_drop.rotation = randf() * PI * 2
 		temp_drop.z_index = 0
 		temp_drop.ammo = weapon.ammo
 		var tween = get_tree().create_tween()
