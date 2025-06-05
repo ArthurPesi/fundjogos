@@ -189,13 +189,16 @@ func is_device_active(device_id) -> bool:
 	return active_devices.has(device_id)
 	
 func add_player(player_id, device_id, device_type):
+	var player_device: int
 	if device_type == constants.device_types.KEYBOARD:
 		active_devices.append(-1)
+		player_device = -1
 	else:
 		active_devices.append(device_id)
+		player_device = device_id
 	if player_id == 1:
 		game_mode = constants.game_modes.MULTI
-	players_settings[player_id].device = device_id
+	players_settings[player_id].device = player_device
 	players_settings[player_id].device_type = device_type
 	var action_suffix = "_keyboard" if device_type == constants.device_types.KEYBOARD else "_gamepad"
 	players_settings[player_id].fire_action = "fire" + action_suffix
@@ -205,3 +208,14 @@ func add_player(player_id, device_id, device_type):
 	players_settings[player_id].right_action = "right" + action_suffix
 	players_settings[player_id].up_action = "up" + action_suffix
 	players_settings[player_id].down_action = "down" + action_suffix
+	
+func remove_player_by_device(removed_device):
+	var removed_player_id: int
+	for i in players_settings.size():
+		if players_settings[i].device == removed_device:
+			removed_player_id = i
+	players_settings[removed_player_id] = player_class.new()
+	if removed_player_id == 1:
+		game_mode = constants.game_modes.SINGLE
+	active_devices.erase(removed_device)
+	return removed_player_id

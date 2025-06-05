@@ -41,7 +41,6 @@ func _on_ready_button_down() -> void:
 	char_selection.add_ready()
 
 
-
 func _on_return_button_down() -> void:
 	ready_button.visible = true
 	return_button.visible = false

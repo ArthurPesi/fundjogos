@@ -7,7 +7,11 @@ const MAX_PLAYERS = 2
 @onready var world = get_parent()
 
 const CHARACTER_MENU = preload("res://menus/character_menu.tscn")
+var character_menu_instances: Array[Node]
 @onready var h_box_container: HBoxContainer = $HBoxContainer
+
+func _ready() -> void:
+	character_menu_instances.resize(MAX_PLAYERS)
 
 func _input(event: InputEvent) -> void:
 	var device_type = null
@@ -21,10 +25,19 @@ func _input(event: InputEvent) -> void:
 		
 	if device_type != null:
 		world.add_player(player_amt, event.device, device_type)
-		var character_menu_instance = CHARACTER_MENU.instantiate()
-		character_menu_instance.player = player_amt
-		h_box_container.add_child(character_menu_instance)
+		character_menu_instances[player_amt] = CHARACTER_MENU.instantiate()
+		character_menu_instances[player_amt].player = player_amt
+		h_box_container.add_child(character_menu_instances[player_amt])
 		player_amt += 1
+
+	if event.is_action("quit_gamepad") and event.is_pressed() and world.is_device_active(event.device):
+		player_amt -= 1
+		var player_removed = world.remove_player_by_device(event.device)
+		character_menu_instances[player_removed].queue_free()
+	if event.is_action("quit_keyboard") and event.is_pressed() and world.is_device_active(-1):
+		player_amt -= 1
+		var player_removed = world.remove_player_by_device(-1)
+		character_menu_instances[player_removed].queue_free()
 
 func add_ready() -> void:
 	player_ready_amt += 1

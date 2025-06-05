@@ -26,6 +26,7 @@ var timer_weapon = 0
 var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
+var unique_device
 
 const MORTAL = true
 
@@ -38,6 +39,7 @@ func init(world_settings) -> void:
 	player_settings = world_settings
 	sprite_instance = player_settings.character_sprite.instantiate()
 	add_child(sprite_instance)
+	unique_device = player_settings.device if player_settings.device_type == constants.device_types.GAMEPAD else 0
 	#sprite_instance.play("walk")
 
 func die_player():
@@ -163,7 +165,7 @@ func _physics_process(delta: float) -> void:
 			timer_weapon -= delta
 			
 func _input(event: InputEvent) -> void:
-	if event.device == player_settings.device:
+	if event.device == unique_device:
 		if Input.is_action_just_pressed(player_settings.fire_action) and weapon_obj and curr_state == constants.player_states.WALKING:
 			shoot()
 		elif Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == constants.player_states.WALKING:
