@@ -1,28 +1,19 @@
 extends Node2D
 
-@onready var parent: CharacterBody2D = $".."
-
 var ammo = 6
-
-var min_fire_timeout = 1
-var max_fire_timeout = 1.4
-var precision = 0.15
-const BULLET_SPEED = 300
-const BULLET_LIFE = 4
-var timeoutFire
-@onready var bullet = preload("res://enemies/bullet_evil.tscn")
-
-func _ready() -> void:
-	timeoutFire = randf_range(0.2, 0.4)
-
-func fireManager(dir, delta):
-	timeoutFire -= delta
-	if timeoutFire <= 0 and parent.check_for_los(parent.player) and ammo > 0:
-		ammo -= 1
-		var temp_bullet = bullet.instantiate()
-		parent.add_sibling(temp_bullet)
-		var spread_rad = randf_range(-precision, precision)
-		dir = Vector2(dir.x * cos(spread_rad) - dir.y * sin(spread_rad), dir.x * sin(spread_rad) + dir.y * cos(spread_rad))
-		temp_bullet.start(parent.position, dir.normalized(), BULLET_SPEED, BULLET_LIFE)
-		timeoutFire = randf_range(min_fire_timeout, max_fire_timeout)
-		
+var bullets_per_ammo = 1
+var timeout_fire = 0
+const PRECISION = 0.15
+const MIN_FIRE_INITIAL_TIMEOUT = 0.2
+const MAX_FIRE_INITIAL_TIMEOUT = 0.4
+const MIN_BULLETS = 1
+const MAX_BULLETS = 1
+const BULLET_DURATION = 4
+const MIN_BULLET_SPEED = 300
+const MAX_BULLET_SPEED = 300
+const MIN_RELOAD_TIME = 1
+const MAX_RELOAD_TIME = 1.4
+const CLIP_SIZE = 1
+var curr_clip = CLIP_SIZE
+const MIN_CONSECUTIVE_SHOTS_TIMEOUT = 0.0
+const MAX_CONSECUTIVE_SHOTS_TIMEOUT = 0.0

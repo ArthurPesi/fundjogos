@@ -20,10 +20,32 @@ var target: CharacterBody2D
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D
 @onready var drop = load("res://weapons/" + weapon.name + "_dropped.tscn")
+@onready var bullet = preload("res://enemies/bullet_evil.tscn")
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var vision_area: Area2D = $VisionArea
 
-var timeoutFire
+func _ready() -> void:
+	weapon.timeout_fire = randf_range(weapon.MIN_FIRE_INITIAL_TIMEOUT, weapon.MAX_FIRE_INITIAL_TIMEOUT)
+
+func shoot(dir):
+	if weapon.timeout_fire <= 0 and check_for_los(player) and weapon.ammo > 0:
+		weapon.ammo -= 1
+		weapon.curr_clip -= 1
+		weapon.bullets_per_ammo = randf_range(weapon.MIN_BULLETS, weapon.MAX_BULLETS)
+		for i in weapon.bullets_per_ammo:
+			var temp_bullet = bullet.instantiate()
+			add_sibling(temp_bullet)
+			var spread_rad = randf_range(-weapon.PRECISION, weapon.PRECISION)
+			dir = Vector2(dir.x * cos(spread_rad) - dir.y * sin(spread_rad), dir.x * sin(spread_rad) + dir.y * cos(spread_rad))
+			temp_bullet.start(position, dir.normalized(), randf_range(weapon.MIN_BULLET_SPEED, weapon.MAX_BULLET_SPEED), weapon.BULLET_DURATION)
+		var time_for_next_shot: float
+		if weapon.curr_clip <= 0:
+			time_for_next_shot = randf_range(weapon.MIN_RELOAD_TIME, weapon.MAX_RELOAD_TIME)
+			weapon.curr_clip = weapon.CLIP_SIZE
+		else:
+			time_for_next_shot = randf_range(weapon.MIN_CONSECUTIVE_SHOTS_TIMEOUT, weapon.MAX_CONSECUTIVE_SHOTS_TIMEOUT)
+		weapon.timeout_fire = time_for_next_shot
+		#weapon.curr_clip = weapon.CLIP_SIZE
 
 func check_for_los(obj) -> bool:
 	ray_cast.target_position = obj.position - position
@@ -52,6 +74,7 @@ func enter_aggro(aggro_target):
 	add_to_group("trigger_aggro")
 
 func _physics_process(delta: float) -> void:
+	weapon.timeout_fire -= delta
 	if Input.is_action_pressed("debug") and (position.distance_squared_to(get_global_mouse_position())) < 5000:
 		debug = true
 		print("debugging")
@@ -61,7 +84,9 @@ func _physics_process(delta: float) -> void:
 		nav.target_position = player.global_position
 		var direction = global_position.direction_to(nav.get_next_path_position())
 		look_at(nav.get_next_path_position())
-		weapon.fireManager(direction, delta)
+		if weapon.timeout_fire <= 0 and check_for_los(player) and weapon.ammo > 0:
+			shoot(direction)
+		#weapon.fireManager(direction, delta)
 		
 		ray_cast.global_rotation_degrees = 0
 		

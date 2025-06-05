@@ -86,14 +86,14 @@ position = Vector2(1015, 483)
 position = Vector2(816, 319)
 
 [node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("7_uqhkt")]
-position = Vector2(793, 470)
+position = Vector2(748, 420)
 
 [node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("8_bu8f7")]
-position = Vector2(852, 421)
+position = Vector2(929, 467)
 rotation = 2.98277
 
 [node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("9_o1ftd")]
-position = Vector2(1126, 470)
+position = Vector2(1077, 305)
 
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("9_o1ftd")]
-position = Vector2(1033, 407)
+position = Vector2(1013, 303)
