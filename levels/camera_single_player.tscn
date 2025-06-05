@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvl44gjna15ch"]
+
+[ext_resource type="Script" uid="uid://cjo0x1xf2v07o" path="res://levels/camera_single.gd" id="1_vvpdq"]
+[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://levels/pause_menu.tscn" id="2_qy7ow"]
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+script = ExtResource("1_vvpdq")
+
+[node name="pause_menu" parent="." instance=ExtResource("2_qy7ow")]
+visible = false
+offset_left = -571.0
+offset_top = -311.0
+offset_right = -571.0
+offset_bottom = -311.0
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
