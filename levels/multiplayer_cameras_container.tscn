@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://nj8vtutkxuk8"]
+
+[ext_resource type="Script" uid="uid://bnwpa38icde6k" path="res://levels/sub_viewport.gd" id="1_k2ulj"]
+
+[node name="MultiplayerCamerasContainer" type="HBoxContainer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer1" type="SubViewportContainer" parent="."]
+layout_mode = 2
+
+[node name="SubViewport1" type="SubViewport" parent="SubViewportContainer1"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(576, 648)
+render_target_update_mode = 0
+script = ExtResource("1_k2ulj")
+
+[node name="Camera1" type="Camera2D" parent="SubViewportContainer1/SubViewport1"]
+enabled = false
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+layout_mode = 2
+
+[node name="SubViewport2" type="SubViewport" parent="SubViewportContainer2"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(576, 648)
+render_target_update_mode = 0
+script = ExtResource("1_k2ulj")
+
+[node name="Camera2" type="Camera2D" parent="SubViewportContainer2/SubViewport2"]
+enabled = false
