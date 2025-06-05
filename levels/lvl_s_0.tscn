@@ -31,8 +31,11 @@ offset_top = -311.0
 offset_right = -571.0
 offset_bottom = -311.0
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+current = true
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(20, 54)
+position = Vector2(22, 59)
 navigation_polygon = SubResource("NavigationPolygon_0ha08")
 script = ExtResource("3_rtq82")
 
@@ -83,17 +86,17 @@ position = Vector2(1011, 471)
 [node name="EnemyHolder" parent="." instance=ExtResource("6_mnxwr")]
 
 [node name="shotgun_enemy" parent="EnemyHolder" instance=ExtResource("7_uqhkt")]
-position = Vector2(846, 340)
+position = Vector2(900, 425)
 
 [node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("7_uqhkt")]
-position = Vector2(748, 420)
+position = Vector2(805, 466)
 
 [node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("8_bu8f7")]
 position = Vector2(940, 482)
 rotation = 2.98277
 
 [node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("9_o1ftd")]
-position = Vector2(1077, 305)
+position = Vector2(1070, 406)
 
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("9_o1ftd")]
-position = Vector2(1013, 303)
+position = Vector2(799, 251)

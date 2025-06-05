@@ -51,6 +51,39 @@ var enemy_holder: Node2D
 var navigation_region: NavigationRegion2D
 var amount_of_enemies: int
 
+const GUN_SOUND_EFFECTS = [
+	[preload("res://SFX/guns/revolver/1.mp3"), preload("res://SFX/guns/revolver/2.mp3"), preload("res://SFX/guns/revolver/3.mp3"), preload("res://SFX/guns/revolver/4.mp3")]     
+	,[preload("res://SFX/guns/uzi/1.mp3")]
+	,[preload("res://SFX/guns/shotgun/1.mp3"), preload("res://SFX/guns/shotgun/2.mp3")]
+]
+
+const NO_AMMO_SOUND_EFFECTS = [
+	preload("res://SFX/guns/no_ammo/1.mp3"), 
+	preload("res://SFX/guns/no_ammo/2.mp3"), 
+	preload("res://SFX/guns/no_ammo/3.mp3"), 
+	preload("res://SFX/guns/no_ammo/4.mp3")
+]
+
+const SHOTGUN_COCK_SOUND_EFFECTS = [
+	preload("res://SFX/guns/cock_shotgun/1.mp3"),
+	preload("res://SFX/guns/cock_shotgun/2.mp3"),
+	preload("res://SFX/guns/cock_shotgun/3.mp3"),
+	preload("res://SFX/guns/cock_shotgun/4.mp3"),
+	preload("res://SFX/guns/cock_shotgun/5.mp3")
+]
+
+func get_random_shotgun_cock_sound_effect():
+	var random_sound = randi() % NO_AMMO_SOUND_EFFECTS.size()
+	return NO_AMMO_SOUND_EFFECTS[random_sound]
+	
+func get_random_no_ammo_sound_effect():
+	var random_sound = randi() % NO_AMMO_SOUND_EFFECTS.size()
+	return NO_AMMO_SOUND_EFFECTS[random_sound]
+
+func get_random_shot_sound_effect(weapon_shot):
+	var random_sound = randi() % GUN_SOUND_EFFECTS[weapon_shot].size()
+	return GUN_SOUND_EFFECTS[weapon_shot][random_sound]
+
 func get_level_bg_color():
 	return Color.from_rgba8(bg_colors[curr_level][0],bg_colors[curr_level][1],bg_colors[curr_level][2],bg_colors[curr_level][3])
 

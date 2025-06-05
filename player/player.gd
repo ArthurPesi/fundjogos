@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+const AUDIO_PLAYER = preload("res://audio_player.tscn")
 var enemies_inside_fire_range: Array[CharacterBody2D]
 
 var player_settings
@@ -87,7 +87,6 @@ func animate():
 	tween.tween_property(weapon_obj, "rotation", 0, weapon_obj.ANIMATION_DURATION).from(weapon_obj.rotation - weapon_obj.ANIMATION_FALLBACK)
 	tween.tween_property($AnimatedSprite2D, "scale:y", $AnimatedSprite2D.get_scale().y, weapon_obj.ANIMATION_SQUASH).from(2)
 
-
 func shoot():
 	if timer_weapon > 0 or !weapon_obj:
 		return
@@ -95,10 +94,25 @@ func shoot():
 		var tween = get_tree().create_tween().set_parallel(true)
 		tween.tween_property(weapon_obj, "modulate", weapon_obj.modulate, 0.2).from(Color.RED)
 		tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, 0.3).from(weapon_obj.rotation - 1)
-		timer_weapon = 0.34
+		timer_weapon = randf_range(0.34, 0.69)
+		var sound_player = AUDIO_PLAYER.instantiate()
+		var no_ammo_sound = world.get_random_no_ammo_sound_effect()
+		add_child(sound_player)
+		sound_player.play_sound(no_ammo_sound)
 		return
 	weapon_obj.ammo -= 1
 	animate()
+	
+	var sound_player = AUDIO_PLAYER.instantiate()
+	var shot_sound = world.get_random_shot_sound_effect(curr_weapon_value)
+	add_child(sound_player)
+	sound_player.play_sound(shot_sound)
+	if curr_weapon_value == constants.weapons.SHOTGUN:
+		var reload_player = AUDIO_PLAYER.instantiate()
+		var reload_sound = world.get_random_shotgun_cock_sound_effect()
+		add_child(reload_player)
+		sound_player.connect("finished",reload_player.play_sound.bind(reload_sound))
+	
 	world.apply_shake(weapon_obj.SHAKE_STRENGTH)
 	var amount_of_bullets = randf_range(weapon_obj.MIN_BULLETS, weapon_obj.MAX_BULLETS)
 	for i in amount_of_bullets:
