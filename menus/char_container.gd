@@ -6,6 +6,10 @@ var active: int = 1
 var player
 @onready var world = get_parent().get_parent().get_parent()
 @onready var char_selection = get_parent().get_parent()
+@onready var ready_button: Button = $HBoxContainer2/ready
+@onready var return_button: Button = $Return
+@onready var next_button: TextureButton = $HBoxContainer/next
+@onready var prev_button: TextureButton = $HBoxContainer/prev
 
 @onready var character: TextureRect = $HBoxContainer/char
 
@@ -30,5 +34,17 @@ func _on_next_button_down() -> void:
 
 func _on_ready_button_down() -> void:
 	world.players_settings[player].character_sprite = load("res://sprites/" + characters[active]+ "_sprite.tscn")
+	ready_button.visible = false
+	return_button.visible = true
+	next_button.disabled = true
+	prev_button.disabled = true
 	char_selection.add_ready()
-	
+
+
+
+func _on_return_button_down() -> void:
+	ready_button.visible = true
+	return_button.visible = false
+	next_button.disabled = false
+	prev_button.disabled = false
+	char_selection.remove_ready()

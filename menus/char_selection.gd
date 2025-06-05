@@ -30,3 +30,6 @@ func add_ready() -> void:
 	player_ready_amt += 1
 	if player_ready_amt == player_amt:
 		world.load_scene(constants.scene_types.LEVEL, world.curr_level)
+		
+func remove_ready():
+	player_ready_amt -= 1
