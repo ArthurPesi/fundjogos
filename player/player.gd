@@ -40,7 +40,6 @@ func init(world_settings) -> void:
 	sprite_instance = player_settings.character_sprite.instantiate()
 	add_child(sprite_instance)
 	unique_device = player_settings.device if player_settings.device_type == constants.device_types.GAMEPAD else 0
-	#sprite_instance.play("walk")
 
 func die_player():
 	if curr_state != constants.player_states.DEAD and MORTAL:

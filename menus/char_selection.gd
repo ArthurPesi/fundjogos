@@ -31,13 +31,16 @@ func _input(event: InputEvent) -> void:
 		player_amt += 1
 
 	if event.is_action("quit_gamepad") and event.is_pressed() and world.is_device_active(event.device):
-		player_amt -= 1
-		var player_removed = world.remove_player_by_device(event.device)
-		character_menu_instances[player_removed].queue_free()
+		remove_all_players()
 	if event.is_action("quit_keyboard") and event.is_pressed() and world.is_device_active(-1):
-		player_amt -= 1
-		var player_removed = world.remove_player_by_device(-1)
-		character_menu_instances[player_removed].queue_free()
+		remove_all_players()
+
+func remove_all_players():
+	world.remove_all_players()
+	for i in character_menu_instances:
+		if i:
+			i.queue_free()
+	player_amt = 0
 
 func add_ready() -> void:
 	player_ready_amt += 1

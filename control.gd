@@ -84,9 +84,10 @@ func check_enemy_amount():
 func start_level():
 	if scene_type == constants.scene_types.LEVEL:
 		camera = level_instance.get_node("Camera2D")
-		players[0] = level_instance.get_node("Player1")
-		players[0].init(players_settings[0])
+			
 		if game_mode == constants.game_modes.MULTI:
+			players[0] = level_instance.get_node("Player1")
+			players[0].init(players_settings[0])
 			players[1] = level_instance.get_node("Player2")
 			players[1].init(players_settings[1])
 		pause_menu = level_instance.get_node("Camera2D/pause_menu")
@@ -209,13 +210,8 @@ func add_player(player_id, device_id, device_type):
 	players_settings[player_id].up_action = "up" + action_suffix
 	players_settings[player_id].down_action = "down" + action_suffix
 	
-func remove_player_by_device(removed_device):
-	var removed_player_id: int
-	for i in players_settings.size():
-		if players_settings[i].device == removed_device:
-			removed_player_id = i
-	players_settings[removed_player_id] = player_class.new()
-	if removed_player_id == 1:
-		game_mode = constants.game_modes.SINGLE
-	active_devices.erase(removed_device)
-	return removed_player_id
+func remove_all_players():
+	for i in players_settings:
+		i = player_class.new()
+	game_mode = constants.game_modes.SINGLE
+	active_devices.clear()
