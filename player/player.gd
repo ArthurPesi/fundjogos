@@ -28,6 +28,8 @@ var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 var unique_device
 const MORTAL = false
+const WEAPON_OFFSET = Vector2(8, 0)
+var weapon_scale: Vector2
 
 func _ready() -> void:
 	for i in constants.weapons:
@@ -79,10 +81,10 @@ func melee():
 
 func animate():
 	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(weapon_obj, "scale", weapon_obj.scale, weapon_obj.ANIMATION_DURATION).from(weapon_obj.scale * weapon_obj.ANIMATION_INCREASE)
+	tween.tween_property(weapon_obj, "scale", weapon_scale, weapon_obj.ANIMATION_DURATION).from(weapon_obj.scale * weapon_obj.ANIMATION_INCREASE)
 	tween.tween_property(weapon_obj, "modulate:v", 1, weapon_obj.ANIMATION_DURATION/2).from(10)
-	tween.tween_property(weapon_obj, "position", weapon_obj.position, weapon_obj.ANIMATION_DURATION).from(Vector2.ZERO)
-	tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, weapon_obj.ANIMATION_DURATION).from(weapon_obj.rotation - weapon_obj.ANIMATION_FALLBACK)
+	tween.tween_property(weapon_obj, "position", WEAPON_OFFSET, weapon_obj.ANIMATION_DURATION).from(Vector2.ZERO)
+	tween.tween_property(weapon_obj, "rotation", 0, weapon_obj.ANIMATION_DURATION).from(weapon_obj.rotation - weapon_obj.ANIMATION_FALLBACK)
 	tween.tween_property($AnimatedSprite2D, "scale:y", $AnimatedSprite2D.get_scale().y, weapon_obj.ANIMATION_SQUASH).from(2)
 
 
@@ -93,6 +95,7 @@ func shoot():
 		var tween = get_tree().create_tween().set_parallel(true)
 		tween.tween_property(weapon_obj, "modulate", weapon_obj.modulate, 0.2).from(Color.RED)
 		tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, 0.3).from(weapon_obj.rotation - 1)
+		timer_weapon = 0.34
 		return
 	weapon_obj.ammo -= 1
 	animate()
@@ -128,7 +131,8 @@ func get_weapon():
 			curr_weapon_value = i as constants.weapons
 			weapon_obj = weapon_holding_presets[i].instantiate()
 			weapon_obj.ammo = curr_collect.ammo
-			weapon_obj.position = Vector2(8, 0)
+			weapon_obj.position = WEAPON_OFFSET
+			weapon_scale = weapon_obj.scale
 			curr_collect.queue_free()
 			add_child(weapon_obj)
 			break
