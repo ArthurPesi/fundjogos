@@ -95,10 +95,10 @@ func shoot():
 		tween.tween_property(weapon_obj, "modulate", weapon_obj.modulate, 0.2).from(Color.RED)
 		tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, 0.3).from(weapon_obj.rotation - 1)
 		timer_weapon = randf_range(0.34, 0.69)
-		var sound_player = AUDIO_PLAYER.instantiate()
+		var no_ammo_player = AUDIO_PLAYER.instantiate()
 		var no_ammo_sound = world.get_random_no_ammo_sound_effect()
-		add_child(sound_player)
-		sound_player.play_sound(no_ammo_sound)
+		add_child(no_ammo_player)
+		no_ammo_player.play_sound(no_ammo_sound)
 		return
 	weapon_obj.ammo -= 1
 	animate()

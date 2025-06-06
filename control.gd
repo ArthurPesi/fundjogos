@@ -50,6 +50,9 @@ var pause_menu
 var enemy_holder: Node2D
 var navigation_region: NavigationRegion2D
 var amount_of_enemies: int
+var world_to_render: World2D
+
+const MULTIPLAYER_CAMERAS_CONTAINER = preload("res://levels/multiplayer_cameras_container.tscn")
 
 const GUN_SOUND_EFFECTS = [
 	[preload("res://SFX/guns/revolver/1.mp3"), preload("res://SFX/guns/revolver/2.mp3"), preload("res://SFX/guns/revolver/3.mp3"), preload("res://SFX/guns/revolver/4.mp3")]     
@@ -113,7 +116,10 @@ func check_enemy_amount():
 	if amount_of_enemies == 0:
 		await get_tree().create_timer(1).timeout
 		load_next_level()
-	
+
+func get_world_to_render():
+	return world_to_render
+
 func start_level():
 	if scene_type == constants.scene_types.LEVEL:
 		camera = level_instance.get_node("Camera2D")
@@ -122,6 +128,9 @@ func start_level():
 		if game_mode == constants.game_modes.MULTI:
 			players[1] = level_instance.get_node("Player2")
 			players[1].init(players_settings[1])
+			world_to_render = level_instance.get_node("MainViewport").find_world_2d()
+			var cam_container = MULTIPLAYER_CAMERAS_CONTAINER.instantiate()
+			add_child(cam_container)
 		pause_menu = level_instance.get_node("Camera2D/pause_menu")
 		enemy_holder = level_instance.get_node("EnemyHolder")
 		navigation_region = level_instance.get_node("NavigationRegion2D")
