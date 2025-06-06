@@ -18,74 +18,75 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(635, 133, 508, 574, 124
 
 [node name="MainViewport" type="SubViewport" parent="."]
 handle_input_locally = false
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Camera2D" parent="." instance=ExtResource("1_4ufjd")]
+[node name="Camera2D" parent="MainViewport" instance=ExtResource("1_4ufjd")]
 position = Vector2(1015, 483)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="MainViewport"]
 position = Vector2(22, 59)
 navigation_polygon = SubResource("NavigationPolygon_0ha08")
 script = ExtResource("3_rtq82")
 
-[node name="vert1" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="vert1" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(753, 295)
 rotation = 1.5708
 scale = Vector2(9.68, 0.319995)
 
-[node name="vert" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="vert" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(853, 252)
 rotation = 1.5708
 scale = Vector2(9.68, 0.319995)
 
-[node name="vert4" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="vert4" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(905, 287)
 rotation = 1.5708
 scale = Vector2(9.68, 0.319995)
 
-[node name="vert5" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="vert5" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(1185, 296)
 rotation = 1.5708
 scale = Vector2(9.68, 0.319995)
 
-[node name="hor7" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="hor7" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(765, 433)
 scale = Vector2(12.36, 0.319995)
 
-[node name="hor4" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="hor4" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(937, 385)
 scale = Vector2(12.36, 0.319995)
 
-[node name="hor5" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="hor5" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(1066, 290)
 scale = Vector2(12.36, 0.319995)
 
-[node name="hor6" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="hor6" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(759, 508)
 scale = Vector2(12.36, 0.319995)
 
-[node name="hor1" parent="NavigationRegion2D" instance=ExtResource("4_qvpgw")]
+[node name="hor1" parent="MainViewport/NavigationRegion2D" instance=ExtResource("4_qvpgw")]
 position = Vector2(1072, 435)
 scale = Vector2(12.36, 0.319995)
 
-[node name="Player1" parent="." instance=ExtResource("5_1cgpy")]
+[node name="Player1" parent="MainViewport" instance=ExtResource("5_1cgpy")]
 z_index = 2
 position = Vector2(1011, 471)
 
-[node name="EnemyHolder" parent="." instance=ExtResource("6_mnxwr")]
+[node name="EnemyHolder" parent="MainViewport" instance=ExtResource("6_mnxwr")]
 
-[node name="shotgun_enemy" parent="EnemyHolder" instance=ExtResource("7_uqhkt")]
+[node name="shotgun_enemy" parent="MainViewport/EnemyHolder" instance=ExtResource("7_uqhkt")]
 position = Vector2(900, 425)
 
-[node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("7_uqhkt")]
+[node name="shotgun_enemy2" parent="MainViewport/EnemyHolder" instance=ExtResource("7_uqhkt")]
 position = Vector2(805, 466)
 
-[node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("8_bu8f7")]
+[node name="uzi_enemy" parent="MainViewport/EnemyHolder" instance=ExtResource("8_bu8f7")]
 position = Vector2(940, 482)
 rotation = 2.98277
 
-[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("9_o1ftd")]
+[node name="revolver_enemy" parent="MainViewport/EnemyHolder" instance=ExtResource("9_o1ftd")]
 position = Vector2(1070, 406)
 
-[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("9_o1ftd")]
+[node name="revolver_enemy2" parent="MainViewport/EnemyHolder" instance=ExtResource("9_o1ftd")]
 position = Vector2(799, 251)

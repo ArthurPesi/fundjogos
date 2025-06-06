@@ -44,14 +44,15 @@ var level_instance
 var scene_type = constants.scene_types.MENU
 var noise = FastNoiseLite.new()
 var rand = RandomNumberGenerator.new()
-var camera: Camera2D
+var main_camera: Camera2D
 var players: Array[CharacterBody2D]
 var pause_menu
 var enemy_holder: Node2D
 var navigation_region: NavigationRegion2D
 var amount_of_enemies: int
 var world_to_render: World2D
-
+var split_cam_container: HBoxContainer
+var active_camera := constants.cameras.MAIN
 const MULTIPLAYER_CAMERAS_CONTAINER = preload("res://levels/multiplayer_cameras_container.tscn")
 
 const GUN_SOUND_EFFECTS = [
@@ -120,20 +121,36 @@ func check_enemy_amount():
 func get_world_to_render():
 	return world_to_render
 
+func switch_to_main_multiplayer_camera():
+	if game_mode == constants.game_modes.MULTI:
+		split_cam_container.visible = false
+		active_camera = constants.cameras.MAIN
+
+func switch_to_split_multiplayer_cameras():
+	if game_mode == constants.game_modes.MULTI:
+		split_cam_container.visible = true
+		active_camera = constants.cameras.SPLIT
+
+func get_active_camera():
+	return active_camera
+
 func start_level():
 	if scene_type == constants.scene_types.LEVEL:
-		camera = level_instance.get_node("Camera2D")
-		players[0] = level_instance.get_node("Player1")
+		var main_viewport = level_instance.get_node("MainViewport")
+		main_camera = main_viewport.get_node("Camera2D")
+		players[0] = main_viewport.get_node("Player1")
 		players[0].init(players_settings[0])
 		if game_mode == constants.game_modes.MULTI:
-			players[1] = level_instance.get_node("Player2")
+			players[1] = main_viewport.get_node("Player2")
 			players[1].init(players_settings[1])
-			world_to_render = level_instance.get_node("MainViewport").find_world_2d()
-			var cam_container = MULTIPLAYER_CAMERAS_CONTAINER.instantiate()
-			add_child(cam_container)
-		pause_menu = level_instance.get_node("Camera2D/pause_menu")
-		enemy_holder = level_instance.get_node("EnemyHolder")
-		navigation_region = level_instance.get_node("NavigationRegion2D")
+			world_to_render = main_viewport.world_2d
+			print(world_to_render)
+			split_cam_container = MULTIPLAYER_CAMERAS_CONTAINER.instantiate()
+			add_child(split_cam_container)
+			
+		pause_menu = main_viewport.get_node("Camera2D/pause_menu")
+		enemy_holder = main_viewport.get_node("EnemyHolder")
+		navigation_region = main_viewport.get_node("NavigationRegion2D")
 		amount_of_enemies = enemy_holder.get_child_count()
 		
 		var tween = get_tree().create_tween().set_parallel(true)
@@ -157,7 +174,7 @@ func _process(delta: float) -> void:
 			
 			var shake_offset: Vector2
 			shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
-			camera.offset = shake_offset
+			main_camera.offset = shake_offset
 
 func get_noise_offset(delta: float, speed: float, strength: float) -> Vector2:
 	noise_i += delta * speed

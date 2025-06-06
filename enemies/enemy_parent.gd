@@ -16,7 +16,7 @@ var curr_state = constants.enemy_states.REGULAR
 var target: CharacterBody2D
 @onready var player: CharacterBody2D = $"../../Player1"
 
-@onready var world: Node2D = $"../../.."
+@onready var world: Node2D = $"../../../.."
 
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D
