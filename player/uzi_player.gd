@@ -5,8 +5,8 @@ var ammo = 50
 
 const PRECISION = 0.32
 const BULLET_DURATION = 0.5
-const MIN_BULLET_SPEED = 900
-const MAX_BULLET_SPEED = 1000
+const MIN_BULLET_SPEED = 700
+const MAX_BULLET_SPEED = 800
 const COOLDOWN = 0.05
 const SHAKE_STRENGTH = 8.0
 const MIN_BULLETS = 1

@@ -73,3 +73,5 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_dq8sv")
 animation = &"walk"
+frame = 5
+frame_progress = 0.0945186

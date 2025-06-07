@@ -85,6 +85,8 @@ script = ExtResource("1_8xuwg")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_irj8s")
 animation = &"idle"
 
@@ -92,6 +94,7 @@ animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DieArea"]
 position = Vector2(-0.5, -0.5)
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_nvcvs")
 
 [node name="VisionArea" type="Area2D" parent="."]
@@ -102,6 +105,7 @@ polygon = PackedVector2Array(-50, 50, 389, 250, 389, -250, -50, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_dccvl")
 
 [connection signal="body_entered" from="DieArea" to="." method="_on_die_area_body_entered"]

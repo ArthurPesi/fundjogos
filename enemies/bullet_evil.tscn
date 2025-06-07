@@ -16,13 +16,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_it14h"]
-radius = 4.0
+radius = 11.0454
 
 [node name="bullet_evil" groups=["evil"] instance=ExtResource("1_xi0jv")]
 script = ExtResource("2_y8fyv")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-scale = Vector2(1, 1)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_sv1vi")
 
 [node name="CollisionShape2D" parent="." index="1"]

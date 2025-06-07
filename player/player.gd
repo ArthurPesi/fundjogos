@@ -7,7 +7,7 @@ var player_settings
 
 var weapon_holding_presets: Array[Resource]
 var weapon_dropped_presets: Array[Resource]
-const MAX_SPEED = 300
+const MAX_SPEED = 600
 const ACCELERATION = 4
 const ATTACK_SPEED = 1000
 const ATTACK_DURATION = 0.1
@@ -27,11 +27,12 @@ var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 var unique_device
-const MORTAL = false
+const MORTAL = true
 const WEAPON_OFFSET = Vector2(8, 0)
 var weapon_scale: Vector2
 
 func _ready() -> void:
+	
 	for i in constants.weapons:
 		weapon_holding_presets.append(load("res://weapons/" + i.to_lower() + "_sprite.tscn"))
 		weapon_dropped_presets.append(load("res://weapons/" + i.to_lower() + "_dropped.tscn"))
@@ -40,6 +41,7 @@ func init(world_settings) -> void:
 	player_settings = world_settings
 	sprite_instance = player_settings.character_sprite.instantiate()
 	add_child(sprite_instance)
+	sprite_instance.scale = Vector2.ONE * 3
 	unique_device = player_settings.device if player_settings.device_type == constants.device_types.GAMEPAD else 0
 
 func die_player():

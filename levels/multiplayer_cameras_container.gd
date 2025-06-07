@@ -39,6 +39,8 @@ func get_true_width(angle):
 	return get_true_width(angle - PI)
 
 func _process(delta: float) -> void:
+	if !player_1 or !player_2:
+		return
 	var diff =  player_2.position - player_1.position
 	var angle = diff.angle()
 	rotation = angle
@@ -46,10 +48,6 @@ func _process(delta: float) -> void:
 	camera_2.global_rotation = angle
 	var p2_ang = diff.normalized()
 	var midpoint = lerp(player_1.position, player_2.position, 0.5)
-	#if abs(diff.x) <= MIN_DISTANCE.x and abs(diff.y) <= MIN_DISTANCE.y:
-		#camera_2.position = midpoint + (p2_ang * (viewport_width/2))
-		#camera_1.position = midpoint - (p2_ang * (viewport_width/2))
-	#elif abs(diff.x) < MAX_DISTANCE.x or abs(diff.y) < MAX_DISTANCE.y:
 	var initial_pos_1 = midpoint - (p2_ang * (viewport_width/2))
 	var initial_pos_2 = midpoint + (p2_ang * (viewport_width/2))
 	
@@ -63,10 +61,6 @@ func _process(delta: float) -> void:
 	camera_1.position.y = lerp(initial_pos_1.y, final_pos_1.y, percentage_y)
 	camera_2.position.x = lerp(initial_pos_2.x, final_pos_2.x, percentage_x)
 	camera_2.position.y = lerp(initial_pos_2.y, final_pos_2.y, percentage_y)
-	#else:
-		#var true_offset = (viewport_width - get_true_width(angle)) / 2
-		#camera_2.position = player_2.position + (p2_ang * true_offset)
-		#camera_1.position = player_1.position - (p2_ang * true_offset)
 
 
 	

@@ -80,7 +80,7 @@ func check_aggro():
 			enter_aggro(player)
 			
 func enter_aggro(aggro_target):
-	#curr_state = constants.enemy_states.AGGRO
+	curr_state = constants.enemy_states.AGGRO
 	target = aggro_target
 	vision_area.queue_free()
 	add_to_group("trigger_aggro")
