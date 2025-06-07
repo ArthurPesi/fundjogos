@@ -1,23 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://nj8vtutkxuk8"]
+[gd_scene load_steps=3 format=3 uid="uid://nj8vtutkxuk8"]
 
 [ext_resource type="Script" uid="uid://bnwpa38icde6k" path="res://levels/sub_viewport.gd" id="1_k2ulj"]
 [ext_resource type="Script" uid="uid://cb1n7ko3aela" path="res://levels/multiplayer_cameras_container.gd" id="1_uvmpg"]
-[ext_resource type="Script" uid="uid://bqtx2tpy683sv" path="res://levels/camera_1.gd" id="3_us4by"]
-[ext_resource type="Script" uid="uid://dd7oscwpmul2e" path="res://levels/camera_2.gd" id="4_rci7l"]
 
 [node name="MultiplayerCamerasContainer" type="HBoxContainer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 1732.0
-offset_bottom = 828.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(1152, 576)
+offset_right = 1376.0
+offset_bottom = 774.0
 theme_override_constants/separation = 0
 script = ExtResource("1_uvmpg")
 
@@ -27,14 +15,12 @@ layout_mode = 2
 [node name="SubViewport1" type="SubViewport" parent="SubViewportContainer1"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(1152, 1152)
+size = Vector2i(688, 1376)
 render_target_update_mode = 4
 script = ExtResource("1_k2ulj")
 
 [node name="Camera1" type="Camera2D" parent="SubViewportContainer1/SubViewport1"]
 ignore_rotation = false
-zoom = Vector2(3, 3)
-script = ExtResource("3_us4by")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
 layout_mode = 2
@@ -42,11 +28,9 @@ layout_mode = 2
 [node name="SubViewport2" type="SubViewport" parent="SubViewportContainer2"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(1152, 1152)
+size = Vector2i(688, 1376)
 render_target_update_mode = 4
 script = ExtResource("1_k2ulj")
 
 [node name="Camera2" type="Camera2D" parent="SubViewportContainer2/SubViewport2"]
 ignore_rotation = false
-zoom = Vector2(3, 3)
-script = ExtResource("4_rci7l")
