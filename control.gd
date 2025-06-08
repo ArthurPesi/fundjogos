@@ -52,7 +52,6 @@ var navigation_region: NavigationRegion2D
 var amount_of_enemies: int
 var world_to_render: World2D
 var split_cam_container: HBoxContainer
-var active_camera := constants.cameras.MAIN
 const MULTIPLAYER_CAMERAS_CONTAINER = preload("res://levels/multiplayer_cameras_container.tscn")
 
 const GUN_SOUND_EFFECTS = [
@@ -121,19 +120,6 @@ func check_enemy_amount():
 func get_world_to_render():
 	return world_to_render
 
-func switch_to_main_multiplayer_camera():
-	if game_mode == constants.game_modes.MULTI:
-		split_cam_container.visible = false
-		active_camera = constants.cameras.MAIN
-
-func switch_to_split_multiplayer_cameras():
-	if game_mode == constants.game_modes.MULTI:
-		split_cam_container.visible = true
-		active_camera = constants.cameras.SPLIT
-
-func get_active_camera():
-	return active_camera
-
 func start_level():
 	if scene_type == constants.scene_types.LEVEL:
 		var main_viewport = level_instance.get_node("MainViewport")
@@ -175,6 +161,9 @@ func _process(delta: float) -> void:
 			var shake_offset: Vector2
 			shake_offset = get_noise_offset(delta, NOISE_SHAKE_SPEED, shake_strength)
 			main_camera.offset = shake_offset
+			if game_mode == constants.game_modes.MULTI:
+				split_cam_container.camera_1.offset = shake_offset
+				split_cam_container.camera_2.offset = shake_offset
 
 func get_noise_offset(delta: float, speed: float, strength: float) -> Vector2:
 	noise_i += delta * speed

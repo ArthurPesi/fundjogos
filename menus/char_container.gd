@@ -7,7 +7,7 @@ var player
 @onready var world = get_parent().get_parent().get_parent()
 @onready var char_selection = get_parent().get_parent()
 @onready var ready_button: Button = $HBoxContainer2/ready
-@onready var return_button: Button = $Return
+@onready var return_button: Button = $HBoxContainer2/Return
 @onready var next_button: TextureButton = $HBoxContainer/next
 @onready var prev_button: TextureButton = $HBoxContainer/prev
 

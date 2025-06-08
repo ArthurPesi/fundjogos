@@ -14,6 +14,11 @@ config/name="fundjogos"
 run/main_scene="uid://c5lqp17488uo1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[display]
+
+mouse_cursor/custom_image="uid://yc5asibnywq4"
+mouse_cursor/custom_image_hotspot=Vector2(22, 22)
+
 [input]
 
 up_keyboard={

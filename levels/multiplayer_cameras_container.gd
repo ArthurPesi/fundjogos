@@ -12,11 +12,10 @@ const PIOVERFOUR = PI / 4
 const THREEPIOVERFOUR = 3 * PIOVERFOUR
 const PIOVERTWO = PIOVERFOUR * 2
 const MIN_DISTANCE := Vector2(576,324)
-const MAX_DISTANCE := Vector2(776,424)
+const MAX_DISTANCE := Vector2(976,524)
 const INTERVAL := MAX_DISTANCE - MIN_DISTANCE
 
 func _ready() -> void:
-	world.switch_to_split_multiplayer_cameras()
 	player_1 = world.players[0]
 	player_2 = world.players[1]
 	pivot_offset = size / 2
@@ -61,7 +60,3 @@ func _process(delta: float) -> void:
 	camera_1.position.y = lerp(initial_pos_1.y, final_pos_1.y, percentage_y)
 	camera_2.position.x = lerp(initial_pos_2.x, final_pos_2.x, percentage_x)
 	camera_2.position.y = lerp(initial_pos_2.y, final_pos_2.y, percentage_y)
-
-
-	
-	

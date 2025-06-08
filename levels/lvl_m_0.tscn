@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://cw140j8cfp6sw"]
+[gd_scene load_steps=11 format=3 uid="uid://cw140j8cfp6sw"]
 
-[ext_resource type="Script" uid="uid://bm5pqqnjmjb68" path="res://levels/camera_main_multi.gd" id="1_6g17r"]
 [ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://levels/pause_menu.tscn" id="2_xnavf"]
 [ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="3_y204c"]
 [ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="4_scnne"]
@@ -21,13 +20,13 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(635, 133, 508, 574, 124
 [node name="MainViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="MainViewport"]
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
-script = ExtResource("1_6g17r")
 
 [node name="pause_menu" parent="MainViewport/Camera2D" instance=ExtResource("2_xnavf")]
 visible = false

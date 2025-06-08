@@ -7,4 +7,3 @@ enum weapons {REVOLVER, UZI, SHOTGUN}
 enum enemy_states {REGULAR, AGGRO, DEAD}
 enum menus {MAIN_MENU, SETTINGS, CHAR_SELECTION}
 enum scene_types {MENU, LEVEL}
-enum cameras {MAIN, SPLIT}
