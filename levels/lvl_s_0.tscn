@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4pmaeg6lo6n3"]
+[gd_scene load_steps=11 format=3 uid="uid://b4pmaeg6lo6n3"]
 
 [ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_4ufjd"]
 [ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="3_rtq82"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="6_mnxwr"]
 [ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="7_uqhkt"]
 [ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="8_bu8f7"]
+[ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/punch_enemy.tscn" id="9_35j3k"]
 [ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="9_o1ftd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
@@ -94,3 +95,6 @@ position = Vector2(410, 309)
 
 [node name="revolver_enemy2" parent="MainViewport/EnemyHolder" instance=ExtResource("9_o1ftd")]
 position = Vector2(300, 316)
+
+[node name="PunchEnemy" parent="MainViewport/EnemyHolder" instance=ExtResource("9_35j3k")]
+position = Vector2(156, 216)

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var max_speed = 200
+var max_speed = 500
 var acceleration = 0.08
 var curr_movement = Vector2(0,0)
 var aggro_distance_squared_los = 120000
@@ -20,15 +20,17 @@ var target: CharacterBody2D
 
 @onready var ray_cast: RayCast2D = $RayCast2D
 @export var weapon: Node2D
-@onready var drop = load("res://weapons/" + weapon.name + "_dropped.tscn")
 @onready var bullet = preload("res://enemies/bullet_evil.tscn")
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var vision_area: Area2D = $VisionArea
 
 func _ready() -> void:
-	weapon.timeout_fire = randf_range(weapon.MIN_FIRE_INITIAL_TIMEOUT, weapon.MAX_FIRE_INITIAL_TIMEOUT)
+	if weapon:
+		weapon.timeout_fire = randf_range(weapon.MIN_FIRE_INITIAL_TIMEOUT, weapon.MAX_FIRE_INITIAL_TIMEOUT)
 
 func shoot(dir):
+	if !weapon:
+		return
 	if weapon.timeout_fire <= 0 and check_for_los(player) and weapon.ammo > 0:
 		
 		var sound_player = AUDIO_PLAYER.instantiate()
@@ -92,13 +94,13 @@ func _physics_process(delta: float) -> void:
 	if curr_state == constants.enemy_states.REGULAR:
 		check_aggro()
 	elif curr_state == constants.enemy_states.AGGRO:
-		weapon.timeout_fire -= delta
 		nav.target_position = target.global_position
 		var direction = global_position.direction_to(nav.get_next_path_position())
 		look_at(nav.get_next_path_position())
-		if weapon.timeout_fire <= 0 and check_for_los(target) and weapon.ammo > 0:
-			shoot(direction)
-		#weapon.fireManager(direction, delta)
+		if weapon:
+			weapon.timeout_fire -= delta
+			if weapon.timeout_fire <= 0 and check_for_los(target) and weapon.ammo > 0:
+				shoot(direction)
 		
 		ray_cast.global_rotation_degrees = 0
 		
@@ -111,17 +113,20 @@ func die():
 		curr_state = constants.enemy_states.DEAD
 		world.check_enemy_amount()
 		$CollisionShape2D.queue_free()
-		$WeaponSprite.queue_free()
-		var temp_drop = drop.instantiate()
-		temp_drop.position = position
-		temp_drop.rotation = randf() * PI * 2
-		temp_drop.z_index = 0
-		temp_drop.ammo = weapon.ammo
+
 		var tween = get_tree().create_tween()
 		tween.tween_property($Sprite, "scale", Vector2(0,0),0.8)
 		tween.tween_callback(queue_free)
 		world.freeze(0.5)
-		call_deferred("add_sibling", temp_drop)
+		if weapon:
+			$WeaponSprite.queue_free()
+			var drop = load("res://weapons/" + weapon.name + "_dropped.tscn")
+			var temp_drop = drop.instantiate()
+			temp_drop.position = position
+			temp_drop.rotation = randf() * PI * 2
+			temp_drop.z_index = 0
+			temp_drop.ammo = weapon.ammo
+			call_deferred("add_sibling", temp_drop)
 
 func _on_vision_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("trigger_aggro"):
