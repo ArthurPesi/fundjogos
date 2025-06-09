@@ -133,6 +133,7 @@ func start_level():
 			world_to_render = main_viewport.world_2d
 			print(world_to_render)
 			split_cam_container = MULTIPLAYER_CAMERAS_CONTAINER.instantiate()
+			split_cam_container.main_camera = main_camera
 			add_child(split_cam_container)
 			
 		pause_menu = main_viewport.get_node("Camera2D/pause_menu")

@@ -167,7 +167,8 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			if check_fire() and weapon_obj:
 				shoot()
-
+			if check_melee():
+				melee()
 		constants.player_states.ATTACKING:
 			attackCounter += delta
 			velocity = atk_move * ATTACK_SPEED
@@ -197,11 +198,18 @@ func check_fire() -> bool:
 		if Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_RIGHT_SHOULDER):
 			return true
 	return false
+	
+func check_melee():
+	if player_settings.device_type == constants.device_types.KEYBOARD:
+		if Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj):
+			return true
+	else:
+		if (Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_RIGHT_SHOULDER) and !weapon_obj) or Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_LEFT_SHOULDER):
+			return true
+	return false
 
 func _input(event: InputEvent) -> void:
 	if event.device == unique_device:
-		if Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj) and curr_state == constants.player_states.WALKING:
-			melee()
 		if event.is_action(player_settings.get_weapon_action) and Input.is_action_just_pressed(player_settings.get_weapon_action) and curr_collect and curr_state != constants.player_states.DEAD:
 			get_weapon()
 		

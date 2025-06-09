@@ -15,6 +15,7 @@ const PIOVERTWO = PIOVERFOUR * 2
 const MIN_DISTANCE := Vector2(576,324)
 const MAX_DISTANCE := Vector2(1276,824)
 const MAX_AUDIO_DISTANCE = 1000
+var main_camera
 
 func _ready() -> void:
 	player_1 = world.players[0]

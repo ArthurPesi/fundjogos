@@ -141,10 +141,8 @@ func _on_vision_area_body_entered(body: Node2D) -> void:
 func _on_vision_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("trigger_aggro"):
 		objects_inside_vision_area.erase(body)
-		if body.is_in_group("enemy"):
+		if body.is_in_group("enemy") and check_for_los(body):
 			enter_aggro(body.target)
-		
-		
 
 func _on_vision_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("trigger_aggro") and area.is_in_group("good"):
