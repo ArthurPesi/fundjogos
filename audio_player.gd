@@ -6,10 +6,8 @@ const MAX_DISTANCE_SPLIT = 1000
 
 func play_sound(sound_effect):
 	if world.sound_mode == constants.sound_modes.SOLO:
-		print("perto")
 		max_distance = MAX_DISTANCE_SOLO
 	elif world.sound_mode == constants.sound_modes.SPLIT:
-		print("longe")
 		max_distance = MAX_DISTANCE_SPLIT
 		
 	set_stream(sound_effect)
