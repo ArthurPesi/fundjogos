@@ -31,6 +31,7 @@ class player_class:
 var players_settings: Array[player_class] = [player_class.new(), player_class.new()]
 
 var game_mode = constants.game_modes.SINGLE
+var sound_mode = constants.sound_modes.SOLO
 
 var NOISE_SHAKE_SPEED: float = 10.0
 var NOISE_SHAKE_STRENGTH: float = 60.0

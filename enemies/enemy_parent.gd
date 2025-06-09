@@ -129,20 +129,26 @@ func die():
 			call_deferred("add_sibling", temp_drop)
 
 func _on_vision_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("trigger_aggro"):
-		objects_inside_vision_area.append(body)
+	if !body.is_in_group("trigger_aggro"):
+		return
+		
+	objects_inside_vision_area.append(body)
 	if body.is_in_group("player"):
 		player = body
+	if body.is_in_group("enemy"):
+		player = body.target
 
 func _on_vision_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("trigger_aggro"):
 		objects_inside_vision_area.erase(body)
+		if body.is_in_group("enemy"):
+			enter_aggro(body.target)
+		
 		
 
 func _on_vision_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("trigger_aggro"):
+	if area.is_in_group("trigger_aggro") and area.is_in_group("good"):
 		objects_inside_vision_area.append(area)
-	if area.is_in_group("good"):
 		if area.bullet_owner.is_in_group("player"):
 			player = area.bullet_owner
 

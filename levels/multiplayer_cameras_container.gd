@@ -2,6 +2,7 @@ extends HBoxContainer
 @onready var camera_1: Camera2D = $SubViewportContainer1/SubViewport1/Camera1
 @onready var camera_2: Camera2D = $SubViewportContainer2/SubViewport2/Camera2
 @onready var sub_viewport_1: SubViewport = $SubViewportContainer1/SubViewport1
+@onready var sub_viewport_2: SubViewport = $SubViewportContainer2/SubViewport2
 
 @onready var world = get_parent()
 var player_1: CharacterBody2D
@@ -12,8 +13,8 @@ const PIOVERFOUR = PI / 4
 const THREEPIOVERFOUR = 3 * PIOVERFOUR
 const PIOVERTWO = PIOVERFOUR * 2
 const MIN_DISTANCE := Vector2(576,324)
-const MAX_DISTANCE := Vector2(976,524)
-const INTERVAL := MAX_DISTANCE - MIN_DISTANCE
+const MAX_DISTANCE := Vector2(1276,824)
+const MAX_AUDIO_DISTANCE = 1000
 
 func _ready() -> void:
 	player_1 = world.players[0]
@@ -60,3 +61,15 @@ func _process(delta: float) -> void:
 	camera_1.position.y = lerp(initial_pos_1.y, final_pos_1.y, percentage_y)
 	camera_2.position.x = lerp(initial_pos_2.x, final_pos_2.x, percentage_x)
 	camera_2.position.y = lerp(initial_pos_2.y, final_pos_2.y, percentage_y)
+	
+	if diff.length() > MAX_AUDIO_DISTANCE:
+		if world.sound_mode == constants.sound_modes.SOLO:
+			sub_viewport_2.audio_listener_enable_2d = true
+			world.sound_mode = constants.sound_modes.SPLIT
+			print("ficou longe")
+	elif world.sound_mode == constants.sound_modes.SPLIT:
+		sub_viewport_2.audio_listener_enable_2d = false
+		world.sound_mode = constants.sound_modes.SOLO
+		print("ficou perto")
+		
+		

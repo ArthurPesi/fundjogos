@@ -16,6 +16,7 @@ layout_mode = 2
 disable_3d = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(688, 1376)
 render_target_update_mode = 4
 script = ExtResource("1_k2ulj")
