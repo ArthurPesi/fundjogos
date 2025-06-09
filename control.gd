@@ -32,6 +32,7 @@ var players_settings: Array[player_class] = [player_class.new(), player_class.ne
 
 var game_mode = constants.game_modes.SINGLE
 var sound_mode = constants.sound_modes.SOLO
+var keyboard_player: int
 
 var NOISE_SHAKE_SPEED: float = 10.0
 var NOISE_SHAKE_STRENGTH: float = 60.0
@@ -134,6 +135,7 @@ func start_level():
 			print(world_to_render)
 			split_cam_container = MULTIPLAYER_CAMERAS_CONTAINER.instantiate()
 			split_cam_container.main_camera = main_camera
+			split_cam_container.keyboard_player = keyboard_player
 			add_child(split_cam_container)
 			
 		pause_menu = main_viewport.get_node("Camera2D/pause_menu")
@@ -243,6 +245,7 @@ func add_player(player_id, device_id, device_type):
 	if device_type == constants.device_types.KEYBOARD:
 		active_devices.append(-1)
 		player_device = -1
+		keyboard_player = player_id
 	else:
 		active_devices.append(device_id)
 		player_device = device_id

@@ -16,6 +16,7 @@ const MIN_DISTANCE := Vector2(576,324)
 const MAX_DISTANCE := Vector2(1276,824)
 const MAX_AUDIO_DISTANCE = 1000
 var main_camera
+var keyboard_player
 
 func _ready() -> void:
 	player_1 = world.players[0]
@@ -60,6 +61,11 @@ func _process(delta: float) -> void:
 	var percentage_y = clamp(remap(abs(diff.y), MIN_DISTANCE.y, MAX_DISTANCE.y, 0, 1), 0, 1)
 	camera_1.position.x = lerp(initial_pos_1.x, final_pos_1.x, percentage_x)
 	camera_1.position.y = lerp(initial_pos_1.y, final_pos_1.y, percentage_y)
+	
+	if keyboard_player == 0:
+		main_camera.position = camera_1.position + (p2_ang * (viewport_width/2))
+	elif keyboard_player == 1:
+		main_camera.position = camera_2.position - (p2_ang * (viewport_width/2))
 	camera_2.position.x = lerp(initial_pos_2.x, final_pos_2.x, percentage_x)
 	camera_2.position.y = lerp(initial_pos_2.y, final_pos_2.y, percentage_y)
 	
@@ -67,10 +73,9 @@ func _process(delta: float) -> void:
 		if world.sound_mode == constants.sound_modes.SOLO:
 			sub_viewport_2.audio_listener_enable_2d = true
 			world.sound_mode = constants.sound_modes.SPLIT
-			print("ficou longe")
+
 	elif world.sound_mode == constants.sound_modes.SPLIT:
 		sub_viewport_2.audio_listener_enable_2d = false
 		world.sound_mode = constants.sound_modes.SOLO
-		print("ficou perto")
 		
 		
