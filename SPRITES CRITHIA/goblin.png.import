@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://b0rd8xaanckgc"
+=======
+uid="uid://cps71r2ykxloi"
+>>>>>>> pessoal-da-arte-2-o-retorno
 path="res://.godot/imported/goblin.png-62f23797a0acc2983a90b3b1e53f875c.ctex"
 metadata={
 "vram_texture": false
