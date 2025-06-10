@@ -27,3 +27,6 @@ text = "settings"
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "quit"
+
+[connection signal="pressed" from="VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

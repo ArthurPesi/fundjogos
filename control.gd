@@ -88,11 +88,17 @@ func _ready() -> void:
 	add_child(level_instance)
 
 func _on_joy_connection_changed(device, connected):
-	if !connected and device in active_devices:
-		if !paused:
-			Engine.time_scale = 0
-			pause_menu.visible = true
-			paused = true
+	if !connected and device in active_devices and !paused:
+		pause_game()
+
+func pause_game():
+	if !paused:
+		Engine.time_scale = 0
+		pause_menu.visible = true
+	if paused:
+		Engine.time_scale = 1
+		pause_menu.visible = false
+	paused = !paused
 
 func play_spatial_sound_effect(sound_effect, audio_position: Vector2):
 	var random = randi() % sound_effects[sound_effect].size()
@@ -223,13 +229,7 @@ func load_next_level():
 
 func _input(event):
 	if event.is_action_pressed("quit_keyboard") and scene_type == constants.scene_types.LEVEL:
-		if !paused:
-			Engine.time_scale = 0
-			pause_menu.visible = true
-		if paused:
-			Engine.time_scale = 1
-			pause_menu.visible = false
-		paused = !paused
+		pause_game()
 		
 func is_device_active(device_id) -> bool:
 	return active_devices.has(device_id)
