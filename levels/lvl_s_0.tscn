@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4pmaeg6lo6n3"]
+[gd_scene load_steps=15 format=3 uid="uid://b4pmaeg6lo6n3"]
 
 [ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_4ufjd"]
 [ext_resource type="PackedScene" uid="uid://csbx1baqsccec" path="res://levels/pause_canvas.tscn" id="1_yuacu"]
@@ -12,16 +12,55 @@
 [ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="9_o1ftd"]
 [ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="10_wonum"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_yuacu"]
+font_size = 22
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
 vertices = PackedVector2Array(892.602, 521.203, 1235.52, 590.641, 520.789, 564.461, 625.398, 521.203, 1199.6, 303.203, 1199.6, 276.797, 1262.94, 70.7109, 1205.6, 421.797, 866.203, 358.797, 891.797, 373.297, 766.203, 373.297, 839.797, 358.797, 891.797, 180.203, 866.203, 145.203, 938.398, 448.203, 1205.6, 448.203, 892.602, 494.797, 898.602, 446.203, 938.398, 421.797, 766.203, 188.203, 839.797, 145.203, 631.398, 446.203, 625.398, 494.797, 898.602, 419.797, 1171.8, 303.203, 1171.8, 402.797, 1010.6, 399.703, 1010.6, 373.297, 932.398, 303.203, 918.203, 373.297, 918.203, 180.203, 932.398, 276.797, 1198.2, 276.797, 1198.2, 189.203, 645.273, 82.8516, 1171.8, 189.203, 1171.8, 276.797, 766.203, 401.797, 766.203, 399.703, 1198.2, 402.797, 1198.2, 303.203, 631.398, 419.797, 739.797, 188.203, 739.797, 401.797)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 1, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 9, 8, 13), PackedInt32Array(14, 15, 1, 0, 16), PackedInt32Array(14, 16, 17, 18), PackedInt32Array(11, 10, 19, 20), PackedInt32Array(21, 17, 16, 22), PackedInt32Array(18, 17, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 24, 27, 29), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(5, 32, 33, 6), PackedInt32Array(34, 6, 33, 35, 13), PackedInt32Array(35, 36, 31, 30), PackedInt32Array(37, 38, 26, 25, 18, 23), PackedInt32Array(39, 40, 4, 7), PackedInt32Array(22, 3, 2), PackedInt32Array(22, 2, 34, 41), PackedInt32Array(30, 12, 13), PackedInt32Array(35, 30, 13), PackedInt32Array(34, 13, 20), PackedInt32Array(34, 20, 19, 42), PackedInt32Array(34, 42, 43, 41), PackedInt32Array(1, 15, 7), PackedInt32Array(39, 7, 18, 25), PackedInt32Array(37, 23, 41, 43), PackedInt32Array(22, 41, 21)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(637.5, 73, 508, 574, 1245, 601, 1273.5, 60.5)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wonum"]
+size = Vector2(128, 57.5)
 
 [node name="lvl_s_0" type="SubViewportContainer"]
 
 [node name="PauseCanvas" parent="." instance=ExtResource("1_yuacu")]
+
+[node name="TextCanvas" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="TextCanvas"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TextCanvas/Control"]
+visible = false
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_yuacu")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="MainViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -110,7 +149,7 @@ rotation = -1.8739
 position = Vector2(512, 68)
 
 [node name="CollisionShape2D" parent="MainViewport/FinishLevelArea" index="0"]
-position = Vector2(70, -14)
+position = Vector2(117, 61)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_wonum")
 

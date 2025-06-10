@@ -12,8 +12,9 @@ const wall_colors = [
 	[169, 34, 34, 255]
 ]
 
+signal confirmation_signal
 var curr_level = 0
-
+var show_transition_text := false
 var active_devices: Array[int]
 class player_class:
 	var device
@@ -60,6 +61,7 @@ const MULTIPLAYER_CAMERAS_CONTAINER = preload("res://levels/multiplayer_cameras_
 const AUDIO_PLAYER = preload("res://audio_player.tscn")
 const SFX_PATH = "res://SFX/"
 var sound_effects: Array[Array]
+var transition_label: Label
 
 func _ready() -> void:
 	TranslationServer.set_locale(OS.get_locale_language())
@@ -119,6 +121,8 @@ func start_level():
 	if scene_type == constants.scene_types.LEVEL:
 		main_viewport = level_instance.get_node("MainViewport")
 		main_camera = main_viewport.get_node("Camera2D")
+		transition_label = level_instance.get_node("TextCanvas/Control/Label")
+		transition_label.text = "LEVEL1_1"
 		players[0] = main_viewport.get_node("Player1")
 		players[0].init(players_settings[0])
 		if game_mode == constants.game_modes.MULTI:
@@ -188,6 +192,9 @@ func reset_screen():
 			N.curr_state = constants.enemy_states.DEAD
 		tween.tween_property(N, "scale", Vector2.ZERO, 0.3)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("confirm"):
+		confirmation_signal.emit()
 	
 func reload_level():
 	load_scene(constants.scene_types.LEVEL, curr_level)
@@ -200,6 +207,10 @@ func load_scene(new_type, new_scene):
 		Engine.time_scale = 1
 	elif scene_type == constants.scene_types.MENU:
 		RenderingServer.set_default_clear_color(get_level_bg_color())
+	if(show_transition_text):
+		transition_label.show()
+		await confirmation_signal
+		show_transition_text = false
 	if(level_instance):
 		level_instance.queue_free()
 	
@@ -217,6 +228,7 @@ func load_next_level():
 	if curr_level + 1 < level_resources.size() and scene_type == constants.scene_types.LEVEL:
 		curr_level += 1
 		RenderingServer.set_default_clear_color(get_level_bg_color())
+	show_transition_text = true
 	load_scene(constants.scene_types.LEVEL, curr_level)
 		
 func is_device_active(device_id) -> bool:
