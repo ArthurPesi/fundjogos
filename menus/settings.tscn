@@ -1,25 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwpx3ivyqu51m"]
+[gd_scene load_steps=3 format=3 uid="uid://bwpx3ivyqu51m"]
 
 [ext_resource type="Script" uid="uid://dpsjioma6vra1" path="res://menus/config.gd" id="1_urrvo"]
+[ext_resource type="PackedScene" uid="uid://cqfo3nwi14n4e" path="res://menus/volume_slider.tscn" id="2_kot5a"]
 
-[node name="settings" type="Node2D"]
+[node name="settings" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_urrvo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 449.0
-offset_top = 317.0
-offset_right = 713.0
-offset_bottom = 466.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.5
+offset_top = -121.0
+offset_right = 101.5
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MasterLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+
+[node name="MasterSlider" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_kot5a")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+
+[node name="MusicSlider" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_kot5a")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="SFXLabel" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "SFX VOLUME"
+horizontal_alignment = 1
+
+[node name="SFXSlider" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_kot5a")]
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "LANGUAGE"
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 item_count = 2
 popup/item_0/text = "English"
@@ -27,14 +72,14 @@ popup/item_0/id = 0
 popup/item_1/text = "Português"
 popup/item_1/id = 1
 
-[node name="play" type="Button" parent="VBoxContainer"]
+[node name="play" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "PLAY"
 
-[node name="back" type="Button" parent="VBoxContainer"]
+[node name="back" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "BACK"
 
-[connection signal="item_selected" from="VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/back" to="." method="_on_back_pressed"]

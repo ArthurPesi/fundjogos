@@ -62,8 +62,7 @@ const SFX_PATH = "res://SFX/"
 var sound_effects: Array[Array]
 
 func _ready() -> void:
-	TranslationServer.set_locale("pt")
-	#TranslationServer.set_locale(OS.get_locale_language())
+	TranslationServer.set_locale(OS.get_locale_language())
 	Input.connect("joy_connection_changed",_on_joy_connection_changed)
 	level_resources.resize(2)
 	for i in LEVEL_AMOUNT:

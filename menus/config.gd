@@ -1,7 +1,7 @@
-extends Node2D
+extends Control
 
 @onready var world = get_parent()
-@onready var option_button: OptionButton = $VBoxContainer/HBoxContainer/OptionButton
+@onready var option_button: OptionButton = $CanvasLayer/VBoxContainer/HBoxContainer/OptionButton
 
 
 func _ready() -> void:
