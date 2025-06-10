@@ -2,6 +2,9 @@ extends Control
 
 @onready var world: Node2D = $"../../.."
 
+const SETTINGS = preload("res://menus/settings_level.tscn")
+var settings_instance
+
 func resume():
 	hide()
 	get_tree().paused = false
@@ -25,3 +28,9 @@ func _on_quit_pressed() -> void:
 	resume()
 	world.remove_all_players()
 	world.load_scene(constants.scene_types.MENU, constants.menus.MAIN_MENU)
+
+
+func _on_settings_pressed() -> void:
+	settings_instance = SETTINGS.instantiate()
+	hide()
+	add_sibling(settings_instance)

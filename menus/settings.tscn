@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://dpsjioma6vra1" path="res://menus/config.gd" id="1_urrvo"]
 [ext_resource type="PackedScene" uid="uid://cqfo3nwi14n4e" path="res://menus/volume_slider.tscn" id="2_kot5a"]
 
-[node name="settings" type="Control"]
+[node name="settingsMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
