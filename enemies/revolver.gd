@@ -1,6 +1,7 @@
 extends Node2D
 
 const ID = constants.weapons.REVOLVER
+const SFX = constants.sound_effects.REVOLVER_SHOT
 var ammo = 6
 var bullets_per_ammo = 1
 var timeout_fire = 0

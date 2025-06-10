@@ -1,6 +1,7 @@
 extends Node2D
 
 const ID = constants.weapons.UZI
+const SFX = constants.sound_effects.UZI_SHOT
 var timeout_fire = 0
 var bullets_per_ammo = 1
 const MIN_FIRE_INITIAL_TIMEOUT = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cw140j8cfp6sw"]
 
-[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://levels/pause_menu.tscn" id="2_xnavf"]
+[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://menus/pause_menu.tscn" id="2_xnavf"]
 [ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="3_y204c"]
 [ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="4_scnne"]
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="5_jyqpf"]

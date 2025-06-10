@@ -2,7 +2,7 @@ extends AnimatedSprite2D
 
 
 var ammo = 50
-
+const SFX = constants.sound_effects.UZI_SHOT
 const PRECISION = 0.32
 const BULLET_DURATION = 0.5
 const MIN_BULLET_SPEED = 700

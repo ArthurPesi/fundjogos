@@ -8,3 +8,15 @@ enum enemy_states {REGULAR, AGGRO, DEAD}
 enum menus {MAIN_MENU, SETTINGS, CHAR_SELECTION}
 enum scene_types {MENU, LEVEL}
 enum sound_modes {SOLO, SPLIT}
+enum sound_effects {
+	SHOTGUN_SHOT, SHOTGUN_COCK, REVOLVER_SHOT, UZI_SHOT, NO_AMMO, PICK_UP,
+	ENEMY_AGGRO, ENEMY_DEATH, 
+	PLAYER_DEATH_MALE, PLAYER_DEATH_FEMALE, FIGHTER_ATTACK, PALADIN_ATTACK,
+	BUTTON_CLICK
+}
+const sound_paths = [
+	"guns/shotgun", "guns/cock_shotgun", "guns/revolver", "guns/uzi", "guns/no_ammo", "guns/pick_up",
+	"enemies/aggro", "enemies/death",
+	"players/death/male", "players/death/female", "players/attack/fighter", "players/attack/paladin",
+	"UI/button_click"
+]

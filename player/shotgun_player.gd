@@ -1,7 +1,7 @@
 extends AnimatedSprite2D
 
 var ammo = 4
-
+const SFX = constants.sound_effects.SHOTGUN_SHOT
 const PRECISION = 0.27
 const MIN_BULLETS = 10
 const MAX_BULLETS = 17

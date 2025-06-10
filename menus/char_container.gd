@@ -34,6 +34,9 @@ func _on_next_button_down() -> void:
 
 func _on_ready_button_down() -> void:
 	world.players_settings[player].character_sprite = load("res://sprites/" + characters[active]+ "_sprite.tscn")
+	world.players_settings[player].character = characters[active]
+	if characters[active] == "fighter" or characters[active] == "paladin":
+		world.players_settings[player].attack_sfx =  constants.sound_effects.get(characters[active].to_upper() + "_ATTACK")
 	ready_button.visible = false
 	return_button.visible = true
 	next_button.disabled = true

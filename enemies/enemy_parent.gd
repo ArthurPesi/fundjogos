@@ -32,16 +32,7 @@ func shoot(dir):
 	if !weapon:
 		return
 	if weapon.timeout_fire <= 0 and check_for_los(player) and weapon.ammo > 0:
-		
-		var sound_player = AUDIO_PLAYER.instantiate()
-		var shot_sound = world.get_random_shot_sound_effect(weapon.ID)
-		add_child(sound_player)
-		sound_player.play_sound(shot_sound)
-		#if weapon.ID == constants.weapons.SHOTGUN:
-			#var reload_player = AUDIO_PLAYER.instantiate()
-			#var reload_sound = world.get_random_shotgun_cock_sound_effect()
-			#add_child(reload_player)
-			#sound_player.connect("finished",reload_player.play_sound.bind(reload_sound))
+		world.play_spatial_sound_effect(weapon.SFX, global_position)
 		
 		weapon.ammo -= 1
 		weapon.curr_clip -= 1
@@ -82,6 +73,7 @@ func check_aggro():
 			enter_aggro(player)
 			
 func enter_aggro(aggro_target):
+	world.play_spatial_sound_effect(constants.sound_effects.ENEMY_AGGRO, global_position)
 	curr_state = constants.enemy_states.AGGRO
 	target = aggro_target
 	vision_area.queue_free()
@@ -111,6 +103,8 @@ func _physics_process(delta: float) -> void:
 func die():
 	if curr_state != constants.enemy_states.DEAD:
 		curr_state = constants.enemy_states.DEAD
+		world.play_spatial_sound_effect(constants.sound_effects.ENEMY_DEATH, global_position)
+		
 		world.check_enemy_amount()
 		$CollisionShape2D.queue_free()
 

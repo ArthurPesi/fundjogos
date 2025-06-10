@@ -1,6 +1,7 @@
 extends AnimatedSprite2D
 
 var ammo = 6
+var SFX = constants.sound_effects.REVOLVER_SHOT
 const PRECISION = 0.1
 const BULLET_LIFE = 10
 const COOLDOWN = 0.4

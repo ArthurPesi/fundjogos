@@ -1,8 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://b733t0yxb3u2m"]
 
-[ext_resource type="Script" uid="uid://b50lcidds37wq" path="res://levels/pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Script" uid="uid://b50lcidds37wq" path="res://menus/pause_menu.gd" id="1_hdmo1"]
 
 [node name="pause_menu" type="Control"]
+visible = false
+z_index = 99
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hdmo1")

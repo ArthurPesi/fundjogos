@@ -26,6 +26,8 @@ class player_class:
 	var right_action
 	var up_action
 	var down_action
+	var attack_sfx
+	var character
 	var character_sprite
 	
 var players_settings: Array[player_class] = [player_class.new(), player_class.new()]
@@ -54,55 +56,28 @@ var navigation_region: NavigationRegion2D
 var amount_of_enemies: int
 var world_to_render: World2D
 var split_cam_container: HBoxContainer
+var main_viewport: SubViewport
 const MULTIPLAYER_CAMERAS_CONTAINER = preload("res://levels/multiplayer_cameras_container.tscn")
+const AUDIO_PLAYER = preload("res://audio_player.tscn")
+const SFX_PATH = "res://SFX/"
+var sound_effects: Array[Array]
 
-const GUN_SOUND_EFFECTS = [
-	[preload("res://SFX/guns/revolver/1.mp3"), preload("res://SFX/guns/revolver/2.mp3"), preload("res://SFX/guns/revolver/3.mp3"), preload("res://SFX/guns/revolver/4.mp3")]     
-	,[preload("res://SFX/guns/uzi/1.mp3")]
-	,[preload("res://SFX/guns/shotgun/1.mp3"), preload("res://SFX/guns/shotgun/2.mp3")]
-]
-
-const NO_AMMO_SOUND_EFFECTS = [
-	preload("res://SFX/guns/no_ammo/1.mp3"), 
-	preload("res://SFX/guns/no_ammo/2.mp3"), 
-	preload("res://SFX/guns/no_ammo/3.mp3"), 
-	preload("res://SFX/guns/no_ammo/4.mp3")
-]
-
-const SHOTGUN_COCK_SOUND_EFFECTS = [
-	preload("res://SFX/guns/cock_shotgun/1.mp3"),
-	preload("res://SFX/guns/cock_shotgun/2.mp3"),
-	preload("res://SFX/guns/cock_shotgun/3.mp3"),
-	preload("res://SFX/guns/cock_shotgun/4.mp3"),
-	preload("res://SFX/guns/cock_shotgun/5.mp3")
-]
-
-func get_random_shotgun_cock_sound_effect():
-	var random_sound = randi() % NO_AMMO_SOUND_EFFECTS.size()
-	return NO_AMMO_SOUND_EFFECTS[random_sound]
-	
-func get_random_no_ammo_sound_effect():
-	var random_sound = randi() % NO_AMMO_SOUND_EFFECTS.size()
-	return NO_AMMO_SOUND_EFFECTS[random_sound]
-
-func get_random_shot_sound_effect(weapon_shot):
-	var random_sound = randi() % GUN_SOUND_EFFECTS[weapon_shot].size()
-	return GUN_SOUND_EFFECTS[weapon_shot][random_sound]
-
-func get_level_bg_color():
-	return Color.from_rgba8(bg_colors[curr_level][0],bg_colors[curr_level][1],bg_colors[curr_level][2],bg_colors[curr_level][3])
-
-func get_level_wall_color():
-	return Color.from_rgba8(wall_colors[curr_level][0],wall_colors[curr_level][1],wall_colors[curr_level][2],wall_colors[curr_level][3])
-	
 func _ready() -> void:
+	Input.connect("joy_connection_changed",_on_joy_connection_changed)
 	level_resources.resize(2)
 	for i in LEVEL_AMOUNT:
 		level_resources[constants.game_modes.SINGLE].append(load("res://levels/lvl_s_" + str(i) + ".tscn"))
 		level_resources[constants.game_modes.MULTI].append(load("res://levels/lvl_m_" + str(i) + ".tscn"))
+		
+	sound_effects.resize(constants.sound_paths.size())
+	for i in constants.sound_effects.values():
+		var curr_file = 1
+		var curr_dir = SFX_PATH.path_join(constants.sound_paths[i])
+		while FileAccess.file_exists(curr_dir.path_join(str(curr_file) + ".mp3")):
+			sound_effects[i].append(load(curr_dir.path_join(str(curr_file) + ".mp3")))
+			curr_file += 1
 
 	players.resize(2)
-	
 	for i in constants.menus:
 		menu_resources.append(load("res://menus/" + i.to_lower() + ".tscn"))
 	RenderingServer.set_default_clear_color(get_level_bg_color())
@@ -112,6 +87,26 @@ func _ready() -> void:
 	level_instance = menu_resources[constants.menus.MAIN_MENU].instantiate()
 	add_child(level_instance)
 
+func _on_joy_connection_changed(device, connected):
+	if !connected and device in active_devices:
+		if !paused:
+			Engine.time_scale = 0
+			pause_menu.visible = true
+			paused = true
+
+func play_spatial_sound_effect(sound_effect, audio_position: Vector2):
+	var random = randi() % sound_effects[sound_effect].size()
+	var sound = sound_effects[sound_effect][random]
+	var audio_player = AUDIO_PLAYER.instantiate()
+	audio_player.global_position = audio_position
+	main_viewport.add_child(audio_player)
+	audio_player.play_sound(sound)
+
+func get_level_bg_color():
+	return Color.from_rgba8(bg_colors[curr_level][0],bg_colors[curr_level][1],bg_colors[curr_level][2],bg_colors[curr_level][3])
+
+func get_level_wall_color():
+	return Color.from_rgba8(wall_colors[curr_level][0],wall_colors[curr_level][1],wall_colors[curr_level][2],wall_colors[curr_level][3])
 	
 func check_enemy_amount():
 	amount_of_enemies -= 1
@@ -124,7 +119,7 @@ func get_world_to_render():
 
 func start_level():
 	if scene_type == constants.scene_types.LEVEL:
-		var main_viewport = level_instance.get_node("MainViewport")
+		main_viewport = level_instance.get_node("MainViewport")
 		main_camera = main_viewport.get_node("Camera2D")
 		players[0] = main_viewport.get_node("Player1")
 		players[0].init(players_settings[0])
@@ -132,7 +127,6 @@ func start_level():
 			players[1] = main_viewport.get_node("Player2")
 			players[1].init(players_settings[1])
 			world_to_render = main_viewport.world_2d
-			print(world_to_render)
 			split_cam_container = MULTIPLAYER_CAMERAS_CONTAINER.instantiate()
 			split_cam_container.main_camera = main_camera
 			split_cam_container.keyboard_player = keyboard_player
@@ -231,10 +225,10 @@ func _input(event):
 	if event.is_action_pressed("quit_keyboard") and scene_type == constants.scene_types.LEVEL:
 		if !paused:
 			Engine.time_scale = 0
-			pause_menu.show()
+			pause_menu.visible = true
 		if paused:
 			Engine.time_scale = 1
-			pause_menu.hide()
+			pause_menu.visible = false
 		paused = !paused
 		
 func is_device_active(device_id) -> bool:

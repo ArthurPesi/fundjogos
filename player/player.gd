@@ -46,6 +46,10 @@ func init(world_settings) -> void:
 
 func die_player():
 	if curr_state != constants.player_states.DEAD and MORTAL:
+		if player_settings.character == "rogue":
+			world.play_spatial_sound_effect(constants.sound_effects.PLAYER_DEATH_FEMALE, global_position)
+		else:
+			world.play_spatial_sound_effect(constants.sound_effects.PLAYER_DEATH_MALE, global_position)
 		curr_state = constants.player_states.DEAD
 		world.reload_level()
 		$CollisionShape2D.queue_free()
@@ -77,6 +81,8 @@ func melee():
 		atk_move = look_dir.normalized()
 		rotation = atan2(look_dir.y, look_dir.x)
 		curr_state = constants.player_states.ATTACKING
+		if player_settings.character == "fighter" or player_settings.character == "paladin":
+			world.play_spatial_sound_effect(player_settings.attack_sfx, global_position)
 	else:
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "modulate", modulate, 0.35).from(Color.RED)
@@ -105,15 +111,7 @@ func shoot():
 	weapon_obj.ammo -= 1
 	animate()
 	
-	var sound_player = AUDIO_PLAYER.instantiate()
-	var shot_sound = world.get_random_shot_sound_effect(curr_weapon_value)
-	add_child(sound_player)
-	sound_player.play_sound(shot_sound)
-	if curr_weapon_value == constants.weapons.SHOTGUN:
-		var reload_player = AUDIO_PLAYER.instantiate()
-		var reload_sound = world.get_random_shotgun_cock_sound_effect()
-		add_child(reload_player)
-		sound_player.connect("finished",reload_player.play_sound.bind(reload_sound))
+	world.play_spatial_sound_effect(weapon_obj.SFX, global_position)
 	
 	world.apply_shake(weapon_obj.SHAKE_STRENGTH)
 	var amount_of_bullets = randf_range(weapon_obj.MIN_BULLETS, weapon_obj.MAX_BULLETS)
@@ -135,6 +133,7 @@ func shoot():
 func get_weapon():
 	for i in constants.weapons.values():
 		if curr_collect.is_in_group(constants.weapons.keys()[i].to_lower()):
+			world.play_spatial_sound_effect(constants.sound_effects.PICK_UP, global_position)
 			if weapon_obj:
 				if weapon_obj.ammo > 0:
 					var just_dropped = weapon_dropped_presets[curr_weapon_value].instantiate()
