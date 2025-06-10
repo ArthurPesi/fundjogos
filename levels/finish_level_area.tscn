@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://v6w2xcklpea6"]
+
+[ext_resource type="Script" uid="uid://c8j70unhk5tct" path="res://levels/finish_level_area.gd" id="1_ujthb"]
+
+[node name="FinishLevelArea" type="Area2D"]
+script = ExtResource("1_ujthb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

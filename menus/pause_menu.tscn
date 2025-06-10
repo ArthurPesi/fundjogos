@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b50lcidds37wq" path="res://menus/pause_menu.gd" id="1_hdmo1"]
 
 [node name="pause_menu" type="Control"]
+process_mode = 3
 visible = false
 z_index = 99
 layout_mode = 3
@@ -18,15 +19,15 @@ offset_bottom = 333.0
 
 [node name="resume" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "resume"
+text = "RESUME"
 
 [node name="settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "settings"
+text = "SETTINGS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "quit"
+text = "QUIT"
 
 [connection signal="pressed" from="VBoxContainer/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

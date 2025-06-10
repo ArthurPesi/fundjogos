@@ -11,13 +11,30 @@ offset_top = 317.0
 offset_right = 713.0
 offset_bottom = 466.0
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "LANGUAGE"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "Português"
+popup/item_1/id = 1
+
 [node name="play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "play"
+text = "PLAY"
 
 [node name="back" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "BACK"
 
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

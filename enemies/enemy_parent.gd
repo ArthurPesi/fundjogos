@@ -105,7 +105,7 @@ func die():
 		curr_state = constants.enemy_states.DEAD
 		world.play_spatial_sound_effect(constants.sound_effects.ENEMY_DEATH, global_position)
 		
-		world.check_enemy_amount()
+		world.bookkeep_enemy_amount()
 		$CollisionShape2D.queue_free()
 
 		var tween = get_tree().create_tween()

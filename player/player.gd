@@ -75,7 +75,7 @@ func collision_should_kill(collision) -> bool:
 	return false
 	
 var atk_move = Vector2()
-
+var player_red = false
 func melee():
 	if attackCounter <= 0:
 		atk_move = look_dir.normalized()
@@ -83,9 +83,15 @@ func melee():
 		curr_state = constants.player_states.ATTACKING
 		if player_settings.character == "fighter" or player_settings.character == "paladin":
 			world.play_spatial_sound_effect(player_settings.attack_sfx, global_position)
-	else:
+	elif curr_state != constants.player_states.ATTACKING and !player_red:
+		player_red = true
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "modulate", modulate, 0.35).from(Color.RED)
+		tween.tween_callback(turn_on_red_animation)
+		
+func turn_on_red_animation():
+	await get_tree().create_timer(0.2).timeout
+	player_red = false
 
 func animate():
 	var tween = get_tree().create_tween().set_parallel(true)
@@ -200,7 +206,7 @@ func check_fire() -> bool:
 	
 func check_melee():
 	if player_settings.device_type == constants.device_types.KEYBOARD:
-		if Input.is_action_just_pressed(player_settings.knife_action) or (Input.is_action_just_pressed(player_settings.fire_action) and !weapon_obj):
+		if Input.is_action_pressed(player_settings.knife_action) or (Input.is_action_pressed(player_settings.fire_action) and !weapon_obj):
 			return true
 	else:
 		if (Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_RIGHT_SHOULDER) and !weapon_obj) or Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_LEFT_SHOULDER):

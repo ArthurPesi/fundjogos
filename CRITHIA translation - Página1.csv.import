@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://be3lpn8fhsbfn"
+
+[deps]
+
+files=["res://CRITHIA translation - Página1.en.translation", "res://CRITHIA translation - Página1.pt.translation"]
+
+source_file="res://CRITHIA translation - Página1.csv"
+dest_files=["res://CRITHIA translation - Página1.en.translation", "res://CRITHIA translation - Página1.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

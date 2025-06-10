@@ -8,6 +8,7 @@ enum enemy_states {REGULAR, AGGRO, DEAD}
 enum menus {MAIN_MENU, SETTINGS, CHAR_SELECTION}
 enum scene_types {MENU, LEVEL}
 enum sound_modes {SOLO, SPLIT}
+enum locales {en, pt}
 enum sound_effects {
 	SHOTGUN_SHOT, SHOTGUN_COCK, REVOLVER_SHOT, UZI_SHOT, NO_AMMO, PICK_UP,
 	ENEMY_AGGRO, ENEMY_DEATH, 

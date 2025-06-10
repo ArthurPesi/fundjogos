@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://csbx1baqsccec"]
+
+[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://menus/pause_menu.tscn" id="1_yu7ky"]
+
+[node name="PauseCanvas" type="CanvasLayer"]
+process_mode = 3
+
+[node name="pause_menu" parent="." instance=ExtResource("1_yu7ky")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

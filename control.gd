@@ -1,7 +1,6 @@
 extends Node2D
 
 const LEVEL_AMOUNT = 2
-var paused = false
 
 const bg_colors = [
 	[100, 34, 34, 255],
@@ -63,6 +62,8 @@ const SFX_PATH = "res://SFX/"
 var sound_effects: Array[Array]
 
 func _ready() -> void:
+	TranslationServer.set_locale("pt")
+	#TranslationServer.set_locale(OS.get_locale_language())
 	Input.connect("joy_connection_changed",_on_joy_connection_changed)
 	level_resources.resize(2)
 	for i in LEVEL_AMOUNT:
@@ -88,17 +89,8 @@ func _ready() -> void:
 	add_child(level_instance)
 
 func _on_joy_connection_changed(device, connected):
-	if !connected and device in active_devices and !paused:
-		pause_game()
-
-func pause_game():
-	if !paused:
-		Engine.time_scale = 0
-		pause_menu.visible = true
-	if paused:
-		Engine.time_scale = 1
-		pause_menu.visible = false
-	paused = !paused
+	if !connected and device in active_devices:
+		pause_menu.pause()
 
 func play_spatial_sound_effect(sound_effect, audio_position: Vector2):
 	var random = randi() % sound_effects[sound_effect].size()
@@ -114,10 +106,11 @@ func get_level_bg_color():
 func get_level_wall_color():
 	return Color.from_rgba8(wall_colors[curr_level][0],wall_colors[curr_level][1],wall_colors[curr_level][2],wall_colors[curr_level][3])
 	
-func check_enemy_amount():
+func bookkeep_enemy_amount():
 	amount_of_enemies -= 1
+
+func check_level_up():
 	if amount_of_enemies == 0:
-		await get_tree().create_timer(1).timeout
 		load_next_level()
 
 func get_world_to_render():
@@ -138,7 +131,7 @@ func start_level():
 			split_cam_container.keyboard_player = keyboard_player
 			add_child(split_cam_container)
 			
-		pause_menu = main_viewport.get_node("Camera2D/pause_menu")
+		pause_menu = level_instance.get_node("PauseCanvas/pause_menu")
 		enemy_holder = main_viewport.get_node("EnemyHolder")
 		navigation_region = main_viewport.get_node("NavigationRegion2D")
 		amount_of_enemies = enemy_holder.get_child_count()
@@ -226,10 +219,6 @@ func load_next_level():
 		curr_level += 1
 		RenderingServer.set_default_clear_color(get_level_bg_color())
 	load_scene(constants.scene_types.LEVEL, curr_level)
-
-func _input(event):
-	if event.is_action_pressed("quit_keyboard") and scene_type == constants.scene_types.LEVEL:
-		pause_game()
 		
 func is_device_active(device_id) -> bool:
 	return active_devices.has(device_id)

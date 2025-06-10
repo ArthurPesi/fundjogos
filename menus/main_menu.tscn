@@ -13,15 +13,15 @@ offset_bottom = 466.0
 
 [node name="play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "PLAY"
 
 [node name="settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Settings"
+text = "SETTINGS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+text = "QUIT"
 
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
