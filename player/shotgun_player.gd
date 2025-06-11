@@ -1,5 +1,5 @@
 extends AnimatedSprite2D
-
+@onready var HUD: Control = $ShotgunHud
 var ammo = 4
 const SFX = constants.sound_effects.SHOTGUN_SHOT
 const PRECISION = 0.27

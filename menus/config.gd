@@ -15,11 +15,9 @@ func _on_play_pressed() -> void:
 func _on_back_pressed() -> void:
 	world.load_scene(constants.scene_types.MENU, constants.menus.MAIN_MENU)
 
-
 func _input(event):
 	if event.is_action_pressed("quit_gamepad") or event.is_action_pressed("quit_keyboard"):
 		_on_back_pressed()
-
 
 func _on_option_button_item_selected(index: int) -> void:
 	TranslationServer.set_locale(constants.locales.keys()[index])

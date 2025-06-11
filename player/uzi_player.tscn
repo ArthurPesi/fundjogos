@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://skkkiog8k7yg"]
+
+[ext_resource type="PackedScene" uid="uid://jgvyanwa7amd" path="res://weapons/uzi_sprite.tscn" id="1_8ekv7"]
+[ext_resource type="Script" uid="uid://dywj4nvq8y4sx" path="res://player/uzi_player.gd" id="2_6ggad"]
+[ext_resource type="PackedScene" uid="uid://dpq77ar2nrcq0" path="res://player/uzi_hud.tscn" id="2_dutwr"]
+
+[node name="uzi" instance=ExtResource("1_8ekv7")]
+script = ExtResource("2_6ggad")
+
+[node name="UziHud" parent="." index="0" instance=ExtResource("2_dutwr")]
+offset_left = 26.6667
+offset_top = -14.6667
+offset_right = 26.6667
+offset_bottom = -14.6667
+rotation = 3.14159

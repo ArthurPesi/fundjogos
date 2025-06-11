@@ -28,13 +28,13 @@ var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 var unique_device
 const MORTAL = true
-const WEAPON_OFFSET = Vector2(8, 0)
+const WEAPON_OFFSET = Vector2(40, 0)
 var weapon_scale: Vector2
 
 func _ready() -> void:
 	
 	for i in constants.weapons:
-		weapon_holding_presets.append(load("res://weapons/" + i.to_lower() + "_sprite.tscn"))
+		weapon_holding_presets.append(load("res://player/" + i.to_lower() + "_player.tscn"))
 		weapon_dropped_presets.append(load("res://weapons/" + i.to_lower() + "_dropped.tscn"))
 
 func init(world_settings) -> void:
@@ -109,16 +109,12 @@ func shoot():
 		tween.tween_property(weapon_obj, "modulate", weapon_obj.modulate, 0.2).from(Color.RED)
 		tween.tween_property(weapon_obj, "rotation", weapon_obj.rotation, 0.3).from(weapon_obj.rotation - 1)
 		timer_weapon = randf_range(0.34, 0.69)
-		var no_ammo_player = AUDIO_PLAYER.instantiate()
-		var no_ammo_sound = world.get_random_no_ammo_sound_effect()
-		add_child(no_ammo_player)
-		no_ammo_player.play_sound(no_ammo_sound)
+		world.play_spatial_sound_effect(constants.sound_effects.NO_AMMO, global_position)
 		return
 	weapon_obj.ammo -= 1
 	animate()
-	
 	world.play_spatial_sound_effect(weapon_obj.SFX, global_position)
-	
+	weapon_obj.HUD.on_shoot(weapon_obj.COOLDOWN)
 	world.apply_shake(weapon_obj.SHAKE_STRENGTH)
 	var amount_of_bullets = randf_range(weapon_obj.MIN_BULLETS, weapon_obj.MAX_BULLETS)
 	for i in amount_of_bullets:

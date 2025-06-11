@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://0s6b1hmj0ncc"]
+[gd_scene load_steps=3 format=3 uid="uid://0s6b1hmj0ncc"]
 
 [ext_resource type="Texture2D" uid="uid://0e016tfw8y6p" path="res://Assets 2D/shotgun.png" id="1_7v58l"]
-[ext_resource type="Script" uid="uid://biev3kjrfycpu" path="res://player/shotgun_player.gd" id="2_dj187"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dj187"]
 animations = [{
@@ -17,4 +16,3 @@ animations = [{
 [node name="shotgun" type="AnimatedSprite2D"]
 scale = Vector2(-1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_dj187")
-script = ExtResource("2_dj187")

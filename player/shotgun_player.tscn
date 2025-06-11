@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddonwkkougpne"]
+
+[ext_resource type="PackedScene" uid="uid://0s6b1hmj0ncc" path="res://weapons/shotgun_sprite.tscn" id="1_t4f3x"]
+[ext_resource type="Script" uid="uid://biev3kjrfycpu" path="res://player/shotgun_player.gd" id="2_wwub1"]
+[ext_resource type="PackedScene" uid="uid://dnslge5fvlp3o" path="res://player/shotgun_hud.tscn" id="2_ypjja"]
+
+[node name="shotgun" instance=ExtResource("1_t4f3x")]
+script = ExtResource("2_wwub1")
+
+[node name="ShotgunHud" parent="." index="0" instance=ExtResource("2_ypjja")]
+offset_left = 21.3333
+offset_top = -5.33333
+offset_right = 21.3333
+offset_bottom = -5.33333
+rotation = 3.14159

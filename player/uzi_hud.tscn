@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpq77ar2nrcq0"]
+
+[ext_resource type="PackedScene" uid="uid://b3qnyyed0843u" path="res://player/weapon_hud.tscn" id="1_8wnwq"]
+
+[node name="UziHud" instance=ExtResource("1_8wnwq")]

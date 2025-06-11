@@ -149,8 +149,15 @@ rotation = -1.8739
 position = Vector2(512, 68)
 
 [node name="CollisionShape2D" parent="MainViewport/FinishLevelArea" index="0"]
-position = Vector2(117, 61)
+position = Vector2(117, 46)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_wonum")
+
+[node name="ColorRect" type="ColorRect" parent="MainViewport/FinishLevelArea"]
+offset_left = -142.0
+offset_top = -81.0
+offset_right = 380.0
+offset_bottom = 169.0
+color = Color(0, 0, 0, 1)
 
 [editable path="MainViewport/FinishLevelArea"]

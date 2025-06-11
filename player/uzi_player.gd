@@ -1,5 +1,6 @@
 extends AnimatedSprite2D
 
+@onready var HUD: Control = $UziHud
 
 var ammo = 50
 const SFX = constants.sound_effects.UZI_SHOT
