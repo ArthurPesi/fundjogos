@@ -27,6 +27,8 @@ func _input(event: InputEvent) -> void:
 		world.add_player(player_amt, event.device, device_type)
 		character_menu_instances[player_amt] = CHARACTER_MENU.instantiate()
 		character_menu_instances[player_amt].player = player_amt
+		character_menu_instances[player_amt].player_device_type = device_type
+		character_menu_instances[player_amt].player_device_id = event.device
 		h_box_container.add_child(character_menu_instances[player_amt])
 		player_amt += 1
 

@@ -1,9 +1,11 @@
 extends Control
 
 @onready var world: Node2D = $"../../.."
+@onready var resume_button: Button = $VBoxContainer/resume
 
 const SETTINGS = preload("res://menus/settings_level.tscn")
 var settings_instance
+
 
 func resume():
 	hide()
@@ -11,6 +13,7 @@ func resume():
 
 func pause():
 	show()
+	resume_button.grab_focus()
 	get_tree().paused = true
 
 func _on_resume_pressed() -> void:

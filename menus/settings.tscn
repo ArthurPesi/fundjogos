@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwpx3ivyqu51m"]
+[gd_scene load_steps=4 format=3 uid="uid://bwpx3ivyqu51m"]
 
 [ext_resource type="Script" uid="uid://dpsjioma6vra1" path="res://menus/config.gd" id="1_urrvo"]
 [ext_resource type="PackedScene" uid="uid://cqfo3nwi14n4e" path="res://menus/volume_slider.tscn" id="2_kot5a"]
+[ext_resource type="Script" uid="uid://b2u3qxc4b5o86" path="res://menus/language_selector.gd" id="3_0uirt"]
 
 [node name="settingsMenu" type="Control"]
 process_mode = 3
@@ -72,6 +73,7 @@ popup/item_0/text = "English"
 popup/item_0/id = 0
 popup/item_1/text = "Português"
 popup/item_1/id = 1
+script = ExtResource("3_0uirt")
 
 [node name="play" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2

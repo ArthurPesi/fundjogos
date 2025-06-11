@@ -76,7 +76,8 @@ func enter_aggro(aggro_target):
 	world.play_spatial_sound_effect(constants.sound_effects.ENEMY_AGGRO, global_position)
 	curr_state = constants.enemy_states.AGGRO
 	target = aggro_target
-	vision_area.queue_free()
+	if (vision_area):
+		vision_area.queue_free()
 	add_to_group("trigger_aggro")
 
 func _physics_process(delta: float) -> void:

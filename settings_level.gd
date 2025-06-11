@@ -13,6 +13,7 @@ func _on_play_pressed() -> void:
 
 func _on_back_pressed() -> void:
 	pause_menu.show()
+	pause_menu.resume_button.grab_focus()
 	queue_free()
 
 func _input(event):
