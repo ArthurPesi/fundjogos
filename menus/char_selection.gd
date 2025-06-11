@@ -34,8 +34,10 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action("quit_gamepad") and event.is_pressed() and world.is_device_active(event.device):
 		remove_all_players()
-	if event.is_action("quit_keyboard") and event.is_pressed() and world.is_device_active(-1):
+	elif event.is_action("quit_keyboard") and event.is_pressed() and world.is_device_active(-1):
 		remove_all_players()
+	elif (Input.is_action_just_pressed("quit_keyboard") or Input.is_action_just_pressed("quit_gamepad")) and player_amt == 0:
+		world.load_scene(constants.scene_types.MENU, constants.menus.MAIN_MENU)
 
 func remove_all_players():
 	world.remove_all_players()
