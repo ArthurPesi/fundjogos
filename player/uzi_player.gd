@@ -1,6 +1,7 @@
-extends AnimatedSprite2D
+extends Node2D
 
 @onready var HUD: Control = $UziHud
+@onready var sprite: AnimatedSprite2D = $uzi
 
 var ammo = 50
 const SFX = constants.sound_effects.UZI_SHOT

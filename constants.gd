@@ -15,6 +15,9 @@ enum sound_effects {
 	PLAYER_DEATH_MALE, PLAYER_DEATH_FEMALE, FIGHTER_ATTACK, PALADIN_ATTACK,
 	BUTTON_CLICK
 }
+const PIOVERTWO: float = PI / 2
+const PIOVERFOUR: float = PI / 4
+const THREEPIOVERTWO: float = 3 * PI / 2
 const sound_paths = [
 	"guns/shotgun", "guns/cock_shotgun", "guns/revolver", "guns/uzi", "guns/no_ammo", "guns/pick_up",
 	"enemies/aggro", "enemies/death",

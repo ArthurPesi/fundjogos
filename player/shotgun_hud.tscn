@@ -1,5 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnslge5fvlp3o"]
+[gd_scene load_steps=2 format=3 uid="uid://dkah5yjmxrlak"]
 
-[ext_resource type="PackedScene" uid="uid://b3qnyyed0843u" path="res://player/weapon_hud.tscn" id="1_q4545"]
+[ext_resource type="Script" uid="uid://4c6ov2rdsx83" path="res://weapon_hud.gd" id="1_q4545"]
 
-[node name="ShotgunHud" instance=ExtResource("1_q4545")]
+[node name="ShotgunHud" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q4545")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 57.0
+offset_bottom = 12.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(9, 6)
+layout_mode = 2
+color = Color(0.721569, 0, 0.145098, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(9, 6)
+layout_mode = 2
+color = Color(0.721569, 0, 0.145098, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(9, 6)
+layout_mode = 2
+color = Color(0.721569, 0, 0.145098, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(9, 6)
+layout_mode = 2
+color = Color(0.721569, 0, 0.145098, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 21.0
+offset_bottom = 14.0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 3
+
+[node name="LoadedRect" type="ColorRect" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(9, 6)
+layout_mode = 2
+color = Color(0.35323, 0.803637, 0.420871, 1)
+
+[node name="LoadRect" type="ColorRect" parent="MarginContainer2/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(9, 6)
+layout_mode = 2
+color = Color(0.784314, 0.690196, 0.301961, 1)

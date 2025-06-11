@@ -28,7 +28,7 @@ var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 var unique_device
 const MORTAL = true
-const WEAPON_OFFSET = Vector2(40, 0)
+const WEAPON_OFFSET = Vector2(25, 0)
 var weapon_scale: Vector2
 
 func _ready() -> void:
@@ -93,13 +93,15 @@ func turn_on_red_animation():
 	await get_tree().create_timer(0.2).timeout
 	player_red = false
 
+var sprite_weapon_scale
 func animate():
 	var tween = get_tree().create_tween().set_parallel(true)
-	tween.tween_property(weapon_obj, "scale", weapon_scale, weapon_obj.ANIMATION_DURATION).from(weapon_obj.scale * weapon_obj.ANIMATION_INCREASE)
-	tween.tween_property(weapon_obj, "modulate:v", 1, weapon_obj.ANIMATION_DURATION/2).from(10)
+	tween.tween_property(weapon_obj.sprite, "scale", sprite_weapon_scale, weapon_obj.ANIMATION_DURATION).from(sprite_weapon_scale * weapon_obj.ANIMATION_INCREASE)
+	tween.tween_property(weapon_obj.sprite, "modulate:v", 1, weapon_obj.ANIMATION_DURATION/2).from(10)
 	tween.tween_property(weapon_obj, "position", WEAPON_OFFSET, weapon_obj.ANIMATION_DURATION).from(Vector2.ZERO)
 	tween.tween_property(weapon_obj, "rotation", 0, weapon_obj.ANIMATION_DURATION).from(weapon_obj.rotation - weapon_obj.ANIMATION_FALLBACK)
-	tween.tween_property($AnimatedSprite2D, "scale:y", $AnimatedSprite2D.get_scale().y, weapon_obj.ANIMATION_SQUASH).from(2)
+	tween.tween_property(sprite_instance, "scale:y", sprite_instance.get_scale().y, weapon_obj.ANIMATION_SQUASH).from(sprite_instance.get_scale().y * 1.5)
+	tween.tween_property(sprite_instance, "scale:x", sprite_instance.get_scale().x, weapon_obj.ANIMATION_SQUASH).from(sprite_instance.get_scale().x * 0.66)
 
 func shoot():
 	if timer_weapon > 0 or !weapon_obj:
@@ -132,6 +134,15 @@ func shoot():
 		if N.curr_state == constants.enemy_states.REGULAR:
 			N.enter_aggro(self)
 	
+func _process(delta: float) -> void:
+	if weapon_obj:
+		if cos(global_rotation) < 0:
+			if weapon_scale.y > 0:
+				weapon_obj.scale.y *= -1
+				weapon_scale.y = weapon_obj.scale.y
+		elif weapon_scale.y < 0:
+			weapon_obj.scale.y *= -1
+			weapon_scale.y = weapon_obj.scale.y
 func get_weapon():
 	for i in constants.weapons.values():
 		if curr_collect.is_in_group(constants.weapons.keys()[i].to_lower()):
@@ -149,9 +160,10 @@ func get_weapon():
 			weapon_obj = weapon_holding_presets[i].instantiate()
 			weapon_obj.ammo = curr_collect.ammo
 			weapon_obj.position = WEAPON_OFFSET
-			weapon_scale = weapon_obj.scale
 			curr_collect.queue_free()
 			add_child(weapon_obj)
+			weapon_scale = weapon_obj.scale
+			sprite_weapon_scale = weapon_obj.sprite.scale
 			break
 
 func can_collect(object):

@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://skkkiog8k7yg"]
+[gd_scene load_steps=4 format=3 uid="uid://gwefbq1qnfs"]
 
 [ext_resource type="PackedScene" uid="uid://jgvyanwa7amd" path="res://weapons/uzi_sprite.tscn" id="1_8ekv7"]
 [ext_resource type="Script" uid="uid://dywj4nvq8y4sx" path="res://player/uzi_player.gd" id="2_6ggad"]
-[ext_resource type="PackedScene" uid="uid://dpq77ar2nrcq0" path="res://player/uzi_hud.tscn" id="2_dutwr"]
+[ext_resource type="PackedScene" uid="uid://capghjape5fcd" path="res://player/uzi_hud.tscn" id="2_dutwr"]
 
-[node name="uzi" instance=ExtResource("1_8ekv7")]
+[node name="UziPlayer" type="Node2D"]
 script = ExtResource("2_6ggad")
 
-[node name="UziHud" parent="." index="0" instance=ExtResource("2_dutwr")]
-offset_left = 26.6667
-offset_top = -14.6667
-offset_right = 26.6667
-offset_bottom = -14.6667
-rotation = 3.14159
+[node name="uzi" parent="." instance=ExtResource("1_8ekv7")]
+position = Vector2(26, 14)
+
+[node name="UziHud" parent="." instance=ExtResource("2_dutwr")]
+offset_left = -2.0
+offset_top = -25.0
+offset_right = -2.0
+offset_bottom = -25.0

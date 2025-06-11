@@ -1,5 +1,6 @@
-extends AnimatedSprite2D
+extends Node2D
 @onready var HUD: Control = $RevolverHud
+@onready var sprite: AnimatedSprite2D = $revolver
 
 var ammo = 6
 var SFX = constants.sound_effects.REVOLVER_SHOT
