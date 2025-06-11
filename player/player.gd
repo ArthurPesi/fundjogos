@@ -30,7 +30,6 @@ var unique_device
 const MORTAL = true
 const WEAPON_OFFSET = Vector2(25, 0)
 var weapon_scale: Vector2
-
 func _ready() -> void:
 	
 	for i in constants.weapons:
@@ -134,7 +133,7 @@ func shoot():
 		if N.curr_state == constants.enemy_states.REGULAR:
 			N.enter_aggro(self)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if weapon_obj:
 		if cos(global_rotation) < 0:
 			if weapon_scale.y > 0:
@@ -172,6 +171,13 @@ func can_collect(object):
 func _physics_process(delta: float) -> void:
 	if player_settings.device_type == constants.device_types.KEYBOARD:
 		look_dir = get_global_mouse_position() - position
+	else:
+		var dir_input = Vector2(Input.get_joy_axis(player_settings.device, JOY_AXIS_RIGHT_X), Input.get_joy_axis(player_settings.device, JOY_AXIS_RIGHT_Y))
+		if dir_input.length_squared() > 0.25:
+			look_dir = dir_input
+		elif walk_dir.length_squared() > 0.25:
+			look_dir = walk_dir
+		print(look_dir)
 	match curr_state:
 		constants.player_states.WALKING:
 			if attackCounter > 0:
@@ -227,9 +233,9 @@ func _input(event: InputEvent) -> void:
 			get_weapon()
 		
 		walk_dir = Vector2(Input.get_axis(player_settings.left_action,player_settings.right_action), Input.get_axis(player_settings.up_action,player_settings.down_action)).normalized()
-		if player_settings.device_type == constants.device_types.GAMEPAD:
-			if event.is_action_pressed("look_down_gamepad") or event.is_action_pressed("look_up_gamepad") or event.is_action_pressed("look_left_gamepad") or event.is_action_pressed("look_right_gamepad"):
-				look_dir = Vector2(Input.get_axis("look_left_gamepad","look_right_gamepad"), Input.get_axis("look_up_gamepad","look_down_gamepad"))
+		#if player_settings.device_type == constants.device_types.GAMEPAD:
+			#if event.is_action_pressed("look_down_gamepad") or event.is_action_pressed("look_up_gamepad") or event.is_action_pressed("look_left_gamepad") or event.is_action_pressed("look_right_gamepad"):
+				#look_dir = Vector2(Input.get_axis("look_left_gamepad","look_right_gamepad"), Input.get_axis("look_up_gamepad","look_down_gamepad"))
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

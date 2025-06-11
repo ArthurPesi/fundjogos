@@ -40,7 +40,7 @@ func get_true_width(angle):
 		return width_angle / cos(PI - angle)
 	return get_true_width(angle - PI)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !player_1 or !player_2:
 		return
 	var diff =  player_2.position - player_1.position

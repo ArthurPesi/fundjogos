@@ -16,7 +16,7 @@ func _ready() -> void:
 	for i in h_box_container.get_children():
 		rects.append(i)
 		
-func on_shoot(tween_time):
+func on_shoot(_tween_time):
 	if ammo < 1:
 		return
 	if ammo > 1:
