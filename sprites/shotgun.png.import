@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp3urd5rybe04"
-path="res://.godot/imported/Jump (32x32).png-aab3f9ccd95f29a4d1bff8660281c2ea.ctex"
+uid="uid://0e016tfw8y6p"
+path="res://.godot/imported/shotgun.png-0c67f93feb0f6dd5040af835fde1d6e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets 2D/Players/Ninja Frog/Jump (32x32).png"
-dest_files=["res://.godot/imported/Jump (32x32).png-aab3f9ccd95f29a4d1bff8660281c2ea.ctex"]
+source_file="res://sprites/shotgun.png"
+dest_files=["res://.godot/imported/shotgun.png-0c67f93feb0f6dd5040af835fde1d6e7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxhvb6dusxchq"
-path="res://.godot/imported/Hit (32x32).png-166bb1d23a9d3c58c3fd8d4d6df49212.ctex"
+uid="uid://bgu188dl4tsf"
+path="res://.godot/imported/uzi.png-b8540fe4a7d37159c8e5912a5a9186d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets 2D/Players/Mask Dude/Hit (32x32).png"
-dest_files=["res://.godot/imported/Hit (32x32).png-166bb1d23a9d3c58c3fd8d4d6df49212.ctex"]
+source_file="res://sprites/uzi.png"
+dest_files=["res://.godot/imported/uzi.png-b8540fe4a7d37159c8e5912a5a9186d3.ctex"]
 
 [params]
 

@@ -76,6 +76,10 @@ position = Vector2(636, 95)
 [node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("7_nw3eo")]
 position = Vector2(784, 221)
 
+[node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("5_8vntl")]
+position = Vector2(-1452, -192)
+scale = Vector2(2, 2)
+
 [node name="FinishLevelArea" parent="." instance=ExtResource("5_sgibt")]
 position = Vector2(512, 68)
 

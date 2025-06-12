@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cn2nwvg5i7skm"]
 
-[ext_resource type="Texture2D" uid="uid://bm4tnxf7ypa70" path="res://Assets 2D/revolver.png" id="1_1lfba"]
+[ext_resource type="Texture2D" uid="uid://bm4tnxf7ypa70" path="res://sprites/revolver_old.png" id="1_1lfba"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c4oxc"]
 animations = [{
