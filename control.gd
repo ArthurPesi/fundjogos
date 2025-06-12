@@ -13,7 +13,7 @@ const wall_colors = [
 ]
 
 signal confirmation_signal
-var curr_level = 0
+var curr_level_id = 0
 var show_transition_text := false
 var active_devices: Array[int]
 class player_class:
@@ -31,7 +31,7 @@ class player_class:
 	var character_sprite
 	
 var players_settings: Array[player_class] = [player_class.new(), player_class.new()]
-
+const LEVEL_HOLDER_PRESET = preload("res://levels/level_holder.tscn")
 var game_mode = constants.game_modes.SINGLE
 var sound_mode = constants.sound_modes.SOLO
 var keyboard_player: int
@@ -44,7 +44,7 @@ var shake_strength: float = 0.0
 var noise_i: float = 0.0
 var menu_resources: Array[Resource]
 @onready var level_resources: Array[Array]
-var level_instance
+var level_holder
 var scene_type = constants.scene_types.MENU
 var noise = FastNoiseLite.new()
 var rand = RandomNumberGenerator.new()
@@ -62,6 +62,7 @@ const AUDIO_PLAYER = preload("res://audio_player.tscn")
 const SFX_PATH = "res://SFX/"
 var sound_effects: Array[Array]
 var transition_label: Label
+var level_instance
 
 func _ready() -> void:
 	TranslationServer.set_locale(OS.get_locale_language())
@@ -102,10 +103,10 @@ func play_spatial_sound_effect(sound_effect, audio_position: Vector2):
 	audio_player.play_sound(sound)
 
 func get_level_bg_color():
-	return Color.from_rgba8(bg_colors[curr_level][0],bg_colors[curr_level][1],bg_colors[curr_level][2],bg_colors[curr_level][3])
+	return Color.from_rgba8(bg_colors[curr_level_id][0],bg_colors[curr_level_id][1],bg_colors[curr_level_id][2],bg_colors[curr_level_id][3])
 
 func get_level_wall_color():
-	return Color.from_rgba8(wall_colors[curr_level][0],wall_colors[curr_level][1],wall_colors[curr_level][2],wall_colors[curr_level][3])
+	return Color.from_rgba8(wall_colors[curr_level_id][0],wall_colors[curr_level_id][1],wall_colors[curr_level_id][2],wall_colors[curr_level_id][3])
 	
 func bookkeep_enemy_amount():
 	amount_of_enemies -= 1
@@ -119,14 +120,15 @@ func get_world_to_render():
 
 func start_level():
 	if scene_type == constants.scene_types.LEVEL:
-		main_viewport = level_instance.get_node("MainViewport")
-		main_camera = main_viewport.get_node("Camera2D")
-		transition_label = level_instance.get_node("TextCanvas/Control/Label")
+		main_viewport = level_holder.get_node("MainViewport")
+		transition_label = level_holder.get_node("TextCanvas/Control/Label")
 		transition_label.text = "LEVEL1_1"
-		players[0] = main_viewport.get_node("Player1")
+		main_viewport.add_child(level_instance)
+		main_camera = level_instance.get_node("Camera2D")
+		players[0] = level_instance.get_node("Player1")
 		players[0].init(players_settings[0])
 		if game_mode == constants.game_modes.MULTI:
-			players[1] = main_viewport.get_node("Player2")
+			players[1] = level_instance.get_node("Player2")
 			players[1].init(players_settings[1])
 			world_to_render = main_viewport.world_2d
 			split_cam_container = MULTIPLAYER_CAMERAS_CONTAINER.instantiate()
@@ -134,9 +136,9 @@ func start_level():
 			split_cam_container.keyboard_player = keyboard_player
 			add_child(split_cam_container)
 			
-		pause_menu = level_instance.get_node("PauseCanvas/pause_menu")
-		enemy_holder = main_viewport.get_node("EnemyHolder")
-		navigation_region = main_viewport.get_node("NavigationRegion2D")
+		pause_menu = level_holder.get_node("PauseCanvas/pause_menu")
+		enemy_holder = level_instance.get_node("EnemyHolder")
+		navigation_region = level_instance.get_node("NavigationRegion2D")
 		amount_of_enemies = enemy_holder.get_child_count()
 		
 		var tween = get_tree().create_tween().set_parallel(true)
@@ -197,7 +199,7 @@ func _input(event: InputEvent) -> void:
 		confirmation_signal.emit()
 	
 func reload_level():
-	load_scene(constants.scene_types.LEVEL, curr_level)
+	load_scene(constants.scene_types.LEVEL, curr_level_id)
 	
 func load_scene(new_type, new_scene):
 	if scene_type == constants.scene_types.LEVEL:
@@ -211,25 +213,31 @@ func load_scene(new_type, new_scene):
 		transition_label.show()
 		await confirmation_signal
 		show_transition_text = false
+		
 	if(level_instance):
 		level_instance.queue_free()
-	
+		
+	if scene_type == constants.scene_types.LEVEL and new_type == constants.scene_types.MENU and level_holder:
+		level_holder.queue_free()
+		
 	await get_tree().create_timer(0.2).timeout
 	scene_type = new_type
 	if new_type == constants.scene_types.LEVEL:
+		if !level_holder:
+			level_holder = LEVEL_HOLDER_PRESET.instantiate()
+			add_child(level_holder)
 		level_instance = level_resources[game_mode][new_scene].instantiate()
-		add_child(level_instance)
 		start_level()
 	elif new_type == constants.scene_types.MENU:
 		level_instance = menu_resources[new_scene].instantiate()
 		add_child(level_instance)
 	
 func load_next_level():
-	if curr_level + 1 < level_resources.size() and scene_type == constants.scene_types.LEVEL:
-		curr_level += 1
+	if curr_level_id + 1 < level_resources.size() and scene_type == constants.scene_types.LEVEL:
+		curr_level_id += 1
 		RenderingServer.set_default_clear_color(get_level_bg_color())
 	show_transition_text = true
-	load_scene(constants.scene_types.LEVEL, curr_level)
+	load_scene(constants.scene_types.LEVEL, curr_level_id)
 		
 func is_device_active(device_id) -> bool:
 	return active_devices.has(device_id)

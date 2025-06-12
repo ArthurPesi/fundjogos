@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bpna1fgeuu3mq" path="res://player/player.gd" id="1_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
-size = Vector2(6, 24)
+size = Vector2(8, 24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 160.05

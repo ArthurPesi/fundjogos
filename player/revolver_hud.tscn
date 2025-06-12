@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cfiapp5ridsnh"]
 
-[ext_resource type="Script" uid="uid://4c6ov2rdsx83" path="res://weapon_hud.gd" id="1_dk6qj"]
+[ext_resource type="Script" uid="uid://4c6ov2rdsx83" path="res://weapons/weapon_hud.gd" id="1_dk6qj"]
 
 [node name="RevolverHud" type="Control"]
 layout_mode = 3

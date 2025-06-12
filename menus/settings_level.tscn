@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://0f8i1wwnopwt"]
 
 [ext_resource type="PackedScene" uid="uid://bwpx3ivyqu51m" path="res://menus/settings.tscn" id="1_3iqeh"]
-[ext_resource type="Script" uid="uid://4icrnrtr6j1s" path="res://settings_level.gd" id="2_covo3"]
+[ext_resource type="Script" uid="uid://4icrnrtr6j1s" path="res://levels/settings_level.gd" id="2_covo3"]
 
 [node name="settingsLevel" instance=ExtResource("1_3iqeh")]
 script = ExtResource("2_covo3")

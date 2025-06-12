@@ -75,7 +75,7 @@ animations = [{
 size = Vector2(5, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dccvl"]
-size = Vector2(3, 7)
+size = Vector2(3.66667, 9.66667)
 
 [node name="EnemyGeneric" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_8xuwg")
@@ -100,6 +100,7 @@ shape = SubResource("RectangleShape2D_nvcvs")
 [node name="VisionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="VisionArea"]
+visible = false
 polygon = PackedVector2Array(-50, 50, 389, 250, 389, -250, -50, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

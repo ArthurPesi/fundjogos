@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpf2ufavx1w05"]
+[gd_scene load_steps=9 format=3 uid="uid://d2ub08nan2w20"]
 
 [ext_resource type="Script" uid="uid://cjo0x1xf2v07o" path="res://levels/camera_single.gd" id="1_jbxef"]
-[ext_resource type="PackedScene" uid="uid://b733t0yxb3u2m" path="res://menus/pause_menu.tscn" id="2_v7lah"]
 [ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="3_jry5h"]
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="4_7xlvc"]
 [ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="5_iddjs"]
@@ -22,13 +21,6 @@ enabled = false
 zoom = Vector2(3.5, 3.5)
 position_smoothing_enabled = true
 script = ExtResource("1_jbxef")
-
-[node name="pause_menu" parent="Camera2D" instance=ExtResource("2_v7lah")]
-visible = false
-offset_left = -571.0
-offset_top = -311.0
-offset_right = -571.0
-offset_bottom = -311.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0ha08")

@@ -1,0 +1,127 @@
+[gd_scene load_steps=14 format=3 uid="uid://rqhvrd8m0ije"]
+
+[ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="1_iyd8v"]
+[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="2_hb5bh"]
+[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="3_ixjdu"]
+[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="4_vbfkr"]
+[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="5_5ncmu"]
+[ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="6_im20e"]
+[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="7_jrglu"]
+[ext_resource type="Texture2D" uid="uid://ccopwmupjol38" path="res://about-to-die.jpg" id="8_5yf2o"]
+[ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="9_vclnn"]
+[ext_resource type="PackedScene" uid="uid://csbx1baqsccec" path="res://levels/pause_canvas.tscn" id="10_dka83"]
+[ext_resource type="PackedScene" uid="uid://behkge2lc5rai" path="res://levels/text_canvas.tscn" id="11_md3js"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
+vertices = PackedVector2Array(766.203, 401.797, 803.398, 398.203, 1070.6, 398.203, 1171.8, 402.797, 938.398, 421.797, 898.602, 419.797, 1216.39, 106.617, 1234.6, 590.609, 1205.6, 421.797, 1199.6, 303.203, 1199.6, 276.797, 892.602, 521.203, 521.141, 564.469, 625.398, 521.203, 866.203, 358.797, 891.797, 371.797, 803.398, 371.797, 839.797, 358.797, 891.797, 180.203, 866.203, 145.203, 938.398, 448.203, 1205.6, 448.203, 892.602, 494.797, 898.602, 446.203, 631.398, 446.203, 625.398, 494.797, 766.203, 188.203, 839.797, 145.203, 1171.8, 303.203, 1070.6, 371.797, 932.398, 303.203, 918.203, 371.797, 918.203, 180.203, 932.398, 276.797, 1198.2, 276.797, 1198.2, 189.203, 1171.8, 189.203, 1171.8, 276.797, 1198.2, 402.797, 1198.2, 303.203, 642.656, 142.531, 631.398, 419.797, 739.797, 188.203, 739.797, 401.797)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 7, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 15, 14, 19), PackedInt32Array(20, 21, 7, 11, 22), PackedInt32Array(20, 22, 23, 4), PackedInt32Array(24, 23, 22, 25), PackedInt32Array(1, 0, 26, 16), PackedInt32Array(17, 16, 26, 27), PackedInt32Array(4, 23, 5), PackedInt32Array(28, 3, 2, 29), PackedInt32Array(30, 28, 29, 31), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(10, 34, 35, 6), PackedInt32Array(36, 37, 33, 32), PackedInt32Array(38, 39, 9, 8), PackedInt32Array(6, 35, 36, 32, 19), PackedInt32Array(25, 13, 12), PackedInt32Array(25, 12, 40, 41), PackedInt32Array(32, 18, 19), PackedInt32Array(40, 6, 19, 27), PackedInt32Array(40, 27, 26, 42), PackedInt32Array(40, 42, 43, 41), PackedInt32Array(7, 21, 8), PackedInt32Array(38, 8, 4, 3), PackedInt32Array(0, 5, 41, 43), PackedInt32Array(25, 41, 24)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(635, 133, 508, 574, 1245, 601, 1226, 96)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50vti"]
+size = Vector2(69, 61.5)
+
+[node name="lvl_m_0" type="SubViewportContainer"]
+
+[node name="MainViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="MainViewport"]
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="MainViewport"]
+position = Vector2(-1176, -359)
+scale = Vector2(2, 2)
+navigation_polygon = SubResource("NavigationPolygon_0ha08")
+script = ExtResource("1_iyd8v")
+
+[node name="vert1" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(753, 295)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(853, 252)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert4" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(905, 287)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="vert5" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(1185, 296)
+rotation = 1.5708
+scale = Vector2(9.68, 0.319995)
+
+[node name="hor7" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(765, 433)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor4" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(937, 385)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor5" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(1066, 290)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor6" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(759, 508)
+scale = Vector2(12.36, 0.319995)
+
+[node name="hor1" parent="MainViewport/NavigationRegion2D" instance=ExtResource("2_hb5bh")]
+position = Vector2(1072, 435)
+scale = Vector2(12.36, 0.319995)
+
+[node name="Player1" parent="MainViewport" instance=ExtResource("3_ixjdu")]
+z_index = 2
+position = Vector2(807, 284)
+
+[node name="Player2" parent="MainViewport" instance=ExtResource("3_ixjdu")]
+z_index = 2
+position = Vector2(828, 350)
+
+[node name="EnemyHolder" parent="MainViewport" instance=ExtResource("4_vbfkr")]
+
+[node name="shotgun_enemy" parent="MainViewport/EnemyHolder" instance=ExtResource("5_5ncmu")]
+position = Vector2(410, 188)
+
+[node name="shotgun_enemy2" parent="MainViewport/EnemyHolder" instance=ExtResource("5_5ncmu")]
+position = Vector2(177, 263)
+
+[node name="shotgun_enemy3" parent="MainViewport/EnemyHolder" instance=ExtResource("5_5ncmu")]
+position = Vector2(757, 139)
+
+[node name="uzi_enemy" parent="MainViewport/EnemyHolder" instance=ExtResource("6_im20e")]
+position = Vector2(693, 476)
+rotation = 2.98277
+
+[node name="revolver_enemy" parent="MainViewport/EnemyHolder" instance=ExtResource("7_jrglu")]
+position = Vector2(539, 365)
+
+[node name="revolver_enemy2" parent="MainViewport/EnemyHolder" instance=ExtResource("7_jrglu")]
+position = Vector2(782, 583)
+
+[node name="About-to-die" type="Sprite2D" parent="MainViewport"]
+z_index = -2
+position = Vector2(784, 340.25)
+scale = Vector2(1.38632, 1.69409)
+texture = ExtResource("8_5yf2o")
+
+[node name="FinishLevelArea" parent="MainViewport" instance=ExtResource("9_vclnn")]
+
+[node name="CollisionShape2D" parent="MainViewport/FinishLevelArea" index="0"]
+position = Vector2(214.5, 65.25)
+shape = SubResource("RectangleShape2D_50vti")
+
+[node name="PauseCanvas" parent="." instance=ExtResource("10_dka83")]
+
+[node name="TextCanvas" parent="." instance=ExtResource("11_md3js")]
+
+[editable path="MainViewport/FinishLevelArea"]

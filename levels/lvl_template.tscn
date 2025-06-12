@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://oskfdeihfhqt"]
+
+[ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_euydw"]
+[ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="2_8y2qb"]
+[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="4_kgubn"]
+[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="5_llmfc"]
+[ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="9_r7dn1"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wonum"]
+size = Vector2(33, 32)
+
+[node name="lvl_s_0" type="Node2D"]
+
+[node name="Camera2D" parent="." instance=ExtResource("1_euydw")]
+position = Vector2(580, 317)
+zoom = Vector2(1, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-1452, -192)
+scale = Vector2(2, 2)
+navigation_polygon = SubResource("NavigationPolygon_0ha08")
+script = ExtResource("2_8y2qb")
+
+[node name="Player1" parent="." instance=ExtResource("4_kgubn")]
+z_index = 2
+position = Vector2(345, 394)
+
+[node name="EnemyHolder" parent="." instance=ExtResource("5_llmfc")]
+
+[node name="FinishLevelArea" parent="." instance=ExtResource("9_r7dn1")]
+position = Vector2(512, 68)
+
+[node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
+position = Vector2(-446, -2)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_wonum")
+
+[editable path="FinishLevelArea"]
