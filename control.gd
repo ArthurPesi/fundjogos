@@ -67,11 +67,22 @@ var level_instance
 func _ready() -> void:
 	TranslationServer.set_locale(OS.get_locale_language())
 	Input.connect("joy_connection_changed",_on_joy_connection_changed)
+	
 	level_resources.resize(2)
-	for i in LEVEL_AMOUNT:
-		level_resources[constants.game_modes.SINGLE].append(load("res://levels/lvl_s_" + str(i) + ".tscn"))
-		level_resources[constants.game_modes.MULTI].append(load("res://levels/lvl_m_" + str(i) + ".tscn"))
+	var i_level = 0
+	var i_path_level = "res://levels/lvl_s_" + str(i_level) + ".tscn"
+	while FileAccess.file_exists(i_path_level):
+		level_resources[constants.game_modes.SINGLE].append(load(i_path_level))
+		i_level += 1
+		i_path_level = "res://levels/lvl_s_" + str(i_level) + ".tscn"
 		
+	i_level = 0
+	i_path_level = "res://levels/lvl_m_" + str(i_level) + ".tscn"
+	while FileAccess.file_exists(i_path_level):
+		level_resources[constants.game_modes.MULTI].append(load(i_path_level))
+		i_level += 1
+		i_path_level = "res://levels/lvl_m_" + str(i_level) + ".tscn"
+	
 	sound_effects.resize(constants.sound_paths.size())
 	for i in constants.sound_effects.values():
 		var curr_file = 1
@@ -123,6 +134,7 @@ func start_level():
 		main_viewport = level_holder.get_node("MainViewport")
 		transition_label = level_holder.get_node("TextCanvas/Control/Label")
 		transition_label.text = "LEVEL1_1"
+		transition_label.hide()
 		main_viewport.add_child(level_instance)
 		main_camera = level_instance.get_node("Camera2D")
 		players[0] = level_instance.get_node("Player1")

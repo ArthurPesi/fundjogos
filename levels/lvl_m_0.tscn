@@ -23,6 +23,7 @@ size = Vector2(33, 32)
 [node name="Camera2D" parent="." instance=ExtResource("1_6g17r")]
 position = Vector2(580, 317)
 zoom = Vector2(1, 1)
+script = null
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-1452, -192)
