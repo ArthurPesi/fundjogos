@@ -1,7 +1,5 @@
 extends Node2D
 
-const LEVEL_AMOUNT = 2
-
 const bg_colors = [
 	[100, 34, 34, 255],
 	[200, 69, 69, 255]

@@ -52,4 +52,3 @@ func _on_player_player_dead() -> void:
 		navigation_region.reset_screen()
 		await get_tree().create_timer(0.5).timeout
 		get_tree().reload_current_scene()
-	
