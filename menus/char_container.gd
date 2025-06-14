@@ -26,6 +26,7 @@ func _on_prev_button_down() -> void:
 		prev_button_press()
 
 func prev_button_press():
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	if active > 0:
 		active -= 1
 	else:
@@ -37,6 +38,7 @@ func _on_next_button_down() -> void:
 		next_button_press()
 
 func next_button_press():
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	if active < characters.size() - 1:
 		active += 1
 	else:
@@ -48,6 +50,7 @@ func _on_ready_button_down() -> void:
 		ready_button_press()
 
 func ready_button_press():
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	world.players_settings[player].character_sprite = load("res://sprites/" + characters[active]+ "_sprite.tscn")
 	world.players_settings[player].character = characters[active]
 	if characters[active] == "fighter" or characters[active] == "paladin":
@@ -63,6 +66,8 @@ func _on_return_button_down() -> void:
 		return_button_press()
 	
 func return_button_press():
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
+	
 	ready_button.visible = true
 	return_button.visible = false
 	next_button.disabled = false

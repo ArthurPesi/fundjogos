@@ -57,6 +57,7 @@ var world_to_render: World2D
 var split_cam_container: HBoxContainer
 var main_viewport: SubViewport
 const MULTIPLAYER_CAMERAS_CONTAINER = preload("res://levels/multiplayer_cameras_container.tscn")
+const SPATIAL_AUDIO_PLAYER = preload("res://spatial_audio_player.tscn")
 const AUDIO_PLAYER = preload("res://audio_player.tscn")
 const SFX_PATH = "res://SFX/"
 var sound_effects: Array[Array]
@@ -107,11 +108,18 @@ func _on_joy_connection_changed(device, connected):
 func play_spatial_sound_effect(sound_effect, audio_position: Vector2):
 	var random = randi() % sound_effects[sound_effect].size()
 	var sound = sound_effects[sound_effect][random]
-	var audio_player = AUDIO_PLAYER.instantiate()
+	var audio_player = SPATIAL_AUDIO_PLAYER.instantiate()
 	audio_player.global_position = audio_position
 	main_viewport.add_child(audio_player)
 	audio_player.play_sound(sound)
 
+func play_sound_effect(sound_effect):
+	var random = randi() % sound_effects[sound_effect].size()
+	var sound = sound_effects[sound_effect][random]
+	var audio_player = AUDIO_PLAYER.instantiate()
+	add_child(audio_player)
+	audio_player.play_sound(sound)
+	
 func get_level_bg_color():
 	return Color.from_rgba8(bg_colors[curr_level_id][0],bg_colors[curr_level_id][1],bg_colors[curr_level_id][2],bg_colors[curr_level_id][3])
 

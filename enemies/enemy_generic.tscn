@@ -78,6 +78,8 @@ size = Vector2(5, 11)
 size = Vector2(3.66667, 9.66667)
 
 [node name="EnemyGeneric" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+motion_mode = 1
 script = ExtResource("1_8xuwg")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

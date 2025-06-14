@@ -66,15 +66,23 @@ position = Vector2(345, 394)
 
 [node name="shotgun_enemy" parent="EnemyHolder" instance=ExtResource("5_8vntl")]
 position = Vector2(-142, -18)
+collision_layer = 1
+motion_mode = 0
 
 [node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("6_sgibt")]
 position = Vector2(565, 417)
+collision_layer = 1
+motion_mode = 0
 
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("6_sgibt")]
 position = Vector2(636, 95)
+collision_layer = 1
+motion_mode = 0
 
 [node name="uzi_enemy" parent="EnemyHolder" instance=ExtResource("7_nw3eo")]
 position = Vector2(784, 221)
+collision_layer = 1
+motion_mode = 0
 
 [node name="FinishLevelArea" parent="." instance=ExtResource("5_sgibt")]
 position = Vector2(512, 68)

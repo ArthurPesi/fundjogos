@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://q0m7pe4m0d1h"]
+[gd_scene load_steps=2 format=3 uid="uid://n2w2ginf6ant"]
 
-[ext_resource type="Script" uid="uid://lo6qila7nrg1" path="res://audio_player.gd" id="1_81fu2"]
+[ext_resource type="Script" uid="uid://cisosqj23835w" path="res://audio_player_menu.gd" id="1_81fu2"]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer"]
 bus = &"SFX"
 script = ExtResource("1_81fu2")

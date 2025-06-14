@@ -108,7 +108,7 @@ func die():
 		
 		world.bookkeep_enemy_amount()
 		$CollisionShape2D.queue_free()
-
+		$DieArea/CollisionShape2D.queue_free()
 		var tween = get_tree().create_tween()
 		tween.tween_property($Sprite, "scale", Vector2(0,0),0.8)
 		tween.tween_callback(queue_free)
@@ -154,3 +154,5 @@ func _on_die_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		if body.curr_state == constants.player_states.ATTACKING:
 			die()
+		else:
+			body.die_player()

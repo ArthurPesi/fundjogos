@@ -23,6 +23,7 @@ func pause():
 	get_tree().paused = true
 
 func _on_resume_pressed() -> void:
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	resume()
 
 func _input(event):
@@ -34,12 +35,14 @@ func _input(event):
 
 
 func _on_quit_pressed() -> void:
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	resume()
 	world.remove_all_players()
 	world.load_scene(constants.scene_types.MENU, constants.menus.MAIN_MENU)
 
 
 func _on_settings_pressed() -> void:
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	settings_instance = SETTINGS.instantiate()
 	hide()
 	add_sibling(settings_instance)

@@ -24,6 +24,7 @@ func _input(event: InputEvent) -> void:
 			device_type = constants.device_types.KEYBOARD
 		
 	if device_type != null:
+		world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 		world.add_player(player_amt, event.device, device_type)
 		character_menu_instances[player_amt] = CHARACTER_MENU.instantiate()
 		character_menu_instances[player_amt].player = player_amt
@@ -34,9 +35,12 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action("quit_gamepad") and event.is_pressed() and world.is_device_active(event.device):
 		remove_all_players()
+		world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	elif event.is_action("quit_keyboard") and event.is_pressed() and world.is_device_active(-1):
 		remove_all_players()
+		world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 	elif (Input.is_action_just_pressed("quit_keyboard") or Input.is_action_just_pressed("quit_gamepad")) and player_amt == 0:
+		world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
 		world.load_scene(constants.scene_types.MENU, constants.menus.MAIN_MENU)
 
 func remove_all_players():

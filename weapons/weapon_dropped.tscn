@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bfbyov7abfl1s" path="res://weapons/weapon_dropped.gd" id="1_camtk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s2j4j"]
-radius = 15.0333
+radius = 37.0135
 
 [node name="weapon_dropped" type="Area2D" groups=["dropped_weapon"]]
 script = ExtResource("1_camtk")
