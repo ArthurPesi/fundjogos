@@ -11,10 +11,12 @@ var rects: Array[ColorRect]
 var ammo
 func _ready() -> void:
 	ammo = get_parent().ammo
-	margin_container.reset_size()
-	color_rect.size = margin_container.size
 	for i in h_box_container.get_children():
 		rects.append(i)
+	rects[0].custom_minimum_size.x = ammo
+	margin_container.reset_size()
+	color_rect.size = margin_container.size
+
 		
 func on_shoot(_tween_time):
 	if ammo < 1:
