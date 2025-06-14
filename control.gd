@@ -30,10 +30,10 @@ class player_class:
 	
 var players_settings: Array[player_class] = [player_class.new(), player_class.new()]
 const LEVEL_HOLDER_PRESET = preload("res://levels/level_holder.tscn")
+
 var game_mode = constants.game_modes.SINGLE
 var sound_mode = constants.sound_modes.SOLO
 var keyboard_player: int
-
 var NOISE_SHAKE_SPEED: float = 10.0
 var NOISE_SHAKE_STRENGTH: float = 60.0
 var RANDOM_SHAKE_STRENGTH: float = 30.0
