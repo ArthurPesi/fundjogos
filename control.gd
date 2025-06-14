@@ -10,6 +10,7 @@ const wall_colors = [
 	[169, 34, 34, 255]
 ]
 
+var pause_blur
 signal confirmation_signal
 var curr_level_id = 0
 var show_transition_text := false
@@ -147,6 +148,7 @@ func start_level():
 			add_child(split_cam_container)
 			
 		pause_menu = level_holder.get_node("PauseCanvas/pause_menu")
+		pause_blur = level_holder.get_node("PauseCanvas/ColorRect")
 		enemy_holder = level_instance.get_node("EnemyHolder")
 		navigation_region = level_instance.get_node("NavigationRegion2D")
 		amount_of_enemies = enemy_holder.get_child_count()
@@ -245,7 +247,10 @@ func load_scene(new_type, new_scene):
 func load_next_level():
 	if curr_level_id + 1 < level_resources.size() and scene_type == constants.scene_types.LEVEL:
 		curr_level_id += 1
-		RenderingServer.set_default_clear_color(get_level_bg_color())
+		var next_color = get_level_bg_color()
+		RenderingServer.set_default_clear_color(next_color)
+		pause_blur.modulate = next_color
+		pause_blur.modulate.a = 0.7
 	show_transition_text = true
 	load_scene(constants.scene_types.LEVEL, curr_level_id)
 		

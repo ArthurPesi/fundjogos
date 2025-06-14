@@ -2,17 +2,23 @@ extends Control
 
 @onready var world: Node2D = $"../../.."
 @onready var resume_button: Button = $VBoxContainer/resume
+@onready var color_rect: ColorRect = $"../ColorRect"
 
 const SETTINGS = preload("res://menus/settings_level.tscn")
 var settings_instance
 
+func _ready() -> void:
+	color_rect.modulate = world.get_level_bg_color()
+	color_rect.modulate.a = 0.7
 
 func resume():
 	hide()
+	color_rect.hide()
 	get_tree().paused = false
 
 func pause():
 	show()
+	color_rect.show()
 	resume_button.grab_focus()
 	get_tree().paused = true
 
