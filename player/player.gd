@@ -10,8 +10,8 @@ var weapon_dropped_presets: Array[Resource]
 const MAX_SPEED = 600
 const ACCELERATION = 4
 const ATTACK_SPEED = 1000
-const ATTACK_DURATION = 0.1
-const ATTACK_COOLDOWN_SPEED: float = 0.1
+const ATTACK_DURATION = 0.2
+const ATTACK_COOLDOWN_SPEED: float = 0.6
 @onready var world: Node2D = $"../../../.."
 @onready var enemy_holder: Node2D = $"../EnemyHolder"
 var curr_movement = Vector2(0,0)
@@ -127,8 +127,9 @@ func shoot():
 		temp_bullet.start(position, dir.normalized(), randf_range(weapon_obj.MIN_BULLET_SPEED, weapon_obj.MAX_BULLET_SPEED), weapon_obj.BULLET_DURATION, self)
 	
 	timer_weapon = weapon_obj.COOLDOWN
-	
+	print(enemies_inside_fire_range)
 	for N in enemies_inside_fire_range:
+		print(N)
 		enemies_inside_fire_range.erase(N)
 		if N.curr_state == constants.enemy_states.REGULAR:
 			N.enter_aggro(self)
@@ -239,6 +240,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
+		print(body)
 		if body.curr_state == constants.enemy_states.REGULAR:
 			enemies_inside_fire_range.append(body)
 

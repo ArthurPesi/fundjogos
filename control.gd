@@ -1,13 +1,17 @@
 extends Node2D
+const color_debug = [100, 34, 34, 255]
 
 const bg_colors = [
 	[100, 34, 34, 255],
-	[200, 69, 69, 255]
+	[200, 69, 69, 255],
+	[200, 69, 69, 255],
 ]
 
 const wall_colors = [
 	[69, 12, 12, 255],
+	[169, 34, 34, 255],
 	[169, 34, 34, 255]
+	
 ]
 
 var pause_blur
@@ -65,6 +69,8 @@ var transition_label: Label
 var level_instance
 
 func _ready() -> void:
+	if constants.DEBUG_LEVEL:
+		curr_level_id = constants.DEBUG_LEVEL
 	TranslationServer.set_locale(OS.get_locale_language())
 	Input.connect("joy_connection_changed",_on_joy_connection_changed)
 	

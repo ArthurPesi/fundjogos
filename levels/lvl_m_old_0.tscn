@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="4_scnne"]
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="5_jyqpf"]
 [ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="6_rn5a5"]
-[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/shotgun_enemy.tscn" id="7_n5dnp"]
-[ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/uzi_enemy.tscn" id="8_oiy83"]
-[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/revolver_enemy.tscn" id="9_avyn1"]
+[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/instances/shotgun_enemy.tscn" id="7_n5dnp"]
+[ext_resource type="PackedScene" uid="uid://b7vrt7ai8o8kh" path="res://enemies/instances/uzi_enemy.tscn" id="8_oiy83"]
+[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/instances/revolver_enemy.tscn" id="9_avyn1"]
 [ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="10_n64ub"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]

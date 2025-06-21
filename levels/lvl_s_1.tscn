@@ -1,24 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8w003oe5padf"]
+[gd_scene load_steps=11 format=3 uid="uid://locd7s3t7x6w"]
 
-[ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="3_pggil"]
-[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="3_s0k0q"]
-[ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="4_21bt3"]
-[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="4_r8igt"]
-[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="5_rgawy"]
-[ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/punch_enemy.tscn" id="11_xtvak"]
-[ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="12_sufrx"]
+[ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_pjfra"]
+[ext_resource type="Script" uid="uid://hmm3rsnadn5y" path="res://enemies/enemy_holder.gd" id="2_qbsyn"]
+[ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="3_78dvf"]
+[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="4_5g4j1"]
+[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="5_4kuvq"]
+[ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="6_3spd3"]
+[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/instances/revolver_enemy.tscn" id="6_78dvf"]
+[ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/instances/punch_enemy.tscn" id="7_5g4j1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
-vertices = PackedVector2Array(1195, 243, 1844.26, 581.883, 322.203, 624.203, 973, 243, 1581.58, -126.383, 1195, 199, 336.797, -106.148, 973, 199)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(3, 2, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(327, -116, 312, 634.5, 1858.5, 591.5, 1588.5, -136.5)])
+vertices = PackedVector2Array(717.68, 436.617, 722, 252.391, 722, 420, 1034, 4, 918, -68, 918, -79.1875, 1382.63, -70.3203, 1226, 60, 1226, 420, 1226, 228, 1342, 228, 1342, 248, 1342, 128, 1342, 148, 1226, 148, 1034, 60, 894, 4, 894, -68, 1374, 128, 1404.86, 418.25, 1374, 248, 818, 4, 727.82, 4, 729.852, -82.7891, 798, -68, 818, -68, 798, -81.4922, 1194, 196, 1194, 388, 1186, 300, 1186, 268, 862, 36, 1002, 36, 1002, 204, 842, 204, 842, 116, 810, 236, 1002, 236, 1002, 380, 754, 388, 1154, 204, 1034, 204, 1034, 92, 1194, 92, 1194, 180, 1342, 180, 1342, 196, 1154, 236, 1066, 268, 1034, 236, 1034, 380, 1066, 300, 850, 36, 850, -68, 862, -68, 754, 36, 810, 116)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 7), PackedInt32Array(7, 15, 3), PackedInt32Array(3, 16, 17, 4), PackedInt32Array(12, 7, 6, 18), PackedInt32Array(18, 6, 19, 20), PackedInt32Array(11, 20, 19, 8), PackedInt32Array(8, 19, 0), PackedInt32Array(8, 0, 2), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(24, 25, 21), PackedInt32Array(23, 26, 24), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(31, 32, 33, 34, 35), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(40, 41, 42, 43, 44), PackedInt32Array(44, 45, 46, 27), PackedInt32Array(40, 44, 27, 30, 47), PackedInt32Array(47, 30, 48, 49), PackedInt32Array(50, 49, 48, 51), PackedInt32Array(52, 53, 54, 31), PackedInt32Array(52, 31, 35), PackedInt32Array(55, 52, 35, 56), PackedInt32Array(39, 55, 56, 36), PackedInt32Array(28, 39, 38, 50), PackedInt32Array(28, 50, 51, 29)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(718.13, -95.0244, 705.391, 448.959, 1417.42, 429.926, 1394.11, -82.1059)])
+agent_radius = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wonum"]
-size = Vector2(33, 32)
+size = Vector2(18, 32)
 
-[node name="lvl_s_1" type="Node2D"]
+[node name="lvl_s_0" type="Node2D"]
 
-[node name="Camera2D" parent="." instance=ExtResource("3_pggil")]
+[node name="Camera2D" parent="." instance=ExtResource("1_pjfra")]
+visible = false
 position = Vector2(580, 317)
 zoom = Vector2(1, 1)
 
@@ -26,26 +29,200 @@ zoom = Vector2(1, 1)
 position = Vector2(-1452, -192)
 scale = Vector2(2, 2)
 navigation_polygon = SubResource("NavigationPolygon_0ha08")
-script = ExtResource("4_21bt3")
+script = ExtResource("2_qbsyn")
 
-[node name="StaticBody2D" parent="NavigationRegion2D" instance=ExtResource("3_s0k0q")]
-position = Vector2(1084, 221)
-scale = Vector2(10.1, 1.2)
+[node name="hor" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1254, 164)
+scale = Vector2(4.8, 0.4)
 
-[node name="Player1" parent="." instance=ExtResource("4_r8igt")]
+[node name="hor2" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1254, 212)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor3" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1158, 76)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor4" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1062, 76)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor5" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1166, 404)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor6" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1070, 404)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor7" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(974, 404)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor8" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1126, 284)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor9" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1094, 220)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor10" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(878, 404)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor11" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(782, 404)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor12" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(870, 220)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor13" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(790, 20)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor14" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(966, 220)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor15" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(974, 20)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor16" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(922, 20)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor17" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+visible = false
+position = Vector2(858, -84)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor18" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1314, 164)
+scale = Vector2(4.8, 0.4)
+
+[node name="hor19" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1314, 212)
+scale = Vector2(4.8, 0.4)
+
+[node name="ver" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1210, 256)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver15" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+visible = false
+position = Vector2(1358, 188)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver13" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(878, -32)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver14" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(834, -32)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver12" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(826, 176)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver7" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(738, 352)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver8" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(738, 256)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver9" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(738, 160)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver10" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(738, 64)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver11" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1018, 64)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver3" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1210, 352)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver4" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1018, 128)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver5" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1018, 224)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver6" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1018, 320)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="ver2" parent="NavigationRegion2D" instance=ExtResource("3_78dvf")]
+position = Vector2(1210, 120)
+rotation = 1.5708
+scale = Vector2(4.8, 0.4)
+
+[node name="Player1" parent="." instance=ExtResource("4_5g4j1")]
 z_index = 2
-position = Vector2(345, 394)
+position = Vector2(1090, 185)
 
-[node name="EnemyHolder" parent="." instance=ExtResource("5_rgawy")]
+[node name="EnemyHolder" parent="." instance=ExtResource("5_4kuvq")]
 
-[node name="PunchEnemy" parent="EnemyHolder" instance=ExtResource("11_xtvak")]
-position = Vector2(217, 235)
+[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("6_78dvf")]
+position = Vector2(776, 312)
+rotation = -0.670201
 
-[node name="FinishLevelArea" parent="." instance=ExtResource("12_sufrx")]
+[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("6_78dvf")]
+position = Vector2(120, 304)
+rotation = 0.816017
+
+[node name="PunchEnemy" parent="EnemyHolder" instance=ExtResource("7_5g4j1")]
+position = Vector2(856, 88)
+rotation = 0.820117
+
+[node name="PunchEnemy2" parent="EnemyHolder" instance=ExtResource("7_5g4j1")]
+position = Vector2(504, 472)
+rotation = 2.24178
+
+[node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("7_5g4j1")]
+position = Vector2(256, 184)
+rotation = -1.71205
+
+[node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("7_5g4j1")]
+position = Vector2(72, 552)
+rotation = -0.573834
+
+[node name="PunchEnemy5" parent="EnemyHolder" instance=ExtResource("7_5g4j1")]
+position = Vector2(112, -48)
+rotation = 1.08195
+
+[node name="FinishLevelArea" parent="." instance=ExtResource("6_3spd3")]
 position = Vector2(512, 68)
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
-position = Vector2(-446, -2)
+position = Vector2(-252, -276)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_wonum")
 

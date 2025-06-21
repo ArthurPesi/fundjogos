@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://pap0k0mi1h0h" path="res://scenario/wall.tscn" id="3_jry5h"]
 [ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="4_7xlvc"]
 [ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="5_iddjs"]
-[ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/punch_enemy.tscn" id="6_su1jf"]
+[ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/instances/punch_enemy.tscn" id="6_su1jf"]
 [ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="7_x15gw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
