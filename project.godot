@@ -19,6 +19,10 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 mouse_cursor/custom_image="uid://yc5asibnywq4"
 mouse_cursor/custom_image_hotspot=Vector2(22, 22)
 
+[gui]
+
+theme/custom_font="uid://bxve6ejoxklth"
+
 [input]
 
 ui_accept={
