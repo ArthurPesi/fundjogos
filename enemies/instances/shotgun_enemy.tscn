@@ -11,5 +11,4 @@ weapon = NodePath("shotgun")
 script = ExtResource("3_dql8d")
 
 [node name="WeaponSprite" parent="." index="7" instance=ExtResource("3_gw1nd")]
-position = Vector2(8, -1)
-scale = Vector2(-0.393283, 0.436546)
+position = Vector2(33, -4)

@@ -19,3 +19,4 @@ var curr_clip = CLIP_SIZE
 const MIN_CONSECUTIVE_SHOTS_TIMEOUT = 0.0
 const MAX_CONSECUTIVE_SHOTS_TIMEOUT = 0.0
 var timeout_fire = MAX_FIRE_INITIAL_TIMEOUT
+var curr_frame = 0

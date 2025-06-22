@@ -19,3 +19,7 @@ const CLIP_SIZE = 1
 var curr_clip = CLIP_SIZE
 const MIN_CONSECUTIVE_SHOTS_TIMEOUT = 0.0
 const MAX_CONSECUTIVE_SHOTS_TIMEOUT = 0.0
+var curr_frame
+func _ready():
+	curr_frame = randi() % 6
+	$"../WeaponSprite".frame = curr_frame

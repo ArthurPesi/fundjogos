@@ -18,7 +18,7 @@ enum sound_effects {
 const PIOVERTWO: float = PI / 2
 const PIOVERFOUR: float = PI / 4
 const THREEPIOVERTWO: float = 3 * PI / 2
-const DEBUG_LEVEL = 1
+const DEBUG_LEVEL = 0
 const sound_paths = [
 	"guns/shotgun", "guns/cock_shotgun", "guns/revolver", "guns/uzi", "guns/no_ammo", "guns/pick_up",
 	"enemies/aggro", "enemies/death",

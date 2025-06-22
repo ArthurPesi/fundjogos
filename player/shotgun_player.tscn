@@ -8,8 +8,10 @@
 script = ExtResource("2_wwub1")
 
 [node name="shotgun" parent="." instance=ExtResource("1_t4f3x")]
-position = Vector2(24, 9)
+position = Vector2(33, -4)
 
 [node name="ShotgunHud" parent="." instance=ExtResource("2_ypjja")]
-offset_top = -13.0
-offset_bottom = -13.0
+offset_left = 9.0
+offset_top = -23.0
+offset_right = 9.0
+offset_bottom = -23.0

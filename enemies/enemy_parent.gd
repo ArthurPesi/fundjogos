@@ -121,6 +121,7 @@ func die():
 			temp_drop.rotation = randf() * PI * 2
 			temp_drop.z_index = 0
 			temp_drop.ammo = weapon.ammo
+			temp_drop.curr_frame = weapon.curr_frame
 			call_deferred("add_sibling", temp_drop)
 
 func _on_vision_area_body_entered(body: Node2D) -> void:

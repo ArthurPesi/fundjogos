@@ -28,7 +28,7 @@ var look_dir: Vector2 = Vector2(0,0)
 var sprite_instance
 var unique_device
 const MORTAL = true
-const WEAPON_OFFSET = Vector2(25, 0)
+const WEAPON_OFFSET = Vector2(0, 0)
 var weapon_scale: Vector2
 func _ready() -> void:
 	
@@ -154,11 +154,13 @@ func get_weapon():
 					just_dropped.z_index = 1
 					just_dropped.rotation = randf() * PI * 2
 					just_dropped.ammo = weapon_obj.ammo
+					just_dropped.curr_frame = weapon_obj.curr_frame
 					enemy_holder.add_child(just_dropped)
 				weapon_obj.queue_free()
 			curr_weapon_value = i as constants.weapons
 			weapon_obj = weapon_holding_presets[i].instantiate()
 			weapon_obj.ammo = curr_collect.ammo
+			weapon_obj.curr_frame = curr_collect.curr_frame
 			weapon_obj.position = WEAPON_OFFSET
 			curr_collect.queue_free()
 			add_child(weapon_obj)

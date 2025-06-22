@@ -8,10 +8,10 @@
 script = ExtResource("2_6ggad")
 
 [node name="uzi" parent="." instance=ExtResource("1_8ekv7")]
-position = Vector2(26, 14)
+position = Vector2(18, -3)
 
 [node name="UziHud" parent="." instance=ExtResource("2_dutwr")]
-offset_left = -2.0
-offset_top = -25.0
-offset_right = -2.0
-offset_bottom = -25.0
+offset_left = -4.0
+offset_top = -24.0
+offset_right = -4.0
+offset_bottom = -24.0

@@ -18,4 +18,7 @@ const ANIMATION_DURATION = 0.15
 const ANIMATION_SQUASH = 0.3
 const ANIMATION_FALLBACK = 1
 
-		
+var curr_frame
+	
+func _ready() -> void:
+	$revolver.frame = curr_frame

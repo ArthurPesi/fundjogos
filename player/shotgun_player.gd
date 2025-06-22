@@ -16,3 +16,4 @@ const ANIMATION_INCREASE = 3.5
 const ANIMATION_DURATION = 0.2
 const ANIMATION_SQUASH = 1
 const ANIMATION_FALLBACK = 1
+var curr_frame = 0
