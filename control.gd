@@ -2,7 +2,7 @@ extends Node2D
 const color_debug = [100, 34, 34, 255]
 
 const bg_colors = [
-	[100, 34, 34, 255],
+	[70, 66, 75, 255],
 	[200, 69, 69, 255],
 	[200, 69, 69, 255],
 ]
@@ -182,9 +182,7 @@ func start_level():
 			
 		var wall_color = get_level_wall_color()
 		for N in navigation_region.get_children():
-			var sprite = N.get_node("Sprite")
-			tween.tween_property(sprite, "scale:y", sprite.get_scale().y, 0.2).from(0)
-			sprite.modulate = wall_color
+			N.modulate = wall_color
 	
 func apply_shake(strength) -> void:
 	shake_strength += strength
@@ -223,8 +221,6 @@ func reset_screen():
 			tween.tween_property(player.get_node("AnimatedSprite2D"), "scale", Vector2.ZERO, 0.2)
 			if player.weapon_obj:
 				player.weapon_obj.queue_free()
-	for N in navigation_region.get_children():
-		tween.tween_property(N, "scale:y", 0, 0.3)
 	for N in enemy_holder.get_children():
 		if N.is_in_group("enemy"):
 			N.curr_state = constants.enemy_states.DEAD

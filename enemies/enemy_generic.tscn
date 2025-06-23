@@ -75,7 +75,7 @@ animations = [{
 size = Vector2(5, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dccvl"]
-size = Vector2(3.66667, 9.66667)
+size = Vector2(1.33333, 2.66667)
 
 [node name="EnemyGeneric" type="CharacterBody2D" groups=["enemy"]]
 motion_mode = 1
@@ -106,7 +106,7 @@ visible = false
 polygon = PackedVector2Array(-50, 50, 389, 250, 389, -250, -50, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
-position = Vector2(-0.5, -0.5)
+position = Vector2(1.19209e-07, -1.19209e-07)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_dccvl")
 

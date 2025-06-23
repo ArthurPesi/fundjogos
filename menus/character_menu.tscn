@@ -39,9 +39,10 @@ size_flags_vertical = 3
 text = "BACK"
 
 [node name="ready" type="Button" parent="HBoxContainer2"]
-custom_minimum_size = Vector2(0, 18)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 16
 text = "READY"
 
