@@ -62,7 +62,7 @@ animations = [{
 script = ExtResource("1_xiyra")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(48, 0)
+position = Vector2(72, 0)
 rotation = 1.5708
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qrdb0")
