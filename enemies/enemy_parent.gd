@@ -117,7 +117,7 @@ func die():
 			$WeaponSprite.queue_free()
 			var drop = load("res://weapons/" + weapon.name + "_dropped.tscn")
 			var temp_drop = drop.instantiate()
-			temp_drop.position = position
+			temp_drop.position = position +( Vector2.RIGHT.rotated(rotation) * 40)
 			temp_drop.rotation = randf() * PI * 2
 			temp_drop.z_index = 0
 			temp_drop.ammo = weapon.ammo
