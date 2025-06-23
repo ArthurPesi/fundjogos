@@ -13,6 +13,13 @@ texture = ExtResource("3_iuvmp")
 region_enabled = true
 region_rect = Rect2(0, 0, 1152, 648)
 
+[node name="ColorRect" type="ColorRect" parent="Background"]
+modulate = Color(0.603922, 0.654902, 0.705882, 0.407843)
+offset_left = -580.0
+offset_top = -326.0
+offset_right = 584.0
+offset_bottom = 331.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
