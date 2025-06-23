@@ -52,30 +52,10 @@ position = Vector2(168, 280)
 rotation = -1.90415
 motion_mode = 0
 
-[node name="revolver_enemy3" parent="EnemyHolder" instance=ExtResource("6_sgibt")]
-position = Vector2(1000, -248)
-rotation = -4.11316
-motion_mode = 0
-
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("6_sgibt")]
 position = Vector2(440, 64)
 rotation = -2.7605
 motion_mode = 0
-
-[node name="PunchEnemy" parent="EnemyHolder" instance=ExtResource("7_35j3k")]
-position = Vector2(568, 352)
-rotation = -0.855105
-collision_layer = 2
-
-[node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("7_35j3k")]
-position = Vector2(584, -248)
-rotation = 0.874755
-collision_layer = 2
-
-[node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("7_35j3k")]
-position = Vector2(448, -200)
-rotation = 2.36247
-collision_layer = 2
 
 [node name="PunchEnemy2" parent="EnemyHolder" instance=ExtResource("7_35j3k")]
 position = Vector2(752, 40)
@@ -83,10 +63,10 @@ rotation = 1.59788
 collision_layer = 2
 
 [node name="FinishLevelArea" parent="." instance=ExtResource("5_sgibt")]
-position = Vector2(512, 68)
+position = Vector2(41, 343)
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
-position = Vector2(-560, -108)
+position = Vector2(-26, -2)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_wonum")
 
