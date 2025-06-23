@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cp5vixs6tyfbv"]
+
+[ext_resource type="Texture2D" uid="uid://6mewopn6x3je" path="res://menus/buttons/btn_focus.png" id="1_x40j0"]
+[ext_resource type="Texture2D" uid="uid://eicmm1w7yenr" path="res://menus/buttons/btn_pressed.png" id="2_7l40u"]
+[ext_resource type="Texture2D" uid="uid://dbqnou8toulx8" path="res://menus/buttons/btn.png" id="3_vui8d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_20nqt"]
+texture = ExtResource("1_x40j0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mf5y3"]
+texture = ExtResource("1_x40j0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_csbr7"]
+texture = ExtResource("2_7l40u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kd7w7"]
+texture = ExtResource("3_vui8d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x40j0"]
+texture = ExtResource("2_7l40u")
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxTexture_20nqt")
+Button/styles/hover = SubResource("StyleBoxTexture_mf5y3")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_csbr7")
+Button/styles/normal = SubResource("StyleBoxTexture_kd7w7")
+Button/styles/pressed = SubResource("StyleBoxTexture_csbr7")
+Label/font_sizes/font_size = 26
+OptionButton/styles/focus = SubResource("StyleBoxTexture_x40j0")
+OptionButton/styles/hover = SubResource("StyleBoxTexture_x40j0")
+OptionButton/styles/hover_mirrored = SubResource("StyleBoxTexture_x40j0")
+OptionButton/styles/normal = SubResource("StyleBoxTexture_x40j0")
+OptionButton/styles/pressed = SubResource("StyleBoxTexture_x40j0")
+OptionButton/styles/pressed_mirrored = null
+VBoxContainer/constants/separation = 15

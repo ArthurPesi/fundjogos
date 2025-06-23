@@ -13,15 +13,18 @@ offset_right = 713.0
 offset_bottom = 466.0
 
 [node name="play" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 66)
 layout_mode = 2
 text = "PLAY"
 script = ExtResource("2_ij7vn")
 
 [node name="settings" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 66)
 layout_mode = 2
 text = "SETTINGS"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 66)
 layout_mode = 2
 text = "QUIT"
 

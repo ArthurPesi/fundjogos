@@ -21,6 +21,7 @@ mouse_cursor/custom_image_hotspot=Vector2(22, 22)
 
 [gui]
 
+theme/custom="uid://cp5vixs6tyfbv"
 theme/custom_font="uid://bxve6ejoxklth"
 
 [input]

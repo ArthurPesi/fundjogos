@@ -67,6 +67,8 @@ const SFX_PATH = "res://SFX/"
 var sound_effects: Array[Array]
 var transition_label: Label
 var level_instance
+var finish_area
+const ARROW = preload("res://levels/arrow.tscn")
 
 func _ready() -> void:
 	if constants.DEBUG_LEVEL:
@@ -132,9 +134,14 @@ func get_level_bg_color():
 func get_level_wall_color():
 	return Color.from_rgba8(wall_colors[curr_level_id][0],wall_colors[curr_level_id][1],wall_colors[curr_level_id][2],wall_colors[curr_level_id][3])
 	
+var arrow_instance
 func bookkeep_enemy_amount():
 	amount_of_enemies -= 1
-
+	if amount_of_enemies <= 0:
+		arrow_instance = ARROW.instantiate()
+		arrow_instance.target = finish_area.global_position
+		players[0].add_child(arrow_instance)
+		
 func check_level_up():
 	if amount_of_enemies == 0:
 		load_next_level()
@@ -150,6 +157,7 @@ func start_level():
 		transition_label.hide()
 		main_viewport.add_child(level_instance)
 		main_camera = level_instance.get_node("Camera2D")
+		finish_area = level_instance.get_node("FinishLevelArea")
 		players[0] = level_instance.get_node("Player1")
 		players[0].init(players_settings[0])
 		if game_mode == constants.game_modes.MULTI:
@@ -208,6 +216,8 @@ func freeze(time):
 
 func reset_screen():
 	var tween = get_tree().create_tween().set_parallel(true)
+	if arrow_instance:
+		tween.tween_property(arrow_instance.get_node("AnimatedSprite2D"), "scale", Vector2.ZERO, 0.2)
 	for player in players:
 		if player:
 			tween.tween_property(player.get_node("AnimatedSprite2D"), "scale", Vector2.ZERO, 0.2)

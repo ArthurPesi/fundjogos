@@ -1,15 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://pap0k0mi1h0h"]
 
-[ext_resource type="Texture2D" uid="uid://birpd5jaasuom" path="res://sprites/wall.png" id="1_mpffm"]
+[ext_resource type="Texture2D" uid="uid://dufv184m04via" path="res://scenario/rock_wall.png" id="1_mpffm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4f30"]
+size = Vector2(16, 16)
 
 [node name="StaticBody2D" type="StaticBody2D" groups=["obstacle"]]
 
 [node name="Sprite" type="Sprite2D" parent="."]
+texture_repeat = 2
 position = Vector2(4.76837e-07, 4.76837e-07)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_mpffm")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["obstacle"]]
+visible = false
 shape = SubResource("RectangleShape2D_y4f30")

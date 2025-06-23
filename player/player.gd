@@ -22,6 +22,8 @@ var attackCounter: float = 0
 var curr_collect = null
 var weapon_obj = null
 @onready var bullet = preload("res://player/bullet_good.tscn")
+
+
 var timer_weapon = 0
 var walk_dir: Vector2 = Vector2(0,0)
 var look_dir: Vector2 = Vector2(0,0)

@@ -1,11 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwpx3ivyqu51m"]
+[gd_scene load_steps=11 format=3 uid="uid://bwpx3ivyqu51m"]
 
 [ext_resource type="Script" uid="uid://dpsjioma6vra1" path="res://menus/config.gd" id="1_urrvo"]
 [ext_resource type="PackedScene" uid="uid://cqfo3nwi14n4e" path="res://menus/volume_slider.tscn" id="2_kot5a"]
 [ext_resource type="Script" uid="uid://b2u3qxc4b5o86" path="res://menus/language_selector.gd" id="3_0uirt"]
+[ext_resource type="Texture2D" uid="uid://6mewopn6x3je" path="res://menus/buttons/btn_focus.png" id="4_cyvjr"]
+[ext_resource type="Texture2D" uid="uid://eicmm1w7yenr" path="res://menus/buttons/btn_pressed.png" id="5_8754g"]
+[ext_resource type="Texture2D" uid="uid://dbqnou8toulx8" path="res://menus/buttons/btn.png" id="6_ac0sr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_20nqt"]
+texture = ExtResource("4_cyvjr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mf5y3"]
+texture = ExtResource("4_cyvjr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x40j0"]
+texture = ExtResource("5_8754g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kd7w7"]
+texture = ExtResource("6_ac0sr")
 
 [node name="settingsMenu" type="Control"]
 process_mode = 3
+custom_minimum_size = Vector2(208, 0)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -67,7 +83,10 @@ layout_mode = 2
 text = "LANGUAGE"
 
 [node name="OptionButton" type="OptionButton" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(142, 35)
 layout_mode = 2
+theme_override_font_sizes/font_size = 26
+alignment = 1
 item_count = 2
 popup/item_0/text = "English"
 popup/item_0/id = 0
@@ -76,11 +95,18 @@ popup/item_1/id = 1
 script = ExtResource("3_0uirt")
 
 [node name="play" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 text = "PLAY"
 
 [node name="back" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(208, 52)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_20nqt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mf5y3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x40j0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kd7w7")
 text = "BACK"
 
 [connection signal="item_selected" from="CanvasLayer/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
