@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwpx3ivyqu51m"]
+[gd_scene load_steps=12 format=3 uid="uid://bwpx3ivyqu51m"]
 
 [ext_resource type="Script" uid="uid://dpsjioma6vra1" path="res://menus/config.gd" id="1_urrvo"]
 [ext_resource type="PackedScene" uid="uid://cqfo3nwi14n4e" path="res://menus/volume_slider.tscn" id="2_kot5a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6mewopn6x3je" path="res://menus/buttons/btn_focus.png" id="4_cyvjr"]
 [ext_resource type="Texture2D" uid="uid://eicmm1w7yenr" path="res://menus/buttons/btn_pressed.png" id="5_8754g"]
 [ext_resource type="Texture2D" uid="uid://dbqnou8toulx8" path="res://menus/buttons/btn.png" id="6_ac0sr"]
+[ext_resource type="Texture2D" uid="uid://clxmglq6m25cs" path="res://sprites/wallbg.png" id="7_8754g"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_20nqt"]
 texture = ExtResource("4_cyvjr")
@@ -108,6 +109,13 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_mf5y3")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_x40j0")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kd7w7")
 text = "BACK"
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(680, 323)
+texture = ExtResource("7_8754g")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
 
 [connection signal="item_selected" from="CanvasLayer/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/play" to="." method="_on_play_pressed"]

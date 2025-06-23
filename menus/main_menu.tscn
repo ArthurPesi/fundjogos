@@ -1,13 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcufqis3pixpv"]
+[gd_scene load_steps=5 format=3 uid="uid://bcufqis3pixpv"]
 
 [ext_resource type="Script" uid="uid://brqidjr4isnub" path="res://menus/menu.gd" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://clcpnbc13amgg" path="res://menus/play.gd" id="2_ij7vn"]
+[ext_resource type="Texture2D" uid="uid://clxmglq6m25cs" path="res://sprites/wallbg.png" id="2_rqbgu"]
 [ext_resource type="Texture2D" uid="uid://binb8lmifdat4" path="res://logofull.png" id="2_yjgyn"]
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_l6cm7")
 
-[node name="TextureRect" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(577, 323)
+texture = ExtResource("2_rqbgu")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+
+[node name="logo" type="Sprite2D" parent="."]
 position = Vector2(573, 201)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_yjgyn")

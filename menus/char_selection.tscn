@@ -1,14 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0x0mdsnyp3bf"]
 
-[ext_resource type="Texture2D" uid="uid://ccopwmupjol38" path="res://about-to-die.jpg" id="1_1egb0"]
 [ext_resource type="Script" uid="uid://btxnsmlpwmd42" path="res://menus/char_selection.gd" id="1_hyobs"]
+[ext_resource type="Texture2D" uid="uid://clxmglq6m25cs" path="res://sprites/wallbg.png" id="3_iuvmp"]
 
 [node name="CharSelection" type="Node2D"]
 script = ExtResource("1_hyobs")
 
-[node name="About-to-die" type="Sprite2D" parent="."]
-position = Vector2(369, 242)
-texture = ExtResource("1_1egb0")
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(-2, -5)
+texture = ExtResource("3_iuvmp")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
