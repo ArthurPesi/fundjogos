@@ -16,9 +16,9 @@ const MIN_RELOAD_TIME = 1.5
 const MAX_RELOAD_TIME = 2
 const MIN_CONSECUTIVE_SHOTS_TIMEOUT = 0.04
 const MAX_CONSECUTIVE_SHOTS_TIMEOUT = 0.06
-const CLIP_SIZE = 20
+const CLIP_SIZE = 6
 var curr_clip = CLIP_SIZE
 var curr_frame = 0
 
 var curr_reload = 0
-var ammo = 30
+var ammo = 20

@@ -3,15 +3,24 @@ const color_debug = [100, 34, 34, 255]
 
 const bg_colors = [
 	[70, 66, 75, 255],
-	[200, 69, 69, 255],
-	[200, 69, 69, 255],
+	[80, 74, 75, 255],
+	[50, 60, 55, 255],
+	[85, 90, 87, 255],
+	[63, 63, 67, 255],
+	[85, 90, 87, 255],
+	[93, 90, 92, 255],
+	[156, 149, 160, 255]
 ]
 
 const wall_colors = [
-	[69, 12, 12, 255],
-	[169, 34, 34, 255],
-	[169, 34, 34, 255]
-	
+	[60, 54, 54, 255],
+	[73, 66, 67, 255],
+	[40, 36, 38, 255],
+	[80, 86, 83, 255],
+	[85, 90, 87, 255],
+	[94, 94, 90, 255],
+	[105, 98, 102, 255],
+	[100, 110, 112, 255]
 ]
 
 var pause_blur
@@ -176,14 +185,15 @@ func start_level():
 		amount_of_enemies = enemy_holder.get_child_count()
 		
 		var tween = get_tree().create_tween().set_parallel(true)
+		
 		for N in enemy_holder.get_children():
 			var sprite = N.get_node("Sprite")
 			tween.tween_property(sprite, "scale", sprite.get_scale(), 0.2).from(Vector2.ZERO)
-			
+		var tile_set = navigation_region.get_child(0)
 		var wall_color = get_level_wall_color()
-		for N in navigation_region.get_children():
-			N.modulate = wall_color
-	
+		tile_set.modulate = wall_color
+		tween.tween_property(tile_set, "modulate:a", 1, 0.1).from(0)
+
 func apply_shake(strength) -> void:
 	shake_strength += strength
 	
@@ -221,6 +231,7 @@ func reset_screen():
 			tween.tween_property(player.get_node("AnimatedSprite2D"), "scale", Vector2.ZERO, 0.2)
 			if player.weapon_obj:
 				player.weapon_obj.queue_free()
+	tween.tween_property(navigation_region.get_child(0), "modulate:a", 0, 0.1)
 	for N in enemy_holder.get_children():
 		if N.is_in_group("enemy"):
 			N.curr_state = constants.enemy_states.DEAD
@@ -265,7 +276,7 @@ func load_scene(new_type, new_scene):
 		add_child(level_instance)
 	
 func load_next_level():
-	if curr_level_id + 1 < level_resources.size() and scene_type == constants.scene_types.LEVEL:
+	if curr_level_id + 1 < level_resources[0].size() and scene_type == constants.scene_types.LEVEL:
 		curr_level_id += 1
 		var next_color = get_level_bg_color()
 		RenderingServer.set_default_clear_color(next_color)

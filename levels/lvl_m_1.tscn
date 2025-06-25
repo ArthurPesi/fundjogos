@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bqpyqq5cdnihj"]
+[gd_scene load_steps=12 format=4 uid="uid://dh4l4ulxytgbt"]
 
 [ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_qbsyn"]
 [ext_resource type="Texture2D" uid="uid://dufv184m04via" path="res://scenario/rock_wall.png" id="2_78dvf"]
@@ -46,6 +46,11 @@ z_index = 2
 position = Vector2(1058, 190)
 rotation = 2.68559
 
+[node name="Player2" parent="." instance=ExtResource("3_5g4j1")]
+z_index = 2
+position = Vector2(1087, 223)
+rotation = -2.89751
+
 [node name="EnemyHolder" parent="." instance=ExtResource("4_4kuvq")]
 
 [node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("5_3spd3")]
@@ -53,10 +58,25 @@ position = Vector2(888, 344)
 rotation = -3.29296
 motion_mode = 0
 
+[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("5_3spd3")]
+position = Vector2(616, 136)
+rotation = -4.9479
+motion_mode = 0
+
 [node name="revolver_enemy3" parent="EnemyHolder" instance=ExtResource("5_3spd3")]
 position = Vector2(176, 224)
 rotation = -4.8682
 motion_mode = 0
+
+[node name="PunchEnemy2" parent="EnemyHolder" instance=ExtResource("6_vyb5w")]
+position = Vector2(544, 480)
+rotation = -0.518391
+collision_layer = 2
+
+[node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("6_vyb5w")]
+position = Vector2(552, 704)
+rotation = -0.531551
+collision_layer = 2
 
 [node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("6_vyb5w")]
 position = Vector2(304, 352)
@@ -74,10 +94,10 @@ rotation = -0.436253
 collision_layer = 2
 
 [node name="FinishLevelArea" parent="." instance=ExtResource("7_pobop")]
-position = Vector2(288, -24)
+position = Vector2(41, 343)
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
-position = Vector2(8, 16)
+position = Vector2(247, -359)
 shape = SubResource("RectangleShape2D_wonum")
 
 [editable path="FinishLevelArea"]

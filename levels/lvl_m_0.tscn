@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://byx1wgt3y4l8l"]
+[gd_scene load_steps=12 format=4 uid="uid://cm1tj400jse25"]
 
-[ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_uib3s"]
-[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="2_4ufjd"]
-[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/instances/revolver_enemy.tscn" id="3_35j3k"]
-[ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/instances/punch_enemy.tscn" id="4_wonum"]
-[ext_resource type="Texture2D" uid="uid://dufv184m04via" path="res://scenario/rock_wall.png" id="5_yuacu"]
-[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="6_0mfp2"]
-[ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="7_kc318"]
+[ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_ybwku"]
+[ext_resource type="PackedScene" uid="uid://cndqoexpjktaj" path="res://enemies/enemy_holder.tscn" id="2_3gmyb"]
+[ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/instances/revolver_enemy.tscn" id="3_6g17r"]
+[ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/instances/punch_enemy.tscn" id="4_50vti"]
+[ext_resource type="Texture2D" uid="uid://dufv184m04via" path="res://scenario/rock_wall.png" id="5_n64ub"]
+[ext_resource type="PackedScene" uid="uid://dw2ldmgbhypql" path="res://player/player.tscn" id="6_dnffs"]
+[ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="7_2hbnj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
 vertices = PackedVector2Array(1158, 278, 1158, 23.2031, 1160.45, 368.18, 766.469, 380.828, 765.227, 374, 966, 374, 966, 278, 762, 356.242, 718.656, 118, 762, 118, 1157.54, -41.1562, 1157.56, -38, 762, -38, 687.219, -54.7812, 701.922, 26, 762, 26, 966, 154, 938, 154, 902, 150, 902, 122, 1002, 134, 966, 230, 1130, 250, 890, 250, 938, 230, 1130, -10, 1078, 134, 1078, 106, 790, -10, 1002, 106, 790, 54, 713.562, 90, 707.023, 54, 790, 90, 890, 278, 938, 278, 938, 346, 790, 346, 790, 278, 838, 278, 838, 250, 790, 250, 826, 150, 826, 122)
@@ -15,7 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(680, -61, 761.5, 387, 1
 agent_radius = 6.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sd81j"]
-texture = ExtResource("5_yuacu")
+texture = ExtResource("5_n64ub")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
@@ -28,33 +28,43 @@ size = Vector2(96, 96)
 
 [node name="lvl_m_0" type="Node2D"]
 
-[node name="Camera2D" parent="." instance=ExtResource("1_uib3s")]
+[node name="Camera2D" parent="." instance=ExtResource("1_ybwku")]
 position = Vector2(580, 317)
 zoom = Vector2(1, 1)
 
-[node name="EnemyHolder" parent="." instance=ExtResource("2_4ufjd")]
+[node name="EnemyHolder" parent="." instance=ExtResource("2_3gmyb")]
 
-[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("3_35j3k")]
+[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("3_6g17r")]
 position = Vector2(227, 274)
 rotation = -1.90415
 motion_mode = 0
 
-[node name="revolver_enemy3" parent="EnemyHolder" instance=ExtResource("3_35j3k")]
+[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("3_6g17r")]
+position = Vector2(343, -4)
+rotation = -5.89937
+motion_mode = 0
+
+[node name="revolver_enemy3" parent="EnemyHolder" instance=ExtResource("3_6g17r")]
 position = Vector2(762, -9)
 rotation = -2.9946
 motion_mode = 0
 
-[node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("4_wonum")]
+[node name="PunchEnemy2" parent="EnemyHolder" instance=ExtResource("4_50vti")]
+position = Vector2(521, 189)
+rotation = -0.455984
+collision_layer = 2
+
+[node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("4_50vti")]
 position = Vector2(761, 107)
 rotation = 2.77677
 collision_layer = 2
 
-[node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("4_wonum")]
+[node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("4_50vti")]
 position = Vector2(397, -175)
 rotation = 0.137644
 collision_layer = 2
 
-[node name="PunchEnemy5" parent="EnemyHolder" instance=ExtResource("4_wonum")]
+[node name="PunchEnemy5" parent="EnemyHolder" instance=ExtResource("4_50vti")]
 position = Vector2(739, -183)
 rotation = 2.10528
 collision_layer = 2
@@ -68,11 +78,16 @@ navigation_polygon = SubResource("NavigationPolygon_0ha08")
 tile_map_data = PackedByteArray("AAAyABYAAAAAAAAAAAAzABYAAAAAAAAAAAA0ABYAAAAAAAAAAAA1ABYAAAAAAAAAAAA2ABYAAAAAAAAAAAA3ABYAAAAAAAAAAAAwABAAAAAAAAAAAAAxABAAAAAAAAAAAAAyABAAAAAAAAAAAAAzABAAAAAAAAAAAAA7ABMAAAAAAAAAAAA7ABQAAAAAAAAAAAA7ABUAAAAAAAAAAAA7ABYAAAAAAAAAAAAxABYAAAAAAAAAAAAwABYAAAAAAAAAAAAwABUAAAAAAAAAAAAwABQAAAAAAAAAAAAwABMAAAAAAAAAAAAwABIAAAAAAAAAAAAwABEAAAAAAAAAAAA4ABYAAAAAAAAAAAA5ABYAAAAAAAAAAAA6ABYAAAAAAAAAAAA7ABIAAAAAAAAAAAA7ABEAAAAAAAAAAAA7ABAAAAAAAAAAAAA6ABAAAAAAAAAAAAA5ABAAAAAAAAAAAAA4ABAAAAAAAAAAAAAwAA8AAAAAAAAAAAAwAA4AAAAAAAAAAAAwAA0AAAAAAAAAAAAwAAwAAAAAAAAAAAAwAAsAAAAAAAAAAAAwAAoAAAAAAAAAAAAwAAkAAAAAAAAAAAAwAAgAAAAAAAAAAAA1AAgAAAAAAAAAAAA2AAgAAAAAAAAAAAA3AAgAAAAAAAAAAAA7AAsAAAAAAAAAAAA7AAwAAAAAAAAAAAAwAAcAAAAAAAAAAAAwAAYAAAAAAAAAAAAwAAIAAAAAAAAAAAAwAAEAAAAAAAAAAAAwAAAAAAAAAAAAAAAwAP//AAAAAAAAAAAwAP7/AAAAAAAAAAAxAP7/AAAAAAAAAAAyAP7/AAAAAAAAAAAzAP7/AAAAAAAAAAA0AP7/AAAAAAAAAAA1AP7/AAAAAAAAAAA2AP7/AAAAAAAAAAA3AP7/AAAAAAAAAAA4AP7/AAAAAAAAAAA5AP7/AAAAAAAAAAA6AP7/AAAAAAAAAAA7AP7/AAAAAAAAAAA8ABAAAAAAAAAAAAA9ABAAAAAAAAAAAAA+ABAAAAAAAAAAAAA/ABAAAAAAAAAAAABAABAAAAAAAAAAAABBABAAAAAAAAAAAABCABAAAAAAAAAAAABDABAAAAAAAAAAAABEABAAAAAAAAAAAABFABAAAAAAAAAAAABGABAAAAAAAAAAAABHABAAAAAAAAAAAABHAA8AAAAAAAAAAABHAA4AAAAAAAAAAABHAA0AAAAAAAAAAABHAAwAAAAAAAAAAABHAAsAAAAAAAAAAABHAAoAAAAAAAAAAABHAAkAAAAAAAAAAABHAAgAAAAAAAAAAABHAAcAAAAAAAAAAABHAAYAAAAAAAAAAABHAAUAAAAAAAAAAABHAAQAAAAAAAAAAABHAAMAAAAAAAAAAABHAAIAAAAAAAAAAABHAAEAAAAAAAAAAABHAAAAAAAAAAAAAABHAP//AAAAAAAAAABHAP7/AAAAAAAAAABGAP7/AAAAAAAAAABFAP7/AAAAAAAAAABEAP7/AAAAAAAAAABDAP7/AAAAAAAAAABCAP7/AAAAAAAAAABBAP7/AAAAAAAAAABAAP7/AAAAAAAAAAA/AP7/AAAAAAAAAAA+AP7/AAAAAAAAAAA9AP7/AAAAAAAAAAA8AP7/AAAAAAAAAABCAAcAAAAAAAAAAABBAAcAAAAAAAAAAABAAAcAAAAAAAAAAAA/AAcAAAAAAAAAAAA7AAoAAAAAAAAAAAA0AAgAAAAAAAAAAAA7AA0AAAAAAAAAAAAvAAYAAAAAAAAAAAAuAAYAAAAAAAAAAAAtAAYAAAAAAAAAAAAsAAYAAAAAAAAAAAArAAYAAAAAAAAAAAAqAAYAAAAAAAAAAAApAAYAAAAAAAAAAAAoAAYAAAAAAAAAAAAnAAYAAAAAAAAAAAAmAAYAAAAAAAAAAAAlAAYAAAAAAAAAAAAkAAYAAAAAAAAAAAAvAAIAAAAAAAAAAAAuAAIAAAAAAAAAAAAtAAIAAAAAAAAAAAAsAAIAAAAAAAAAAAArAAIAAAAAAAAAAAAqAAIAAAAAAAAAAAApAAIAAAAAAAAAAAAoAAIAAAAAAAAAAAAnAAIAAAAAAAAAAAAmAAIAAAAAAAAAAAAlAAIAAAAAAAAAAAAkAAIAAAAAAAAAAAAjAAIAAAAAAAAAAAAjAAYAAAAAAAAAAAAiAAYAAAAAAAAAAAAhAAYAAAAAAAAAAAAiAAIAAAAAAAAAAAAhAAIAAAAAAAAAAAAgAAIAAAAAAAAAAAAfAAIAAAAAAAAAAAAgAAYAAAAAAAAAAAAfAAYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_urfec")
 
-[node name="Player1" parent="." instance=ExtResource("6_0mfp2")]
+[node name="Player1" parent="." instance=ExtResource("6_dnffs")]
 z_index = 2
 position = Vector2(180, 451)
 
-[node name="FinishLevelArea" parent="." instance=ExtResource("7_kc318")]
+[node name="Player2" parent="." instance=ExtResource("6_dnffs")]
+z_index = 2
+position = Vector2(380, 451)
+rotation = -2.45391
+
+[node name="FinishLevelArea" parent="." instance=ExtResource("7_2hbnj")]
 position = Vector2(48, -33)
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]

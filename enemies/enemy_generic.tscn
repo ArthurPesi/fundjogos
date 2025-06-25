@@ -102,8 +102,7 @@ shape = SubResource("RectangleShape2D_nvcvs")
 [node name="VisionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="VisionArea"]
-visible = false
-polygon = PackedVector2Array(-50, 50, 389, 250, 389, -250, -50, -50)
+polygon = PackedVector2Array(-50, 50, 318, 217, 318, -217, -50, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 position = Vector2(1.19209e-07, -1.19209e-07)
