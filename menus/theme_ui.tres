@@ -36,6 +36,7 @@ Button/styles/normal = SubResource("StyleBoxTexture_kd7w7")
 Button/styles/pressed = SubResource("StyleBoxTexture_csbr7")
 HSlider/icons/grabber = ExtResource("4_caqsh")
 HSlider/icons/grabber_highlight = ExtResource("5_nf8dm")
+Label/constants/outline_size = 6
 Label/font_sizes/font_size = 26
 OptionButton/styles/focus = SubResource("StyleBoxTexture_7l40u")
 OptionButton/styles/hover = SubResource("StyleBoxTexture_x40j0")

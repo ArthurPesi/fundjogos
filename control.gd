@@ -4,12 +4,12 @@ const color_debug = [100, 34, 34, 255]
 const bg_colors = [
 	[70, 66, 75, 255],
 	[80, 74, 75, 255],
-	[50, 60, 55, 255],
-	[85, 90, 87, 255],
+	[53, 53, 55, 255],
+	[87, 87, 87, 255],
 	[63, 63, 67, 255],
-	[85, 90, 87, 255],
+	[89, 90, 88, 255],#
 	[93, 90, 92, 255],
-	[156, 149, 160, 255]
+	[126, 129, 120, 255]
 ]
 
 const wall_colors = [
@@ -17,7 +17,7 @@ const wall_colors = [
 	[73, 66, 67, 255],
 	[40, 36, 38, 255],
 	[80, 86, 83, 255],
-	[85, 90, 87, 255],
+	[92, 91, 92, 255],#
 	[94, 94, 90, 255],
 	[105, 98, 102, 255],
 	[100, 110, 112, 255]
@@ -199,6 +199,8 @@ func apply_shake(strength) -> void:
 	
 func _process(delta: float) -> void:
 	if scene_type == constants.scene_types.LEVEL:
+		if Input.is_action_just_pressed("debug"):
+			load_next_level()
 		if shake_strength > 0:
 			shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
 			
