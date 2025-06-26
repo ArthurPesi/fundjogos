@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4oi5b0rohbuk"]
+[gd_scene load_steps=17 format=3 uid="uid://drvcri5onfd3e"]
 
 [ext_resource type="PackedScene" uid="uid://dvl44gjna15ch" path="res://levels/camera_single_player.tscn" id="1_vorbh"]
 [ext_resource type="Texture2D" uid="uid://dufv184m04via" path="res://scenario/rock_wall.png" id="2_wfe30"]
@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://c2bytskoefweb" path="res://enemies/instances/revolver_enemy.tscn" id="5_6if2k"]
 [ext_resource type="PackedScene" uid="uid://c2sasfhe70clx" path="res://enemies/instances/punch_enemy.tscn" id="6_6ox2j"]
 [ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="7_k41ij"]
+[ext_resource type="PackedScene" uid="uid://cy8f7mgxlxt4j" path="res://enemies/instances/shotgun_enemy.tscn" id="8_ikfv4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
-vertices = PackedVector2Array(1512.07, -192.25, 1522.41, 625.07, 539.656, 558.859, 490.398, -235.719)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(484, -242, 534, 564.5, 1528.5, 631.5, 1518, -198)])
+vertices = PackedVector2Array(1604.75, 46.1016, 1604.75, 798.5, 619.5, 798.5, 619.5, 42.8828, 1455.63, 42.8828)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(608, 18.5, 601.5, 818.5, 1630, 824.5, 1623, 40.5)])
 agent_radius = 6.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sd81j"]
@@ -23,13 +24,25 @@ texture = ExtResource("2_wfe30")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikfv4"]
 texture = ExtResource("3_si8oo")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+4:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_urfec"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sd81j")
 sources/1 = SubResource("TileSetAtlasSource_ikfv4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skncp"]
+size = Vector2(104.5, 26.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brvuf"]
+size = Vector2(21, 115)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wonum"]
 size = Vector2(96, 96)
@@ -48,32 +61,49 @@ navigation_polygon = SubResource("NavigationPolygon_0ha08")
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" groups=["obstacle"]]
 tile_set = SubResource("TileSet_urfec")
 
+[node name="parede" type="StaticBody2D" parent="NavigationRegion2D"]
+position = Vector2(1086, 32.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/parede"]
+position = Vector2(483.25, -14.9375)
+shape = SubResource("RectangleShape2D_skncp")
+
+[node name="parede2" type="StaticBody2D" parent="NavigationRegion2D"]
+position = Vector2(128.5, 325)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/parede2"]
+position = Vector2(474.5, 449)
+shape = SubResource("RectangleShape2D_brvuf")
+
 [node name="Player1" parent="." instance=ExtResource("3_sd81j")]
 z_index = 2
-position = Vector2(320, 424)
+position = Vector2(-139, 517)
+
+[node name="Player2" parent="." instance=ExtResource("3_sd81j")]
+z_index = 2
+position = Vector2(-141, 618)
 
 [node name="EnemyHolder" parent="." instance=ExtResource("4_urfec")]
 
-[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("5_6if2k")]
-position = Vector2(168, 280)
-rotation = -1.90415
+[node name="revolver_enemy5" parent="EnemyHolder" instance=ExtResource("5_6if2k")]
+position = Vector2(864, 1139)
+rotation = -1.9812
 motion_mode = 0
 
-[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("5_6if2k")]
-position = Vector2(440, 64)
-rotation = -2.7605
-motion_mode = 0
-
-[node name="PunchEnemy2" parent="EnemyHolder" instance=ExtResource("6_6ox2j")]
-position = Vector2(752, 40)
-rotation = 1.59788
+[node name="PunchEnemy7" parent="EnemyHolder" instance=ExtResource("6_6ox2j")]
+position = Vector2(1329, 698)
+rotation = 3.04136
 collision_layer = 2
 
+[node name="shotgun_enemy3" parent="EnemyHolder" instance=ExtResource("8_ikfv4")]
+position = Vector2(1337, 1029)
+rotation = -2.85339
+
 [node name="FinishLevelArea" parent="." instance=ExtResource("7_k41ij")]
-position = Vector2(41, 343)
+position = Vector2(17, 341)
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
-position = Vector2(3.6875, -6.25)
+position = Vector2(1758, 346)
 shape = SubResource("RectangleShape2D_wonum")
 
 [editable path="FinishLevelArea"]
