@@ -5,7 +5,7 @@ enum game_modes {SINGLE, MULTI}
 enum player_states {WALKING, ATTACKING, DEAD}
 enum weapons {REVOLVER, UZI, SHOTGUN}
 enum enemy_states {REGULAR, AGGRO, DEAD}
-enum menus {MAIN_MENU, SETTINGS, CHAR_SELECTION, CREDITS}
+enum menus {MAIN_MENU, SETTINGS, CHAR_SELECTION, CREDITS, THANKS}
 enum scene_types {MENU, LEVEL}
 enum sound_modes {SOLO, SPLIT}
 enum locales {en, pt}

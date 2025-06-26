@@ -279,6 +279,10 @@ func load_scene(new_type, new_scene):
 		add_child(level_instance)
 	
 func load_next_level():
+	if curr_level_id + 1 >= level_resources[0].size():
+		curr_level_id = 0
+		load_scene(constants.scene_types.MENU, constants.menus.THANKS)
+		return
 	if curr_level_id + 1 < level_resources[0].size() and scene_type == constants.scene_types.LEVEL:
 		curr_level_id += 1
 		var next_color = get_level_bg_color()

@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://d34dod556v3qb"]
+
+[ext_resource type="Script" uid="uid://c4y2124qhpewh" path="res://menus/thanks.gd" id="1_4odx4"]
+[ext_resource type="Texture2D" uid="uid://clxmglq6m25cs" path="res://sprites/wallbg.png" id="2_ir2fr"]
+[ext_resource type="Texture2D" uid="uid://binb8lmifdat4" path="res://logofull.png" id="3_x2x8e"]
+
+[node name="thanks" type="Node2D"]
+script = ExtResource("1_4odx4")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(577, 323)
+texture = ExtResource("2_ir2fr")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.603922, 0.654902, 0.705882, 0.407843)
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 1161.0
+offset_bottom = 653.0
+
+[node name="logo" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(571, 319)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_x2x8e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 478.0
+offset_top = 446.0
+offset_right = 702.0
+offset_bottom = 691.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "THANKS_"
+horizontal_alignment = 1
+
+[node name="Main" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "MAIN_MENU"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/Main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
