@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://35jlfodj0jyx"]
+
+[ext_resource type="Script" uid="uid://c2mieg6qwtm8i" path="res://menus/credits.gd" id="1_jkw7x"]
+[ext_resource type="Texture2D" uid="uid://clxmglq6m25cs" path="res://sprites/wallbg.png" id="2_5jbn1"]
+
+[node name="credits" type="Node2D"]
+script = ExtResource("1_jkw7x")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(577, 323)
+texture = ExtResource("2_5jbn1")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.603922, 0.654902, 0.705882, 0.407843)
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 1161.0
+offset_bottom = 653.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 547.0
+offset_top = 309.0
+offset_right = 587.0
+offset_bottom = 332.0
+text = "CREDITS_"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 597.0
+offset_right = 65.0
+offset_bottom = 620.0
+text = "BACK"
+
+[node name="Sprite2D" type="Sprite2D" parent="Label2"]

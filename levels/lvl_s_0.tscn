@@ -84,10 +84,11 @@ z_index = 2
 position = Vector2(180, 451)
 
 [node name="FinishLevelArea" parent="." instance=ExtResource("7_kc318")]
-position = Vector2(48, -33)
+position = Vector2(67, -48)
+rotation = 3.14152
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
-position = Vector2(20, -15)
+position = Vector2(9.53674e-07, 3.8147e-06)
 shape = SubResource("RectangleShape2D_wonum")
 
 [editable path="FinishLevelArea"]

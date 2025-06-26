@@ -16,3 +16,8 @@ func _on_quit_pressed() -> void:
 func _input(event):
 	if event.is_action_pressed("quit_keyboard"):
 		get_tree().quit()
+
+
+func _on_credits_pressed() -> void:
+	world.play_sound_effect(constants.sound_effects.BUTTON_CLICK)
+	world.load_scene(constants.scene_types.MENU, constants.menus.CREDITS)

@@ -112,10 +112,11 @@ rotation = -0.436253
 collision_layer = 2
 
 [node name="FinishLevelArea" parent="." instance=ExtResource("7_pobop")]
-position = Vector2(41, 343)
+position = Vector2(292, -15)
+rotation = -1.5708
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
-position = Vector2(247, -359)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_wonum")
 
 [editable path="FinishLevelArea"]

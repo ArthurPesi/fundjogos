@@ -129,9 +129,7 @@ func shoot():
 		temp_bullet.start(position, dir.normalized(), randf_range(weapon_obj.MIN_BULLET_SPEED, weapon_obj.MAX_BULLET_SPEED), weapon_obj.BULLET_DURATION, self)
 	
 	timer_weapon = weapon_obj.COOLDOWN
-	print(enemies_inside_fire_range)
 	for N in enemies_inside_fire_range:
-		print(N)
 		enemies_inside_fire_range.erase(N)
 		if N.curr_state == constants.enemy_states.REGULAR:
 			N.enter_aggro(self)
@@ -182,7 +180,6 @@ func _physics_process(delta: float) -> void:
 			look_dir = dir_input
 		elif walk_dir.length_squared() > 0.25:
 			look_dir = walk_dir
-		print(look_dir)
 	match curr_state:
 		constants.player_states.WALKING:
 			if attackCounter > 0:
@@ -244,7 +241,6 @@ func _input(event: InputEvent) -> void:
 
 func _on_fire_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
-		print(body)
 		if body.curr_state == constants.enemy_states.REGULAR:
 			enemies_inside_fire_range.append(body)
 

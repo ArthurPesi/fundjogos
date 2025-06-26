@@ -83,7 +83,6 @@ func enter_aggro(aggro_target):
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("debug") and (position.distance_squared_to(get_global_mouse_position())) < 5000:
 		debug = true
-		print("debugging")
 	if curr_state == constants.enemy_states.REGULAR:
 		check_aggro()
 	elif curr_state == constants.enemy_states.AGGRO:

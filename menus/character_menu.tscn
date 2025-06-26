@@ -34,8 +34,11 @@ alignment = 1
 
 [node name="Return" type="Button" parent="HBoxContainer2"]
 visible = false
+custom_minimum_size = Vector2(80, 24)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
 text = "BACK"
 
 [node name="ready" type="Button" parent="HBoxContainer2"]

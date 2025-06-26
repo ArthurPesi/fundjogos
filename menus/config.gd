@@ -4,7 +4,6 @@ extends Control
 @onready var option_button: OptionButton = $CanvasLayer/VBoxContainer/HBoxContainer/OptionButton
 
 func _ready() -> void:
-	print(TranslationServer.get_locale())
 	for i in option_button.item_count:
 		if option_button.get_item_id(i) == constants.locales.get(TranslationServer.get_locale()):
 			option_button.select(i)

@@ -149,6 +149,7 @@ func bookkeep_enemy_amount():
 	if amount_of_enemies <= 0:
 		arrow_instance = ARROW.instantiate()
 		arrow_instance.target = finish_area.global_position
+		arrow_instance.target_rotation = finish_area.rotation
 		players[0].add_child(arrow_instance)
 		
 func check_level_up():
