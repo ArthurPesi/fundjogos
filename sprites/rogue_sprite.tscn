@@ -1,6 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgndjek2fgbwe"]
+[gd_scene load_steps=11 format=3 uid="uid://dgndjek2fgbwe"]
 
 [ext_resource type="Texture2D" uid="uid://c2owpbrh5ylt4" path="res://sprites/rogue.png" id="1_i01bc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i01bc"]
+atlas = ExtResource("1_i01bc")
+region = Rect2(10, 13, 10, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k132s"]
 atlas = ExtResource("1_i01bc")
@@ -32,6 +36,14 @@ region = Rect2(0, 12, 10, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dq8sv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i01bc")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k132s")
@@ -72,4 +84,4 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_dq8sv")
-animation = &"walk"
+animation = &"idle"

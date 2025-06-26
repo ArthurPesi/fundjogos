@@ -82,6 +82,7 @@ func melee():
 		atk_move = look_dir.normalized()
 		rotation = atan2(look_dir.y, look_dir.x)
 		curr_state = constants.player_states.ATTACKING
+		sprite_instance.play("attack")
 		if player_settings.character == "fighter" or player_settings.character == "paladin":
 			world.play_spatial_sound_effect(player_settings.attack_sfx, global_position)
 	elif curr_state != constants.player_states.ATTACKING and !player_red:

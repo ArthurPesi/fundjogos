@@ -1,6 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1cucem8u8uhf"]
+[gd_scene load_steps=11 format=3 uid="uid://c1cucem8u8uhf"]
 
 [ext_resource type="Texture2D" uid="uid://bc73nrn0s77ea" path="res://sprites/paladin.png" id="1_wvgk6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvgk6"]
+atlas = ExtResource("1_wvgk6")
+region = Rect2(10, 11, 10, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpwaf"]
 atlas = ExtResource("1_wvgk6")
@@ -32,6 +36,14 @@ region = Rect2(0, 12, 10, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dq8sv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvgk6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tpwaf")
@@ -72,4 +84,4 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_dq8sv")
-animation = &"walk"
+animation = &"attack"
