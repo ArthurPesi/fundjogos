@@ -43,6 +43,74 @@ const wall_colors = [
 	[143, 30, 20, 255]
 ]
 
+
+@onready var level_resources = [ [
+	preload("res://levels/lvl_s_0.tscn"),
+	preload("res://levels/lvl_s_1.tscn"),
+	preload("res://levels/lvl_s_2.tscn"),
+	preload("res://levels/lvl_s_3.tscn"),
+	preload("res://levels/lvl_s_4.tscn"),
+	preload("res://levels/lvl_s_5.tscn"),
+	preload("res://levels/lvl_s_6.tscn"),
+	preload("res://levels/lvl_s_7.tscn"),
+	preload("res://levels/lvl_s_8.tscn"),
+	preload("res://levels/lvl_s_9.tscn"),
+	preload("res://levels/lvl_s_10.tscn"),
+	preload("res://levels/lvl_s_11.tscn"),
+	preload("res://levels/lvl_s_12.tscn"),
+	preload("res://levels/lvl_s_13.tscn"),
+	preload("res://levels/lvl_s_14.tscn"),
+	preload("res://levels/lvl_s_15.tscn"),
+	preload("res://levels/lvl_s_16.tscn"),
+	preload("res://levels/lvl_s_17.tscn")
+],
+[
+	preload("res://levels/lvl_m_0.tscn"),
+	preload("res://levels/lvl_m_1.tscn"),
+	preload("res://levels/lvl_m_2.tscn"),
+	preload("res://levels/lvl_m_3.tscn"),
+	preload("res://levels/lvl_m_4.tscn"),
+	preload("res://levels/lvl_m_5.tscn"),
+	preload("res://levels/lvl_m_6.tscn"),
+	preload("res://levels/lvl_m_7.tscn"),
+	preload("res://levels/lvl_m_8.tscn"),
+	preload("res://levels/lvl_m_9.tscn"),
+	preload("res://levels/lvl_m_10.tscn"),
+	preload("res://levels/lvl_m_11.tscn"),
+	preload("res://levels/lvl_m_12.tscn"),
+	preload("res://levels/lvl_m_13.tscn"),
+	preload("res://levels/lvl_m_14.tscn"),
+	preload("res://levels/lvl_m_15.tscn"),
+	preload("res://levels/lvl_m_16.tscn"),
+	preload("res://levels/lvl_m_17.tscn")
+]
+]
+
+@onready var sound_effects = [
+	[preload("res://SFX/guns/shotgun/1.mp3"), preload("res://SFX/guns/shotgun/2.mp3")],
+	[preload("res://SFX/guns/cock_shotgun/1.mp3")],
+	[preload("res://SFX/guns/revolver/1.mp3"), preload("res://SFX/guns/revolver/2.mp3"),preload("res://SFX/guns/revolver/3.mp3"),preload("res://SFX/guns/revolver/4.mp3")],
+	[preload("res://SFX/guns/uzi/1.mp3")],
+	[preload("res://SFX/guns/no_ammo/1.mp3"), preload("res://SFX/guns/no_ammo/2.mp3"),preload("res://SFX/guns/no_ammo/3.mp3"),preload("res://SFX/guns/no_ammo/4.mp3")],
+	[preload("res://SFX/guns/pick_up/1.mp3"), preload("res://SFX/guns/pick_up/2.mp3"),preload("res://SFX/guns/pick_up/3.mp3")],
+	[preload("res://SFX/enemies/aggro/1.mp3"), preload("res://SFX/enemies/aggro/2.mp3"),preload("res://SFX/enemies/aggro/3.mp3"), preload("res://SFX/enemies/aggro/4.mp3"), preload("res://SFX/enemies/aggro/5.mp3")],
+	[preload("res://SFX/enemies/death/1.mp3"), preload("res://SFX/enemies/death/2.mp3"),preload("res://SFX/enemies/death/3.mp3"), preload("res://SFX/enemies/death/4.mp3"), preload("res://SFX/enemies/death/5.mp3")],
+	[preload("res://SFX/players/death/male/1.mp3"), preload("res://SFX/players/death/male/2.mp3")],
+	[preload("res://SFX/players/death/female/1.mp3"), preload("res://SFX/players/death/female/2.mp3")],
+	[preload("res://SFX/players/attack/fighter/1.mp3")],
+	[preload("res://SFX/players/attack/paladin/1.mp3")],
+	[preload("res://SFX/UI/button_click/1.mp3"), preload("res://SFX/UI/button_click/2.mp3"), preload("res://SFX/UI/button_click/3.mp3")],
+]
+
+@onready var menu_resources = [
+	preload("res://menus/main_menu.tscn"),
+	preload("res://menus/settings.tscn"),
+	preload("res://menus/char_selection.tscn"),
+	preload("res://menus/credits.tscn"),
+	preload("res://menus/thanks.tscn")
+]
+
+
 var pause_blur
 signal confirmation_signal
 var curr_level_id = 0
@@ -74,8 +142,6 @@ var RANDOM_SHAKE_STRENGTH: float = 30.0
 var SHAKE_DECAY_RATE: float = 3.0
 var shake_strength: float = 0.0
 var noise_i: float = 0.0
-var menu_resources: Array[Resource]
-@onready var level_resources: Array[Array]
 var level_holder
 var scene_type = constants.scene_types.MENU
 var noise = FastNoiseLite.new()
@@ -93,7 +159,6 @@ const MULTIPLAYER_CAMERAS_CONTAINER = preload("res://levels/multiplayer_cameras_
 const SPATIAL_AUDIO_PLAYER = preload("res://spatial_audio_player.tscn")
 const AUDIO_PLAYER = preload("res://audio_player.tscn")
 const SFX_PATH = "res://SFX/"
-var sound_effects: Array[Array]
 var transition_label: Label
 var level_instance
 var finish_area
@@ -105,32 +170,31 @@ func _ready() -> void:
 	TranslationServer.set_locale(OS.get_locale_language())
 	Input.connect("joy_connection_changed",_on_joy_connection_changed)
 	
-	level_resources.resize(2)
-	var i_level = 0
-	var i_path_level = "res://levels/lvl_s_" + str(i_level) + ".tscn"
-	while FileAccess.file_exists(i_path_level):
-		level_resources[constants.game_modes.SINGLE].append(load(i_path_level))
-		i_level += 1
-		i_path_level = "res://levels/lvl_s_" + str(i_level) + ".tscn"
-		
-	i_level = 0
-	i_path_level = "res://levels/lvl_m_" + str(i_level) + ".tscn"
-	while FileAccess.file_exists(i_path_level):
-		level_resources[constants.game_modes.MULTI].append(load(i_path_level))
-		i_level += 1
-		i_path_level = "res://levels/lvl_m_" + str(i_level) + ".tscn"
+	#var i_level = 0
+	#var i_path_level = "res://levels/lvl_s_" + str(i_level) + ".tscn"
+	#while FileAccess.file_exists(i_path_level):
+		#level_resources[constants.game_modes.SINGLE].append(load(i_path_level))
+		#i_level += 1
+		#i_path_level = "res://levels/lvl_s_" + str(i_level) + ".tscn"
+		#
+	#i_level = 0
+	#i_path_level = "res://levels/lvl_m_" + str(i_level) + ".tscn"
+	#while FileAccess.file_exists(i_path_level):
+		#level_resources[constants.game_modes.MULTI].append(load(i_path_level))
+		#i_level += 1
+		#i_path_level = "res://levels/lvl_m_" + str(i_level) + ".tscn"
 	
-	sound_effects.resize(constants.sound_paths.size())
-	for i in constants.sound_effects.values():
-		var curr_file = 1
-		var curr_dir = SFX_PATH.path_join(constants.sound_paths[i])
-		while FileAccess.file_exists(curr_dir.path_join(str(curr_file) + ".mp3")):
-			sound_effects[i].append(load(curr_dir.path_join(str(curr_file) + ".mp3")))
-			curr_file += 1
+	#sound_effects.resize(constants.sound_paths.size())
+	#for i in constants.sound_effects.values():
+		#var curr_file = 1
+		#var curr_dir = SFX_PATH.path_join(constants.sound_paths[i])
+		#while FileAccess.file_exists(curr_dir.path_join(str(curr_file) + ".mp3")):
+			#sound_effects[i].append(load(curr_dir.path_join(str(curr_file) + ".mp3")))
+			#curr_file += 1
 
 	players.resize(2)
-	for i in constants.menus:
-		menu_resources.append(load("res://menus/" + i.to_lower() + ".tscn"))
+	#for i in constants.menus:
+		#menu_resources.append(load("res://menus/" + i.to_lower() + ".tscn"))
 	RenderingServer.set_default_clear_color(get_level_bg_color())
 	rand.randomize()
 	noise.seed = rand.randi()

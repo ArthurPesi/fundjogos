@@ -25,3 +25,26 @@ const sound_paths = [
 	"players/death/male", "players/death/female", "players/attack/fighter", "players/attack/paladin",
 	"UI/button_click"
 ]
+
+
+
+const level_multi_paths = [
+	"res://levels/lvl_m_0.tscn",
+	"res://levels/lvl_m_1.tscn",
+	"res://levels/lvl_m_2.tscn",
+	"res://levels/lvl_m_3.tscn",
+	"res://levels/lvl_m_4.tscn",
+	"res://levels/lvl_m_5.tscn",
+	"res://levels/lvl_m_6.tscn",
+	"res://levels/lvl_m_7.tscn",
+	"res://levels/lvl_m_8.tscn",
+	"res://levels/lvl_m_9.tscn",
+	"res://levels/lvl_m_10.tscn",
+	"res://levels/lvl_m_11.tscn",
+	"res://levels/lvl_m_12.tscn",
+	"res://levels/lvl_m_13.tscn",
+	"res://levels/lvl_m_14.tscn",
+	"res://levels/lvl_m_15.tscn",
+	"res://levels/lvl_m_16.tscn",
+	"res://levels/lvl_m_17.tscn"
+]
