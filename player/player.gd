@@ -226,7 +226,7 @@ func check_melee():
 		if Input.is_action_pressed(player_settings.knife_action) or (Input.is_action_pressed(player_settings.fire_action) and !weapon_obj):
 			return true
 	else:
-		if (Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_RIGHT_SHOULDER) and !weapon_obj) or Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_LEFT_SHOULDER):
+		if (Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_LEFT_SHOULDER) and !weapon_obj) or Input.is_joy_button_pressed(player_settings.device, JOY_BUTTON_LEFT_SHOULDER):
 			return true
 	return false
 

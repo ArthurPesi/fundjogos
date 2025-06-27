@@ -1,7 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0x0mdsnyp3bf"]
+[gd_scene load_steps=12 format=3 uid="uid://d0x0mdsnyp3bf"]
 
 [ext_resource type="Script" uid="uid://btxnsmlpwmd42" path="res://menus/char_selection.gd" id="1_hyobs"]
+[ext_resource type="Texture2D" uid="uid://pwahvfn4tud0" path="res://menus/icons/Keyboard and controller keys/Keyboard keys/blue theme/Blue all keys.png" id="3_23iiw"]
 [ext_resource type="Texture2D" uid="uid://clxmglq6m25cs" path="res://sprites/wallbg.png" id="3_iuvmp"]
+[ext_resource type="Texture2D" uid="uid://cy4qgtwspclih" path="res://menus/icons/Keyboard and controller keys/Controller icons/sprites/controller button 28.png" id="4_r80ia"]
+[ext_resource type="Texture2D" uid="uid://bmjsv01wtnmke" path="res://menus/icons/Keyboard and controller keys/Controller icons/sprites/controller button 30.png" id="5_havqw"]
+[ext_resource type="Texture2D" uid="uid://dsdnuvo6w6xvc" path="res://menus/icons/Keyboard and controller keys/Controller icons/sprites/controller button 8.png" id="6_83nvd"]
+[ext_resource type="Texture2D" uid="uid://cp08aa28jc4c1" path="res://menus/icons/Keyboard and controller keys/Controller icons/sprites/controller button 49.png" id="7_havqw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_havqw"]
+atlas = ExtResource("3_23iiw")
+region = Rect2(1344, 240, 96, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_83nvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_havqw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83nvd"]
+atlas = ExtResource("3_23iiw")
+region = Rect2(672, 96, 96, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r80ia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83nvd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharSelection" type="Node2D"]
 script = ExtResource("1_hyobs")
@@ -15,17 +50,95 @@ region_rect = Rect2(0, 0, 1152, 648)
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 modulate = Color(0.603922, 0.654902, 0.705882, 0.407843)
-offset_left = -580.0
-offset_top = -326.0
-offset_right = 584.0
-offset_bottom = 331.0
+offset_left = -739.0
+offset_top = -192.0
+offset_right = 425.0
+offset_bottom = 465.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(3.4, 3.4)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = -53.0
-offset_top = -20.0
-offset_right = -13.0
-offset_bottom = 20.0
+offset_left = -86.0
+offset_top = -34.0
+offset_right = -46.0
+offset_bottom = 6.0
 alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -75.0
+offset_top = -57.5938
+offset_right = -18.0
+offset_bottom = -34.5938
+theme_override_font_sizes/font_size = 16
+text = "PRESS"
+
+[node name="Label6" type="Label" parent="."]
+offset_left = -155.0
+offset_top = 55.0
+offset_right = -98.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 16
+text = "BACK"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -77.5938
+offset_right = -3.0
+offset_bottom = -54.5938
+theme_override_font_sizes/font_size = 16
+text = "PRESS"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = -15.0
+offset_top = -57.5938
+offset_right = 65.0
+offset_bottom = -34.5938
+theme_override_font_sizes/font_size = 16
+text = "/    /"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 26.0
+offset_top = -77.5938
+offset_right = 106.0
+offset_bottom = -54.5938
+theme_override_font_sizes/font_size = 16
+text = "TO JOIN"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.68434e-14, -71.5938)
+scale = Vector2(0.308594, 0.308594)
+sprite_frames = SubResource("SpriteFrames_83nvd")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-147, 80)
+scale = Vector2(0.308594, 0.308594)
+sprite_frames = SubResource("SpriteFrames_r80ia")
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 42.0
+offset_top = -57.5938
+offset_right = 122.0
+offset_bottom = -34.5938
+theme_override_font_sizes/font_size = 16
+text = "TO JOIN"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-26, -52.5938)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("4_r80ia")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(28, -52.5937)
+scale = Vector2(0.322917, 0.322917)
+texture = ExtResource("5_havqw")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0.999999, -52.5937)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("6_83nvd")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-127, 80)
+scale = Vector2(0.260417, 0.260417)
+texture = ExtResource("7_havqw")

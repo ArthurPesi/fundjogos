@@ -122,6 +122,36 @@ position = Vector2(-14, 973)
 rotation = -1.3342
 motion_mode = 0
 
+[node name="revolver_enemy10" parent="EnemyHolder" instance=ExtResource("6_pe4qo")]
+position = Vector2(378, 977)
+rotation = -0.736485
+motion_mode = 0
+
+[node name="revolver_enemy11" parent="EnemyHolder" instance=ExtResource("6_pe4qo")]
+position = Vector2(638, 233)
+rotation = -0.736485
+motion_mode = 0
+
+[node name="revolver_enemy12" parent="EnemyHolder" instance=ExtResource("6_pe4qo")]
+position = Vector2(475, 38)
+rotation = -0.736485
+motion_mode = 0
+
+[node name="revolver_enemy13" parent="EnemyHolder" instance=ExtResource("6_pe4qo")]
+position = Vector2(1062, 821)
+rotation = -1.28588
+motion_mode = 0
+
+[node name="revolver_enemy14" parent="EnemyHolder" instance=ExtResource("6_pe4qo")]
+position = Vector2(665, 424)
+rotation = 0.0363047
+motion_mode = 0
+
+[node name="revolver_enemy15" parent="EnemyHolder" instance=ExtResource("6_pe4qo")]
+position = Vector2(1020, 446)
+rotation = -1.22364
+motion_mode = 0
+
 [node name="revolver_enemy9" parent="EnemyHolder" instance=ExtResource("6_pe4qo")]
 position = Vector2(-5, 240)
 rotation = -5.11493
@@ -135,6 +165,26 @@ collision_layer = 2
 [node name="PunchEnemy9" parent="EnemyHolder" instance=ExtResource("7_ab0hq")]
 position = Vector2(1242, 563)
 rotation = 4.26127
+collision_layer = 2
+
+[node name="PunchEnemy12" parent="EnemyHolder" instance=ExtResource("7_ab0hq")]
+position = Vector2(881, 609)
+rotation = 2.54983
+collision_layer = 2
+
+[node name="PunchEnemy13" parent="EnemyHolder" instance=ExtResource("7_ab0hq")]
+position = Vector2(438, 186)
+rotation = 1.01687
+collision_layer = 2
+
+[node name="PunchEnemy14" parent="EnemyHolder" instance=ExtResource("7_ab0hq")]
+position = Vector2(121, 471)
+rotation = -0.371339
+collision_layer = 2
+
+[node name="PunchEnemy15" parent="EnemyHolder" instance=ExtResource("7_ab0hq")]
+position = Vector2(775, 1144)
+rotation = 4.42566
 collision_layer = 2
 
 [node name="PunchEnemy10" parent="EnemyHolder" instance=ExtResource("7_ab0hq")]

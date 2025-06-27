@@ -1,20 +1,39 @@
 Keys,en,pt
 PLAY,Play,Jogar
-SETTINGS,Settings,Opções
+SETTINGS,Settings,Opcoes
 QUIT,Quit,Sair
 BACK,Return,Voltar
 READY,Ready,Pronto
 RESUME,Resume,Continuar
 MASTER VOLUME,Master volume,Volume geral
 SOUND,Audio,Som
-MUSIC VOLUME,Music volume,Volume da música
+MUSIC VOLUME,Music volume,Volume da musica
 SAVE,Save,Salvar
 SFX VOLUME,SFX volume,Volume dos efeitos
 NEW GAME,New game,Novo jogo
 CONTINUE,Continue,Continuar
 PRESS,Press,Aperte
+MAIN_MENU,Main menu,Menu principal
 TO JOIN,to join,para entrar
 LANGUAGE,Language,Idioma
-LEVEL1_1,The night was invented by the government to keep people obedient. Have you ever noticed that babies keep awake at night? It's because they haven't been indocrinated,A noite é uma invenção do governo para deixar a população mais obediente. Você já percebeu que os bebês não dormem de noite? É porquê eles ainda não foram doutrinados
-LEVEL1_2,"The green guys, you know? People think they are goblins. But I'm telling you, they are not. You know what they truly are?",Sabe aqueles carinhas verdes? Todo mundo acha que eles são goblins. Mas a verdade é que eles não são. Sabe o que eles são de verdade?
-LEVEL1_3,The goblins are aliens. You heard it right. Aliens. A - L - I - E - N - S. And they were sent here to screw us up. So we screw them up first.,"Os goblins são aliens. Exatamente, aliens. A - L - I - E - N - S. E eles estão aqui para acabar com a gente. Mas não se a gente acabar com eles primeiro."
+THANKS_,"Thanks for playing!!!!!\nAlso, don't trust THEM",Obrigado por jogar!!!!!\nNao acredite NELES.
+CREDITS,Credits,Creditos
+CREDITS_,"Programming, menu design, english translation and level design: Pesi, available at pesii.itch.io\nArt and story: Mendel\nMusic: Medieval Winter - Metal/World\nGun sprites: Vladpenn, available at vladpenn.itch.io\nIController icons: adamgamer1111, available at adamgamer1111.itch.io\nMenu buttons sprites: ok-lavender, available at ok-lavender.itch.io\nFont by Daniel Linssen, available at x.com/managore","Programacao, menus, traducao para ingles e level design: Pesi, disponivel em pesii.itch.io\nArte e historia: Mendel\nMusica: Medieval Winter - Metal/World\nSprites das armas: Vladpenn, disponivel em vladpenn.itch.io\nIcones dos controles: adamgamer1111, disponivel em adamgamer1111.itch.io\nSprites dos botoes dos menus: ok-lavender, disponivel em ok-lavender.itch.io\nFonte por Daniel Linssen, disponivel em x.com/managore"
+LEVEL0,Don't trust them.,Nao confie neles.
+LEVEL1,The night was invented by the government to keep people obedient. Have you ever noticed that babies keep awake at night? It's because they haven't been indocrinated,A noite e uma invencao do governo para deixar a populacao mais obediente. Você ja percebeu que os bebes nao dormem de noite? E porque eles ainda nao foram doutrinados
+LEVEL2,"The green guys, you know? People think they are goblins. But I'm telling you, they are not. You know what they truly are?",Sabe aqueles carinhas verdes? Todo mundo acha que eles sao goblins. Mas a verdade e que eles nao sao. Sabe o que eles sao de verdade?
+LEVEL3,The goblins are aliens. You heard it right. Aliens. A - L - I - E - N - S. And they were sent here to screw us up. So we screw them up first.,"Os goblins sao aliens. Exatamente, aliens. A - L - I - E - N - S. E eles estao aqui para acabar com a gente. Mas nao se a gente acabar com eles primeiro."
+LEVEL4,Earth is flat. Just like a plate.,A Terra e plana. Sim que nem um prato.
+LEVEL5,EscaMedia is just your regular communication company. What are you even looking for? It's just birbs and mails.,A EscaMedia e uma empresa normal de comunicacoes. O que voces estao tentando achar aqui? Temos apenas pombos-correio e nada mais
+LEVEL6,Art thou prepared for the witch hunting in the blessed day after the blessed day of tomorrow?,Estais vois devidamente preparados para a caca as bruxas depois de amanha?
+LEVEL7,"Escamedia officialy repudiates any form of untruthful statements or phrasery. In another words, we don't walk around with fakies.",Nos da EscaMedia sempre incentivamos a disseminação da verdade e somos extremamente contra notícias falsas.
+LEVEL8,I swear to God i saw an undead last night. I'm telling you.,Eu juro que vi um morto-vivo ontem de noite! EU JURO!
+LEVEL9,I recently tried to speak to a goblin. But these guys are such a bunch of weirdos. It's like they never learned to talk.,"Esses dias eu tentei conversar com um goblin, mas eles sao muito estranhos parecem que nao sabem falar normalmente."
+LEVEL10,"Earth is definitely not flat. Stick with me, it's actually hollow. Like a knight's armour on a castle.","A Terra não e plana, ela na verdade e oca, então nao tem como ser plana."
+LEVEL11,The moon is made out of cheese. And one day the Sun is going to get close enough to melt it.,A lua é feita de queijo. E um dia o Sol ainda vai derreter ela.
+LEVEL12,My uncle is the best. The guy got 15 natural monsters from nature in the last night of fishing. If only was just as cool as he is...,Meu tio foi pescar e matou 15 monstros marinhos ontem. Cara como eu queria ser legal como ele...
+LEVEL13,"Snark Ssssssberg is an alien. He is also a reptlian (it comes from reptile, I know I'm really smart). He is from a very advanced world.",Snark Ssssssberg e um alienígena reptiliano vindo de um planeta muito avançado.
+LEVEL14,"Cigarettes are made in Ssssssnark's home planet and sold here. But this is top-secret, noone told it to you.","O cigarro e uma droga feita no planeta natal de Snark e e vendido, no reino, secretamente por ele."
+LEVEL15,"I heard carrier pigeons are robots, whatever that means. They are made to control the means of communication.",Os pombos-correio sao robos desenvolvidos pela EscaMedia para controlar a comunicacao do reino.
+LEVEL16,"Goblins are HUMAN. Just like you, just like me. Imagine going green, that's so 1437. But they used the CiGaReTtE. It's what it does to people. It gets you green.","Os goblins sao seres humanos, isso mesmo, eles nao sao uma especie escondida que nao havia sido encontrada. Eles sao seres humanos que fumaram muito cigarro e foram transformados naqueles serezinhos verdes."
+LEVEL17,Earth is not round like a ball. Neither hollow like a knight. It's Bowl-shaped. Just like a bowl.,"A terra nao e plana, nao e oca, e uma cumbuca."

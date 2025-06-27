@@ -62,7 +62,13 @@ shape = SubResource("RectangleShape2D_0wbb5")
 
 [node name="Player1" parent="." instance=ExtResource("3_uqtcj")]
 z_index = 2
-position = Vector2(320, 424)
+position = Vector2(269, 7)
+rotation = 1.4112
+
+[node name="Player2" parent="." instance=ExtResource("3_uqtcj")]
+z_index = 2
+position = Vector2(302, 27)
+rotation = 1.63296
 
 [node name="EnemyHolder" parent="." instance=ExtResource("4_3l7tf")]
 

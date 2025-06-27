@@ -92,14 +92,9 @@ shape = SubResource("RectangleShape2D_brvuf")
 
 [node name="Player1" parent="." instance=ExtResource("4_p5sbb")]
 z_index = 2
-position = Vector2(-139, 517)
+position = Vector2(-153, 593)
 
 [node name="EnemyHolder" parent="." instance=ExtResource("5_ku4i4")]
-
-[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("6_eke5m")]
-position = Vector2(841, 767)
-rotation = -1.58253
-motion_mode = 0
 
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("6_eke5m")]
 position = Vector2(677, 494)
@@ -109,11 +104,6 @@ motion_mode = 0
 [node name="revolver_enemy3" parent="EnemyHolder" instance=ExtResource("6_eke5m")]
 position = Vector2(689, 351)
 rotation = -0.657721
-motion_mode = 0
-
-[node name="revolver_enemy4" parent="EnemyHolder" instance=ExtResource("6_eke5m")]
-position = Vector2(1029, 856)
-rotation = -5.75124
 motion_mode = 0
 
 [node name="revolver_enemy5" parent="EnemyHolder" instance=ExtResource("6_eke5m")]
@@ -131,11 +121,6 @@ position = Vector2(470, 795)
 rotation = 0.629573
 collision_layer = 2
 
-[node name="PunchEnemy5" parent="EnemyHolder" instance=ExtResource("7_qv5dd")]
-position = Vector2(451, 262)
-rotation = 0.644836
-collision_layer = 2
-
 [node name="PunchEnemy6" parent="EnemyHolder" instance=ExtResource("7_qv5dd")]
 position = Vector2(1023, 510)
 rotation = 4.03189
@@ -150,19 +135,16 @@ collision_layer = 2
 position = Vector2(424, 627)
 rotation = -2.90487
 
-[node name="shotgun_enemy2" parent="EnemyHolder" instance=ExtResource("8_f26j4")]
-position = Vector2(1248, 335)
-rotation = 2.63021
-
 [node name="shotgun_enemy3" parent="EnemyHolder" instance=ExtResource("8_f26j4")]
 position = Vector2(1337, 1029)
 rotation = -2.85339
 
 [node name="FinishLevelArea" parent="." instance=ExtResource("9_6bkwr")]
-position = Vector2(17, 341)
+position = Vector2(1722, 688)
+rotation = 0.000494469
 
 [node name="CollisionShape2D" parent="FinishLevelArea" index="0"]
-position = Vector2(1758, 346)
+position = Vector2(0.00012207, -3.05176e-05)
 shape = SubResource("RectangleShape2D_wonum")
 
 [editable path="FinishLevelArea"]

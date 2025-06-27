@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvh1qt33voapi"]
+
+[ext_resource type="Script" uid="uid://brqidjr4isnub" path="res://menus/menu.gd" id="1_rtarm"]
+[ext_resource type="Texture2D" uid="uid://clxmglq6m25cs" path="res://sprites/wallbg.png" id="2_12xxb"]
+[ext_resource type="Texture2D" uid="uid://binb8lmifdat4" path="res://logofull.png" id="3_0e1y8"]
+[ext_resource type="Script" uid="uid://clcpnbc13amgg" path="res://menus/play.gd" id="4_4stqi"]
+
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_rtarm")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(577, 323)
+texture = ExtResource("2_12xxb")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.603922, 0.654902, 0.705882, 0.407843)
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 1161.0
+offset_bottom = 653.0
+
+[node name="logo" type="Sprite2D" parent="."]
+position = Vector2(566, 304)
+scale = Vector2(0.560811, 0.560811)
+texture = ExtResource("3_0e1y8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 481.0
+offset_top = 346.0
+offset_right = 705.0
+offset_bottom = 591.0
+
+[node name="play" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "PLAY"
+script = ExtResource("4_4stqi")
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "CREDITS"
+
+[node name="settings" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

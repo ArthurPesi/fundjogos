@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://v6w2xcklpea6" path="res://levels/finish_level_area.tscn" id="9_uuhc1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0ha08"]
-vertices = PackedVector2Array(1604.75, 46.1016, 1604.75, 798.5, 619.5, 798.5, 619.5, 42.8828, 1455.63, 42.8828)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(608, 18.5, 601.5, 818.5, 1630, 824.5, 1623, 40.5)])
+vertices = PackedVector2Array(1574.7, 789.281, 1494, 786.367, 1494, 646, 1579.47, 646, 1098, 598, 1178, 598, 1178, 774, 1014, 646, 1274, 774, 1274, 778.43, 774, 760.398, 774, 754.5, 790.5, 754.5, 790.5, 722.5, 774, 722.5, 774, 646, 1014, 550, 1098, 550, 1402, 646, 1402, 666, 1274, 666, 1270, 646, 1270, 682, 1274, 682, 1370, 618, 1270, 618, 1270, 598, 1302, 598, 1370, 550, 1302, 550, 1098, 458, 1014, 458, 1014, 422, 1098, 422, 1370, 458, 1302, 458, 1302, 422, 1370, 422, 746, 759.398, 710, 758.094, 710, 754.5, 746, 754.5, 643.242, 755.688, 638.312, 646, 682, 646, 659.5, 722.5, 682, 754.5, 682, 757.094, 659.5, 754.5, 682, 722.5, 698, 742.5, 694, 742.5, 694, 734.5, 698, 734.5, 762, 742.5, 758, 742.5, 758, 734.5, 762, 734.5, 1593.29, 231.078, 1590, 329.891, 1590, 282, 1577.5, 231.312, 1577.5, 249.688, 1558, 282, 1558, 249.688, 1014, 250, 620.5, 250, 620.258, 244.906, 1452, 233.078, 1452, 249.688, 1466, 249.688, 1466, 282, 1370, 282, 1014, 298, 1370, 298, 1466, 618, 1466, 762, 1430, 694, 1430, 618, 1174, 422, 1174, 394, 1226, 394, 1226, 422, 1206, 570, 1302, 762, 1302, 746, 1530, 310, 1562, 310, 1562, 442, 1530, 442, 1530, 470, 1446, 470, 1446, 442, 1494, 310, 1398, 378, 1398, 326, 1398, 442, 1370, 378, 1370, 394, 1014, 342, 1014, 394, 1014, 378, 954, 378, 954, 406, 902, 406, 902, 378, 886, 378, 886, 330, 858, 330, 858, 426, 730, 426, 710, 618, 730, 454, 858, 454, 858, 534, 746, 618, 886, 534, 886, 406, 986, 522, 986, 406, 986, 486, 1126, 486, 1126, 422, 1274, 422, 1274, 486, 1398, 486, 1398, 470, 1562, 470, 1562, 618, 1398, 618, 1398, 522, 1274, 522, 1274, 570, 1242, 570, 1302, 710, 1302, 694, 1242, 710, 1206, 746, 1126, 570, 1126, 522, 986, 618, 886, 618, 886, 586, 858, 586, 858, 618, 746, 722.5, 710, 722.5, 646, 618, 646, 454, 678, 454, 678, 426, 646, 426, 646, 278, 858, 278, 858, 294, 886, 294, 886, 278, 986, 278, 986, 342, 1014, 326, 1398, 310, 1494, 249.688, 1530, 249.688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(6, 8, 9), PackedInt32Array(6, 9, 10), PackedInt32Array(10, 11, 12, 6), PackedInt32Array(13, 14, 15, 7), PackedInt32Array(7, 16, 17, 4), PackedInt32Array(7, 6, 12, 13), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 21, 20, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 24, 27, 29), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(34, 35, 36, 37), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(42, 43, 44, 45), PackedInt32Array(46, 47, 42, 48), PackedInt32Array(44, 49, 45), PackedInt32Array(42, 45, 48), PackedInt32Array(50, 51, 52, 53), PackedInt32Array(54, 55, 56, 57), PackedInt32Array(58, 59, 60), PackedInt32Array(61, 58, 60, 62), PackedInt32Array(62, 60, 63, 64), PackedInt32Array(65, 66, 67, 68, 69), PackedInt32Array(69, 70, 71, 72, 65), PackedInt32Array(73, 65, 72, 74), PackedInt32Array(75, 76, 77, 78), PackedInt32Array(79, 80, 81, 82, 83), PackedInt32Array(77, 76, 84, 85), PackedInt32Array(86, 87, 88, 89), PackedInt32Array(89, 90, 75, 91, 92), PackedInt32Array(93, 86, 89, 92, 94, 95), PackedInt32Array(92, 96, 94), PackedInt32Array(97, 98, 81, 99), PackedInt32Array(80, 100, 101), PackedInt32Array(102, 103, 104, 105), PackedInt32Array(105, 106, 107), PackedInt32Array(108, 109, 110), PackedInt32Array(111, 112, 113, 114, 115), PackedInt32Array(116, 117, 104, 118), PackedInt32Array(103, 119, 120), PackedInt32Array(121, 122, 79, 83), PackedInt32Array(82, 123, 124, 83), PackedInt32Array(125, 126, 91, 75, 78), PackedInt32Array(90, 127, 128, 75), PackedInt32Array(78, 129, 130), PackedInt32Array(125, 78, 130), PackedInt32Array(124, 125, 130, 131), PackedInt32Array(131, 132, 133), PackedInt32Array(134, 135, 77), PackedInt32Array(134, 77, 85), PackedInt32Array(136, 134, 85, 137), PackedInt32Array(136, 137, 83, 133), PackedInt32Array(83, 138, 139), PackedInt32Array(118, 140, 141, 142), PackedInt32Array(143, 144, 115), PackedInt32Array(115, 145, 146, 111), PackedInt32Array(111, 147, 148, 149), PackedInt32Array(150, 151, 152, 153, 154), PackedInt32Array(155, 156, 157, 158, 102, 105), PackedInt32Array(99, 159, 95, 94, 97), PackedInt32Array(95, 160, 93), PackedInt32Array(93, 161, 162, 86), PackedInt32Array(99, 81, 80, 101), PackedInt32Array(99, 101, 102, 158), PackedInt32Array(155, 105, 107), PackedInt32Array(155, 107, 108, 154), PackedInt32Array(150, 154, 108, 110), PackedInt32Array(149, 150, 110, 112, 111), PackedInt32Array(143, 115, 114, 116), PackedInt32Array(142, 143, 116, 118), PackedInt32Array(118, 104, 103, 120), PackedInt32Array(118, 120, 121, 139), PackedInt32Array(83, 139, 121), PackedInt32Array(83, 124, 131, 133)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(614, 239, 637.5, 761.5, 1580.5, 795.5, 1599.5, 225)])
 agent_radius = 6.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sd81j"]
@@ -79,13 +79,13 @@ shape = SubResource("RectangleShape2D_mdljd")
 
 [node name="Player1" parent="." instance=ExtResource("4_g0fh3")]
 z_index = 2
-position = Vector2(-19, 1141)
-rotation = -1.13845
+position = Vector2(-1, 1175)
+rotation = -1.5185
 
 [node name="Player2" parent="." instance=ExtResource("4_g0fh3")]
 z_index = 2
-position = Vector2(13, 1199)
-rotation = -1.69836
+position = Vector2(17, 1226)
+rotation = -1.5185
 
 [node name="EnemyHolder" parent="." instance=ExtResource("5_c0x1t")]
 

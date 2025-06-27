@@ -21,11 +21,15 @@ offset_right = 1161.0
 offset_bottom = 653.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = 547.0
-offset_top = 309.0
-offset_right = 587.0
-offset_bottom = 332.0
+offset_left = 326.0
+offset_top = 127.0
+offset_right = 815.0
+offset_bottom = 156.0
+theme_override_constants/line_spacing = 10
 text = "CREDITS_"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 19.0
