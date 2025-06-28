@@ -132,6 +132,7 @@ class player_class:
 	
 var players_settings: Array[player_class] = [player_class.new(), player_class.new()]
 const LEVEL_HOLDER_PRESET = preload("res://levels/level_holder.tscn")
+const SAVE_PATH = "user://savegame.json"
 
 var game_mode = constants.game_modes.SINGLE
 var sound_mode = constants.sound_modes.SOLO
@@ -165,6 +166,14 @@ var finish_area
 const ARROW = preload("res://levels/arrow.tscn")
 
 func _ready() -> void:
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file:
+		var json = file.get_as_text()
+		
+		var saved_data = JSON.parse_string(json)
+		
+		curr_level_id = saved_data["level_id"]
+	
 	if constants.DEBUG_LEVEL:
 		curr_level_id = constants.DEBUG_LEVEL
 	TranslationServer.set_locale(OS.get_locale_language())
@@ -329,6 +338,9 @@ func _input(event: InputEvent) -> void:
 		confirmation_signal.emit()
 	
 func reload_level():
+	players[0].get_node("CollisionShape2D").queue_free()
+	if game_mode == constants.game_modes.MULTI:
+		players[1].get_node("CollisionShape2D").queue_free()
 	load_scene(constants.scene_types.LEVEL, curr_level_id)
 	
 func load_scene(new_type, new_scene):
@@ -361,7 +373,7 @@ func load_scene(new_type, new_scene):
 	elif new_type == constants.scene_types.MENU:
 		level_instance = menu_resources[new_scene].instantiate()
 		add_child(level_instance)
-	
+
 func load_next_level():
 	if curr_level_id + 1 >= level_resources[0].size():
 		curr_level_id = 0
@@ -374,6 +386,12 @@ func load_next_level():
 		pause_blur.modulate = next_color
 		pause_blur.modulate.a = 0.7
 	show_transition_text = true
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var data = {}
+	data["level_id"] = curr_level_id
+	var json = JSON.stringify(data)
+	file.store_string(json)
+	file.close()
 	load_scene(constants.scene_types.LEVEL, curr_level_id)
 		
 func is_device_active(device_id) -> bool:

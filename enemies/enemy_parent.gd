@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var max_speed = 500
+var max_speed = 400
 var acceleration = 0.08
 var curr_movement = Vector2(0,0)
 var aggro_distance_squared_los = 120000
@@ -154,5 +154,6 @@ func _on_die_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		if body.curr_state == constants.player_states.ATTACKING:
 			die()
+			body.attackCounter = clamp(body.attackCounter - 0.03,0, body.attackCounter)
 		else:
 			body.die_player()

@@ -44,6 +44,8 @@ func init(world_settings) -> void:
 	add_child(sprite_instance)
 	sprite_instance.scale = Vector2.ONE * 3
 	unique_device = player_settings.device if player_settings.device_type == constants.device_types.GAMEPAD else 0
+	if player_settings.device_type == constants.device_types.GAMEPAD:
+		$Cursor.show()
 
 func die_player():
 	if curr_state != constants.player_states.DEAD and MORTAL:
@@ -136,6 +138,7 @@ func shoot():
 			N.enter_aggro(self)
 	
 func _process(_delta: float) -> void:
+	
 	if weapon_obj:
 		if cos(global_rotation) < 0:
 			if weapon_scale.y > 0:
@@ -181,6 +184,8 @@ func _physics_process(delta: float) -> void:
 			look_dir = dir_input
 		elif walk_dir.length_squared() > 0.25:
 			look_dir = walk_dir
+	$Cursor.global_position = lerp($Cursor.global_position,  position + ( look_dir * 210 ), 0.2)
+	$Cursor.global_rotation = 0
 	match curr_state:
 		constants.player_states.WALKING:
 			if attackCounter > 0:

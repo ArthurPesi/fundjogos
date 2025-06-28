@@ -64,19 +64,9 @@ rotation = 1.97029
 
 [node name="EnemyHolder" parent="." instance=ExtResource("4_t3dj0")]
 
-[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("5_ijsvw")]
-position = Vector2(23, 790)
-rotation = -1.53309
-motion_mode = 0
-
 [node name="revolver_enemy3" parent="EnemyHolder" instance=ExtResource("5_ijsvw")]
 position = Vector2(954, 818)
 rotation = -2.60533
-motion_mode = 0
-
-[node name="revolver_enemy4" parent="EnemyHolder" instance=ExtResource("5_ijsvw")]
-position = Vector2(282, 773)
-rotation = -4.78628
 motion_mode = 0
 
 [node name="revolver_enemy5" parent="EnemyHolder" instance=ExtResource("5_ijsvw")]
@@ -97,11 +87,6 @@ motion_mode = 0
 [node name="revolver_enemy8" parent="EnemyHolder" instance=ExtResource("5_ijsvw")]
 position = Vector2(1037, 182)
 rotation = -1.51655
-motion_mode = 0
-
-[node name="revolver_enemy9" parent="EnemyHolder" instance=ExtResource("5_ijsvw")]
-position = Vector2(799, -82)
-rotation = 0.957658
 motion_mode = 0
 
 [node name="revolver_enemy10" parent="EnemyHolder" instance=ExtResource("5_ijsvw")]
@@ -129,11 +114,6 @@ position = Vector2(758, 494)
 rotation = -0.259419
 collision_layer = 2
 
-[node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("6_twych")]
-position = Vector2(642, 494)
-rotation = 3.33301
-collision_layer = 2
-
 [node name="PunchEnemy5" parent="EnemyHolder" instance=ExtResource("6_twych")]
 position = Vector2(3.99994, 618)
 rotation = 1.01376
@@ -144,19 +124,9 @@ position = Vector2(260, 636)
 rotation = 3.77237
 collision_layer = 2
 
-[node name="PunchEnemy7" parent="EnemyHolder" instance=ExtResource("6_twych")]
-position = Vector2(442, 654)
-rotation = -0.408548
-collision_layer = 2
-
 [node name="PunchEnemy8" parent="EnemyHolder" instance=ExtResource("6_twych")]
 position = Vector2(766, 632)
 rotation = 3.05499
-collision_layer = 2
-
-[node name="PunchEnemy9" parent="EnemyHolder" instance=ExtResource("6_twych")]
-position = Vector2(1011, 638)
-rotation = 3.0611
 collision_layer = 2
 
 [node name="PunchEnemy10" parent="EnemyHolder" instance=ExtResource("6_twych")]

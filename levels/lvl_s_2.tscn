@@ -75,21 +75,6 @@ position = Vector2(824, 456)
 rotation = -4.98754
 motion_mode = 0
 
-[node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("5_elyur")]
-position = Vector2(568, -144)
-rotation = -4.36058
-motion_mode = 0
-
-[node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("6_vyejy")]
-position = Vector2(616, 408)
-rotation = 3.44794
-collision_layer = 2
-
-[node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("6_vyejy")]
-position = Vector2(232, 72)
-rotation = -0.621397
-collision_layer = 2
-
 [node name="PunchEnemy6" parent="EnemyHolder" instance=ExtResource("6_vyejy")]
 position = Vector2(192, -120)
 rotation = 2.07779

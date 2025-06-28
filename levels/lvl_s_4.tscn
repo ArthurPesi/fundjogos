@@ -66,11 +66,6 @@ rotation = -2.79688
 
 [node name="EnemyHolder" parent="." instance=ExtResource("4_4wuud")]
 
-[node name="revolver_enemy" parent="EnemyHolder" instance=ExtResource("5_ikll1")]
-position = Vector2(83, 156)
-rotation = -1.43109
-motion_mode = 0
-
 [node name="revolver_enemy2" parent="EnemyHolder" instance=ExtResource("5_ikll1")]
 position = Vector2(234, -267)
 rotation = -4.30382
@@ -89,11 +84,6 @@ collision_layer = 2
 [node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("6_uwbd7")]
 position = Vector2(-152, -216)
 rotation = 0.84849
-collision_layer = 2
-
-[node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("6_uwbd7")]
-position = Vector2(-103, -415)
-rotation = 1.08728
 collision_layer = 2
 
 [node name="FinishLevelArea" parent="." instance=ExtResource("7_wm6cy")]

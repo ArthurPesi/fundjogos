@@ -57,19 +57,9 @@ position = Vector2(521, 189)
 rotation = -0.455984
 collision_layer = 2
 
-[node name="PunchEnemy3" parent="EnemyHolder" instance=ExtResource("4_50vti")]
-position = Vector2(761, 107)
-rotation = 2.77677
-collision_layer = 2
-
 [node name="PunchEnemy4" parent="EnemyHolder" instance=ExtResource("4_50vti")]
 position = Vector2(397, -175)
 rotation = 0.137644
-collision_layer = 2
-
-[node name="PunchEnemy5" parent="EnemyHolder" instance=ExtResource("4_50vti")]
-position = Vector2(739, -183)
-rotation = 2.10528
 collision_layer = 2
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
